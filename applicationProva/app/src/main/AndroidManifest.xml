@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ApplicationProva">
-        <activity android:name=".Newgroup"></activity>
-        <activity android:name=".InserisciProdotto"></activity>
+        <activity android:name=".ListOfGroups"></activity>
+        <activity android:name=".Newgroup" />
+        <activity android:name=".InserisciProdotto" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegistrerActivity" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
