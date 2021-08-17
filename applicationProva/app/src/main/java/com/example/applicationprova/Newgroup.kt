@@ -71,9 +71,9 @@ class Newgroup : AppCompatActivity() {
 
             myRef.child((groupid+1).toString()).setValue(group).addOnSuccessListener {
 
-                myRefutenti.child(currentUser?.email.toString().replace(".","")).child("idgruppo" +(groupid+1).toString()).setValue((groupid+1).toString())
+                myRefutenti.child(currentUser?.email.toString().replace(".","")).child("idgruppo" +(groupid).toString()).setValue((groupid).toString())
                 list.forEach{
-                    myRefutenti.child(it.replace(".","")).child("idgruppo" +(groupid+1).toString()).setValue((groupid+1).toString())
+                    myRefutenti.child(it.replace(".","")).child("idgruppo" +(groupid).toString()).setValue((groupid).toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

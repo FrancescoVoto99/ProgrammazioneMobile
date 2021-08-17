@@ -17,6 +17,9 @@ class ListOfGroups : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val list = mutableListOf<String>()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_of_groups)
 
@@ -34,12 +37,15 @@ class ListOfGroups : AppCompatActivity() {
         val child=currentUser?.email.toString().replace(".","")
         myRef.child(child).get().addOnSuccessListener {
 
-                Log.i("firebase", "Got value ${it.value}")
-                 
+            Log.i("firebase", "Got value ${it.value}")
+            for (postSnapshot in it.children) {
+                list.add(postSnapshot.getValue().toString())
+            }
+                 rv.adapter = ListofGroupsAdapter(list)
             }.addOnFailureListener{
                 Log.e("firebase", "Error getting data", it)
             }
 
-        rv.adapter = ListofGroupsAdapter(IntRange(0, 100).toList())
+       // rv.adapter = ListofGroupsAdapter(list)
     }
 }

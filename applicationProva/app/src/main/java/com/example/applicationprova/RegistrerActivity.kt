@@ -59,6 +59,10 @@ class RegistrerActivity : AppCompatActivity() {
             Password.setError("Password non puo essere vuoto")
             Password.requestFocus()
         }
+        else if(TextUtils.isEmpty(NomeUtente.text.toString())){
+            NomeUtente.setError("Password non puo essere vuoto")
+            NomeUtente.requestFocus()
+        }
         else{
             auth.createUserWithEmailAndPassword(Email.text.toString(), Password.text.toString())
                 .addOnCompleteListener(this) { task ->
@@ -78,7 +82,7 @@ class RegistrerActivity : AppCompatActivity() {
                                 }
                             }
 
-                        val intent = Intent(this, InserisciProdotto::class.java)
+                        val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
                         // If sign in fails, display a message to the user.

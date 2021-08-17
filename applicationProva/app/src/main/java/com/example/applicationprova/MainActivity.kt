@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         }
         else{
+
             val intent = Intent(this, ListOfGroups::class.java)
             startActivity(intent)
         }

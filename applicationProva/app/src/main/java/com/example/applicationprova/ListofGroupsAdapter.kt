@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
-class ListofGroupsAdapter (val data: List<Int>):
+class ListofGroupsAdapter (val data: List<String>):
     RecyclerView.Adapter<ListofGroupsAdapter.MyViewHolder>() {
 
         class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {

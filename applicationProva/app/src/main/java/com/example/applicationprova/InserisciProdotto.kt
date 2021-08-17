@@ -4,14 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import com.example.progetto.Prodotto
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -22,6 +22,8 @@ class InserisciProdotto: AppCompatActivity() {
     lateinit var note: EditText
     lateinit var btnInsert: Button
     lateinit var btnLogout: Button
+
+    var productid: Long=0
 
    lateinit var database: FirebaseDatabase
    lateinit var myRef: DatabaseReference
@@ -41,8 +43,20 @@ class InserisciProdotto: AppCompatActivity() {
         btnLogout=findViewById<Button>(R.id.btnlogout)
 
 
+
      database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         myRef = database.getReference("prodotti")
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot){
+                if (dataSnapshot.exists())
+                    productid= dataSnapshot.childrenCount.toLong()
+            }
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w("prova", "Failed to read value.", error.toException())
+            }
+        })
 
 
         btnInsert.setOnClickListener{
@@ -62,7 +76,7 @@ class InserisciProdotto: AppCompatActivity() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val prodotto = Prodotto(nome.text.toString(),categoria.text.toString(),quantita.text.toString().toInt(),note.text.toString(),currentUser?.uid.toString(),currentUser?.displayName.toString())
-        myRef.child(nome.text.toString()).setValue(prodotto).addOnSuccessListener {
+        myRef.child((productid+1).toString()).setValue(prodotto).addOnSuccessListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
 
