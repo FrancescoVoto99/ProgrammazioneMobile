@@ -23,8 +23,8 @@ class ListOfGroups : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val list = mutableListOf<String>()
-        //data binding al posto del classico inflate
         super.onCreate(savedInstanceState)
+        //data binding al posto del classico inflate
         val binding: ActivityListOfGroupsBinding = DataBindingUtil.setContentView(
             this, R.layout.activity_list_of_groups)
         //setContentView(R.layout.activity_list_of_groups)

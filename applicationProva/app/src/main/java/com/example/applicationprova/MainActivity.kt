@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.databinding.ActivityMainBinding
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -16,13 +18,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_main)
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        btnLogOut = findViewById<Button>(R.id.btnLogaut)
-
-        btnLogOut.setOnClickListener {
+        binding.btnLogaut.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
+import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.databinding.ActivityInserisciProdottoBinding
 import com.example.progetto.Prodotto
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class InserisciProdotto: AppCompatActivity() {
@@ -20,8 +19,6 @@ class InserisciProdotto: AppCompatActivity() {
     lateinit var categoria: EditText
     lateinit var quantita: EditText
     lateinit var note: EditText
-    lateinit var btnInsert: Button
-    lateinit var btnLogout: Button
 
     var productid: Long=0
 
@@ -33,14 +30,14 @@ class InserisciProdotto: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inserisci_prodotto)
+        val binding: ActivityInserisciProdottoBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_inserisci_prodotto)
+        //setContentView(R.layout.activity_inserisci_prodotto)
 
-       nome=findViewById<EditText>(R.id.Nomeprodotto)
-      categoria=findViewById<EditText>(R.id.spinnercategory)
-       quantita=findViewById<EditText>(R.id.spinnerquantity)
-       note=findViewById<EditText>(R.id.note)
-      btnInsert=findViewById<Button>(R.id.btninsert)
-        btnLogout=findViewById<Button>(R.id.btnlogout)
+       nome=binding.Nomeprodotto
+      categoria=binding.spinnercategory
+       quantita=binding.spinnerquantity
+       note=binding.note
 
 
 
@@ -59,11 +56,11 @@ class InserisciProdotto: AppCompatActivity() {
         })
 
 
-        btnInsert.setOnClickListener{
+        binding.btninsert.setOnClickListener{
 
            insertProduct()
         }
-        btnLogout.setOnClickListener(){
+        binding.btnlogout.setOnClickListener(){
             auth = Firebase.auth
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)

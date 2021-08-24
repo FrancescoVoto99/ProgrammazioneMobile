@@ -8,6 +8,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
+import com.example.applicationprova.databinding.ActivityRegistrerBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -28,22 +31,21 @@ class RegistrerActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registrer)
+        val binding: ActivityRegistrerBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_registrer)
 
-        btnRegister=findViewById<Button>(R.id.register_button)
-        NomeUtente=findViewById<TextInputEditText>(R.id.register_nomeutente)
-        Email=findViewById<TextInputEditText>(R.id.register_email)
-        Password=findViewById<TextInputEditText>(R.id.register_password)
-        goLogin=findViewById<TextView>(R.id.navigate_to_login)
+        NomeUtente=binding.registerNomeutente
+        Email=binding.registerEmail
+        Password=binding.registerPassword
 
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        btnRegister.setOnClickListener{
+        binding.registerButton.setOnClickListener{
             creteUser()
         }
 
-        goLogin.setOnClickListener{
+        binding.navigateToLogin.setOnClickListener{
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

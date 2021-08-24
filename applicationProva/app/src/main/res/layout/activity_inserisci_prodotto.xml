@@ -1,80 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".InserisciProdotto">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:context=".InserisciProdotto">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nuovo Prodotto" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/shop" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nuovo Prodotto" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="27dp"
-            android:text="Inserisci i Dati" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/shop" />
 
-        <EditText
-            android:id="@+id/Nomeprodotto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome"
-            android:layout_marginTop="20dp"
-            />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:text="Inserisci i Dati" />
 
-        <EditText
-            android:id="@+id/spinnercategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="categoria"
-            android:layout_marginTop="20dp"
-            />
+            <EditText
+                android:id="@+id/Nomeprodotto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome"
+                android:layout_marginTop="20dp" />
 
-        <EditText
-            android:id="@+id/spinnerquantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="QUANTITA"
-            android:layout_marginTop="20dp"
-            />
+            <EditText
+                android:id="@+id/spinnercategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="categoria"
+                android:layout_marginTop="20dp" />
+
+            <EditText
+                android:id="@+id/spinnerquantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="QUANTITA"
+                android:layout_marginTop="20dp" />
 
 
-        <EditText
-            android:id="@+id/note"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="note aggiuntive"
-            android:layout_marginTop="20dp"
-            />
+            <EditText
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="note aggiuntive"
+                android:layout_marginTop="20dp" />
 
-        <Button
-            android:id="@+id/btninsert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Inserisci" />
+            <Button
+                android:id="@+id/btninsert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Inserisci" />
 
-        <Button
-            android:id="@+id/btnlogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="LogOut" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnlogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="LogOut" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

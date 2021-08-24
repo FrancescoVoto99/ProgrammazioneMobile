@@ -7,6 +7,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
+import com.example.applicationprova.databinding.ActivityNewgroupBinding
 import com.example.progetto.Prodotto
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -28,15 +31,11 @@ class Newgroup : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_newgroup)
+        val binding: ActivityNewgroupBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_newgroup)
 
         val list = mutableListOf<String>()
 
-        nome=findViewById<EditText>(R.id.Nomegruppo)
-        nuovoComponente=findViewById<EditText>(R.id.aggiungimembro)
-        lista=findViewById<TextView>(R.id.componenti)
-        agg=findViewById<Button>(R.id.agg)
-        crea=findViewById<Button>(R.id.creaGruppo)
 
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         myRef = database.getReference("gruppi")
@@ -53,18 +52,18 @@ class Newgroup : AppCompatActivity() {
             }
         })
 
-        agg.setOnClickListener{
-            list.add(nuovoComponente.text.toString())
-            lista.append(nuovoComponente.text.toString()+ System.getProperty ("line.separator"))
-            nuovoComponente.setText("")
+        binding.agg.setOnClickListener{
+            list.add(binding.aggiungimembro.text.toString())
+            binding.componenti.append(binding.aggiungimembro.text.toString()+ System.getProperty ("line.separator"))
+            binding.aggiungimembro.setText("")
         }
 
-        crea.setOnClickListener{
+        binding.creaGruppo.setOnClickListener{
 
             val auth = Firebase.auth
             val currentUser = auth.currentUser
 
-            val group = Gruppo(nome.text.toString(),list)
+            val group = Gruppo(binding.Nomegruppo.text.toString(),list)
 
 
 
