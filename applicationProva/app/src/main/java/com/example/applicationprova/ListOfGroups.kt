@@ -1,10 +1,14 @@
 package com.example.applicationprova
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,9 +23,11 @@ class ListOfGroups : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val list = mutableListOf<String>()
-
+        //data binding al posto del classico inflate
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_of_groups)
+        val binding: ActivityListOfGroupsBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_list_of_groups)
+        //setContentView(R.layout.activity_list_of_groups)
 
         var auth = Firebase.auth
         val currentUser = auth.currentUser
@@ -31,7 +37,7 @@ class ListOfGroups : AppCompatActivity() {
         myRef = database.getReference("utentiGruppi")
 
 
-        val rv: RecyclerView = findViewById(R.id.listaGruppi)
+        val rv: RecyclerView = binding.listaGruppi
         rv.layoutManager = LinearLayoutManager(this)
 
         val child=currentUser?.email.toString().replace(".","")
@@ -45,7 +51,16 @@ class ListOfGroups : AppCompatActivity() {
             }.addOnFailureListener{
                 Log.e("firebase", "Error getting data", it)
             }
+        rv.adapter = ListofGroupsAdapter(list)
+        //Action button
+        val fab: View = binding.fab
+        fab.setOnClickListener {
+            fabOnClick()
+        }
+    }
 
-       // rv.adapter = ListofGroupsAdapter(list)
+    private fun fabOnClick() {
+        val intent = Intent(this, Newgroup::class.java)
+        startActivity(intent)
     }
 }
