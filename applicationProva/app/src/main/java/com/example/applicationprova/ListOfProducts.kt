@@ -1,14 +1,14 @@
 package com.example.applicationprova
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
+import com.example.applicationprova.databinding.ActivityListOfProductsBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -25,8 +25,9 @@ class ListOfProducts : AppCompatActivity() {
         val list2 = mutableListOf<String>()
         super.onCreate(savedInstanceState)
         //data binding al posto del classico inflate
-        val binding: ActivityListOfGroupsBinding = DataBindingUtil.setContentView(
-                this, R.layout.activity_list_of_products)
+        val binding: ActivityListOfProductsBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_list_of_products
+        )
         //setContentView(R.layout.activity_list_of_groups)
 
         var auth = Firebase.auth
@@ -37,24 +38,33 @@ class ListOfProducts : AppCompatActivity() {
         searchproducts= database.getReference("gruppi")
 
 
-        val rv: RecyclerView = binding.
+        val rv: RecyclerView = binding.listaProdotti
         rv.layoutManager = LinearLayoutManager(this)
 
-        myRef.child("cambiaqui").get().addOnSuccessListener {
-            for (postSnapshot in it.children) {
+        val extras = intent.extras
+        if (extras != null) {
+            val value = extras.getString("key")
 
-                list.add(postSnapshot.getValue().toString())
-                list2.add(postSnapshot.key.toString())
+            myRef.child(value.toString()).get().addOnSuccessListener {
+                for (postSnapshot in it.children) {
 
+                    list.add(postSnapshot.getValue().toString())
+                    list2.add(postSnapshot.key.toString())
+
+                }
+
+
+                rv.adapter = ListofGroupsAdapter(list, list2)
+            }.addOnFailureListener{
+                Log.e("firebase", "Error getting data", it)
             }
 
 
-            rv.adapter = ListofGroupsAdapter(list,list2)
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
         }
 
-        rv.adapter = ListofGroupsAdapter(list,list2)
+
+
+        rv.adapter = ListofGroupsAdapter(list, list2)
         //Action button
         val fab: View = binding.fab
         fab.setOnClickListener {
@@ -63,7 +73,7 @@ class ListOfProducts : AppCompatActivity() {
     }
 
     private fun fabOnClick() {
-        val intent = Intent(this, Newgroup::class.java)
+        val intent = Intent(this, InserisciProdotto::class.java)
         startActivity(intent)
     }
 }

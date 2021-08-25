@@ -73,8 +73,8 @@ class InserisciProdotto: AppCompatActivity() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val prodotto = Prodotto(nome.text.toString(),categoria.text.toString(),quantita.text.toString().toInt(),note.text.toString(),currentUser?.uid.toString(),currentUser?.displayName.toString())
-        myRef.child((productid+1).toString()).setValue(prodotto).addOnSuccessListener {
-            val intent = Intent(this, MainActivity::class.java)
+        myRef.push().setValue(prodotto).addOnSuccessListener {
+            val intent = Intent(this, ListOfProducts::class.java)
             startActivity(intent)
 
         }

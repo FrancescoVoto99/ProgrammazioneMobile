@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
 class ListofProductAdapter (val data: List<String>,val data2: List<String>):
-    RecyclerView.Adapter<ListofGroupsAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<ListofProductAdapter.MyViewHolder>() {
 
     class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
         val textView = row.findViewById<TextView>(R.id.item)
-        val textView2 = row.findViewById<TextView>(R.id.idgroup)
+        val textView2 = row.findViewById<TextView>(R.id.idproduct)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             MyViewHolder {
         val layout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_groups, parent, false)
+            .inflate(R.layout.item_products, parent, false)
         val holder = MyViewHolder(layout)
         holder.row.setOnClickListener(){
             Snackbar.make(parent.rootView,"Click!", Snackbar.LENGTH_SHORT).show()

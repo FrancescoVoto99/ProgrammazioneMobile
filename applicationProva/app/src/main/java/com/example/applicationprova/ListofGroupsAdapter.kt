@@ -10,12 +10,17 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
+
+
 class ListofGroupsAdapter (val data: List<String>,val data2: List<String>):
+
     RecyclerView.Adapter<ListofGroupsAdapter.MyViewHolder>() {
+
 
         class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
             val textView = row.findViewById<TextView>(R.id.item)
             val textView2 = row.findViewById<TextView>(R.id.idgroup)
+
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                 MyViewHolder {
@@ -26,6 +31,7 @@ class ListofGroupsAdapter (val data: List<String>,val data2: List<String>):
 
                 Snackbar.make(parent.rootView,"Click!", Snackbar.LENGTH_SHORT).show()
                 val intent = Intent(v.context, Newgroup::class.java)
+                intent.putExtra("key", holder.textView2.text )
                 v.context.startActivity(intent)
 
 
