@@ -18,7 +18,7 @@ class ListOfGroups : AppCompatActivity() {
 
     lateinit var database: FirebaseDatabase
     lateinit var myRef: DatabaseReference
-
+    lateinit var searchgroups: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -35,6 +35,7 @@ class ListOfGroups : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         myRef = database.getReference("utentiGruppi")
+        searchgroups= database.getReference("gruppi")
 
 
         val rv: RecyclerView = binding.listaGruppi
@@ -42,10 +43,10 @@ class ListOfGroups : AppCompatActivity() {
 
         val child=currentUser?.email.toString().replace(".","")
         myRef.child(child).get().addOnSuccessListener {
-
-            Log.i("firebase", "Got value ${it.value}")
             for (postSnapshot in it.children) {
-                list.add(postSnapshot.getValue().toString())
+
+                    list.add(postSnapshot.getValue().toString())
+
             }
                  rv.adapter = ListofGroupsAdapter(list)
             }.addOnFailureListener{

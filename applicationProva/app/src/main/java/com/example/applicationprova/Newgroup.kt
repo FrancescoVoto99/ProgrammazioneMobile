@@ -24,7 +24,8 @@ class Newgroup : AppCompatActivity() {
     lateinit var agg: Button
     lateinit var crea: Button
 
-    var groupid: Long=0
+    var groupid: String="prova"
+    var groupid2: String="prova"
 
     lateinit var database: FirebaseDatabase
     lateinit var myRef: DatabaseReference
@@ -44,7 +45,7 @@ class Newgroup : AppCompatActivity() {
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot){
                 if (dataSnapshot.exists())
-                    groupid= dataSnapshot.childrenCount.toLong()
+                   groupid2= dataSnapshot.key.toString()
             }
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
@@ -62,17 +63,16 @@ class Newgroup : AppCompatActivity() {
 
             val auth = Firebase.auth
             val currentUser = auth.currentUser
-
+            list.add(currentUser?.email.toString())
             val group = Gruppo(binding.Nomegruppo.text.toString(),list)
 
 
+            groupid= myRef.push().key.toString()
+            myRef.child(groupid).setValue(group).addOnSuccessListener {
 
-
-            myRef.child((groupid+1).toString()).setValue(group).addOnSuccessListener {
-
-                myRefutenti.child(currentUser?.email.toString().replace(".","")).child("idgruppo" +(groupid).toString()).setValue((groupid).toString())
                 list.forEach{
-                    myRefutenti.child(it.replace(".","")).child("idgruppo" +(groupid).toString()).setValue((groupid).toString())
+                    myRefutenti.child(it.replace(".","")).child(groupid).setValue(groupid)
+                    Log.d("email",currentUser?.email.toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

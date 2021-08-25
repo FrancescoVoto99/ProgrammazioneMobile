@@ -11,6 +11,9 @@ android {
     buildFeatures {
         dataBinding true
     }
+    dataBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.example.applicationprova"
