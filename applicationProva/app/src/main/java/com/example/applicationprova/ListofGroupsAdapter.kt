@@ -27,12 +27,12 @@ class ListofGroupsAdapter (val data: List<String>,val data2: List<String>):
             val layout = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_groups, parent, false)
             val holder = MyViewHolder(layout)
-            holder.row.setOnClickListener(){ v ->
+            holder.row.setOnClickListener(){
 
-                Snackbar.make(parent.rootView,"Click!", Snackbar.LENGTH_SHORT).show()
-                val intent = Intent(v.context, ListOfProducts::class.java)
+                Snackbar.make(parent.rootView,"Click!"+ holder.textView.text, Snackbar.LENGTH_SHORT).show()
+                val intent = Intent(holder.row.context, ListOfProducts::class.java)
                 intent.putExtra("key", holder.textView2.text.toString() )
-                v.context.startActivity(intent)
+                holder.row.context.startActivity(intent)
 
 
             }

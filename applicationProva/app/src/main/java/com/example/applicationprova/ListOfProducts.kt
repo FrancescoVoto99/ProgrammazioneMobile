@@ -45,28 +45,30 @@ class ListOfProducts : AppCompatActivity() {
         if (extras != null) {
             val value = extras.getString("key")
 
-            myRef.child(value.toString()).child("prodotti").get().addOnSuccessListener {
+            myRef.child("-MhxU2gVL0ZZrvfrYOsN").child("prodotti").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
 
                     list.add(postSnapshot.getValue().toString())
                     list2.add(postSnapshot.key.toString())
 
                 }
+                rv.adapter = ListofProductAdapter(list, list2)
 
 
-                rv.adapter = ListofGroupsAdapter(list, list2)
             }.addOnFailureListener{
                 Log.e("firebase", "Error getting data", it)
+                rv.adapter = ListofProductAdapter(list, list2)
             }
+
 
 
         }
 
 
 
-        rv.adapter = ListofGroupsAdapter(list, list2)
+
         //Action button
-        val fab: View = binding.fab
+        val fab: View = binding.fabProduct
         fab.setOnClickListener {
             fabOnClick()
         }
@@ -77,7 +79,7 @@ class ListOfProducts : AppCompatActivity() {
         val extras = this.intent.extras
         if (extras != null) {
             val value = extras.getString("key")
-            intent.putExtra("key", value.toString()  )
+            intent.putExtra("key","1"  )
         }
         startActivity(intent)
     }
