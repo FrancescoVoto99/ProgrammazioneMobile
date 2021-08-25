@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.EditText
-import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
 import com.example.applicationprova.databinding.ActivityInserisciProdottoBinding
 import com.example.progetto.Prodotto
@@ -18,8 +16,8 @@ import com.google.firebase.ktx.Firebase
 
 class InserisciProdotto: AppCompatActivity() {
     lateinit var nome : EditText
-    lateinit var categoria: Spinner
-    lateinit var quantita: Spinner
+    lateinit var categoria: EditText
+    lateinit var quantita: EditText
     lateinit var note: EditText
 
     var productid: Long=0
@@ -37,36 +35,13 @@ class InserisciProdotto: AppCompatActivity() {
         //setContentView(R.layout.activity_inserisci_prodotto)
 
        nome=binding.Nomeprodotto
-        categoria=binding.spinnerCategory
-       quantita=binding.spinnerQuantity
+      categoria=binding.spinnercategory
+       quantita=binding.spinnerquantity
        note=binding.note
 
-        val spinCat: Spinner = binding.spinnerCategory
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.categorie,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinCat.adapter = adapter
-        }
-
-        val spinQuant: Spinner = binding.spinnerQuantity
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.quantita,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinQuant.adapter = adapter
-        }
 
 
-        database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
+     database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         myRef = database.getReference("gruppi")
 
         myRef.addValueEventListener(object : ValueEventListener {
@@ -100,7 +75,7 @@ class InserisciProdotto: AppCompatActivity() {
             val value = extras.getString("key")
         auth = Firebase.auth
         val currentUser = auth.currentUser
-        val prodotto = Prodotto(nome.text.toString(),categoria.getSelectedItem().toString(),quantita.getSelectedItem().toString().toInt(),note.text.toString(),currentUser?.uid.toString(),currentUser?.displayName.toString())
+        val prodotto = Prodotto(nome.text.toString(),categoria.text.toString(),quantita.text.toString().toInt(),note.text.toString(),currentUser?.uid.toString(),currentUser?.displayName.toString())
         myRef.child(value.toString()).child("prodotti").push().setValue(prodotto).addOnSuccessListener {
             val intent = Intent(this, ListOfProducts::class.java)
             startActivity(intent)

@@ -43,19 +43,19 @@
                 android:hint="Nome"
                 android:layout_marginTop="20dp" />
 
-            <Spinner
-                android:id="@+id/spinnerCategory"
+            <EditText
+                android:id="@+id/spinnercategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="categoria"
                 android:layout_marginTop="20dp" />
 
-            <Spinner
-                android:id="@+id/spinnerQuantity"
+            <EditText
+                android:id="@+id/spinnerquantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="quantità" />
+                android:hint="QUANTITA"
+                android:layout_marginTop="20dp" />
 
 
             <EditText
