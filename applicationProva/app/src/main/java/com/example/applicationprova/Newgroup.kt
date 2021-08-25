@@ -18,12 +18,6 @@ import com.google.firebase.ktx.Firebase
 
 class Newgroup : AppCompatActivity() {
 
-    lateinit var nome : EditText
-    lateinit var nuovoComponente: EditText
-    lateinit var lista: TextView
-    lateinit var agg: Button
-    lateinit var crea: Button
-
     var groupid: String="prova"
     var groupid2: String="prova"
 
@@ -71,7 +65,7 @@ class Newgroup : AppCompatActivity() {
             myRef.child(groupid).setValue(group).addOnSuccessListener {
 
                 list.forEach{
-                    myRefutenti.child(it.replace(".","")).child(groupid).setValue(groupid)
+                    myRefutenti.child(it.replace(".","")).child(groupid).setValue(binding.Nomegruppo.text.toString())
                     Log.d("email",currentUser?.email.toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)

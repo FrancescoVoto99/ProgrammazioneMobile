@@ -21,7 +21,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/idgroup"
+            android:id="@+id/idproduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

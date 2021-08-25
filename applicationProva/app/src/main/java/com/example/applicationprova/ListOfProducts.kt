@@ -14,11 +14,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-class ListOfGroups : AppCompatActivity() {
-
+class ListOfProducts : AppCompatActivity() {
     lateinit var database: FirebaseDatabase
     lateinit var myRef: DatabaseReference
-    lateinit var searchgroups: DatabaseReference
+    lateinit var searchproducts: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -27,7 +26,7 @@ class ListOfGroups : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //data binding al posto del classico inflate
         val binding: ActivityListOfGroupsBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_list_of_groups)
+                this, R.layout.activity_list_of_products)
         //setContentView(R.layout.activity_list_of_groups)
 
         var auth = Firebase.auth
@@ -35,27 +34,25 @@ class ListOfGroups : AppCompatActivity() {
 
 
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
-        myRef = database.getReference("utentiGruppi")
-        searchgroups= database.getReference("gruppi")
+        searchproducts= database.getReference("gruppi")
 
 
-        val rv: RecyclerView = binding.listaGruppi
+        val rv: RecyclerView = binding.
         rv.layoutManager = LinearLayoutManager(this)
 
-        val child=currentUser?.email.toString().replace(".","")
-        myRef.child(child).get().addOnSuccessListener {
+        myRef.child("cambiaqui").get().addOnSuccessListener {
             for (postSnapshot in it.children) {
 
-                    list.add(postSnapshot.getValue().toString())
-                    list2.add(postSnapshot.key.toString())
+                list.add(postSnapshot.getValue().toString())
+                list2.add(postSnapshot.key.toString())
 
             }
 
 
-                 rv.adapter = ListofGroupsAdapter(list,list2)
-            }.addOnFailureListener{
-                Log.e("firebase", "Error getting data", it)
-            }
+            rv.adapter = ListofGroupsAdapter(list,list2)
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
 
         rv.adapter = ListofGroupsAdapter(list,list2)
         //Action button
