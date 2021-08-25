@@ -42,7 +42,7 @@ class InserisciProdotto: AppCompatActivity() {
 
 
      database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
-        myRef = database.getReference("prodotti")
+        myRef = database.getReference("gruppi")
 
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot){
@@ -70,13 +70,17 @@ class InserisciProdotto: AppCompatActivity() {
    }
 
     private fun insertProduct(){
+        val extras = intent.extras
+        if (extras != null) {
+            val value = extras.getString("key")
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val prodotto = Prodotto(nome.text.toString(),categoria.text.toString(),quantita.text.toString().toInt(),note.text.toString(),currentUser?.uid.toString(),currentUser?.displayName.toString())
-        myRef.push().setValue(prodotto).addOnSuccessListener {
+        myRef.child(value.toString()).child("prodotti").push().setValue(prodotto).addOnSuccessListener {
             val intent = Intent(this, ListOfProducts::class.java)
             startActivity(intent)
 
+        }
         }
 
 

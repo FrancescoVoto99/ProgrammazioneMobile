@@ -45,7 +45,7 @@ class ListOfProducts : AppCompatActivity() {
         if (extras != null) {
             val value = extras.getString("key")
 
-            myRef.child(value.toString()).get().addOnSuccessListener {
+            myRef.child(value.toString()).child("prodotti").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
 
                     list.add(postSnapshot.getValue().toString())
@@ -74,6 +74,11 @@ class ListOfProducts : AppCompatActivity() {
 
     private fun fabOnClick() {
         val intent = Intent(this, InserisciProdotto::class.java)
+        val extras = this.intent.extras
+        if (extras != null) {
+            val value = extras.getString("key")
+            intent.putExtra("key", value.toString()  )
+        }
         startActivity(intent)
     }
 }

@@ -30,8 +30,8 @@ class ListofGroupsAdapter (val data: List<String>,val data2: List<String>):
             holder.row.setOnClickListener(){ v ->
 
                 Snackbar.make(parent.rootView,"Click!", Snackbar.LENGTH_SHORT).show()
-                val intent = Intent(v.context, Newgroup::class.java)
-                intent.putExtra("key", holder.textView2.text )
+                val intent = Intent(v.context, ListOfProducts::class.java)
+                intent.putExtra("key", holder.textView2.text.toString() )
                 v.context.startActivity(intent)
 
 
