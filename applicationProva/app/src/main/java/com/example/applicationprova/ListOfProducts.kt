@@ -45,10 +45,10 @@ class ListOfProducts : AppCompatActivity() {
         if (extras != null) {
             val value = extras.getString("key")
 
-            myRef.child("-MhxU2gVL0ZZrvfrYOsN").child("prodotti").get().addOnSuccessListener {
+            searchproducts.child(value.toString()).child("prodotti").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
 
-                    list.add(postSnapshot.getValue().toString())
+                    list.add(postSnapshot.child("nome").getValue().toString())
                     list2.add(postSnapshot.key.toString())
 
                 }
@@ -79,7 +79,7 @@ class ListOfProducts : AppCompatActivity() {
         val extras = this.intent.extras
         if (extras != null) {
             val value = extras.getString("key")
-            intent.putExtra("key","1"  )
+            intent.putExtra("key",value.toString()  )
         }
         startActivity(intent)
     }

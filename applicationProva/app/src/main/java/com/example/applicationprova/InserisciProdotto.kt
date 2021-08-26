@@ -78,6 +78,7 @@ class InserisciProdotto: AppCompatActivity() {
         val prodotto = Prodotto(nome.text.toString(),categoria.text.toString(),quantita.text.toString().toInt(),note.text.toString(),currentUser?.uid.toString(),currentUser?.displayName.toString())
         myRef.child(value.toString()).child("prodotti").push().setValue(prodotto).addOnSuccessListener {
             val intent = Intent(this, ListOfProducts::class.java)
+            intent.putExtra("key", value.toString())
             startActivity(intent)
 
         }
