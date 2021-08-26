@@ -47,10 +47,10 @@ class ListOfProducts : AppCompatActivity() {
 
             searchproducts.child(value.toString()).child("prodotti").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
-
-                    list.add(postSnapshot.child("nome").getValue().toString())
-                    list2.add(postSnapshot.key.toString())
-
+                    if(!postSnapshot.child("buy").getValue().toString().toBoolean()) {
+                        list.add(postSnapshot.child("nome").getValue().toString())
+                        list2.add(postSnapshot.key.toString())
+                    }
                 }
                 rv.adapter = ListofProductAdapter(list, list2,value.toString())
 
