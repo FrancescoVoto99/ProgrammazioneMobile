@@ -52,12 +52,12 @@ class ListOfProducts : AppCompatActivity() {
                     list2.add(postSnapshot.key.toString())
 
                 }
-                rv.adapter = ListofProductAdapter(list, list2)
+                rv.adapter = ListofProductAdapter(list, list2,value.toString())
 
 
             }.addOnFailureListener{
                 Log.e("firebase", "Error getting data", it)
-                rv.adapter = ListofProductAdapter(list, list2)
+              //  rv.adapter = ListofProductAdapter(list, list2)
             }
 
 
