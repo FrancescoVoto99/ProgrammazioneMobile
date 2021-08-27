@@ -21,7 +21,10 @@
             android:id="@+id/Nomegruppo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:text="" />
 
         <ListView
             android:id="@+id/listaUtenti"
