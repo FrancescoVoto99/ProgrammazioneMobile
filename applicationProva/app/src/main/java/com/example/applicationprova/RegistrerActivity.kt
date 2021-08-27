@@ -22,6 +22,7 @@ class RegistrerActivity : AppCompatActivity() {
     lateinit var Email: TextInputEditText
     lateinit var NomeUtente: TextInputEditText
     lateinit var Password: TextInputEditText
+    lateinit var ConfirmPassword: TextInputEditText
     lateinit var goLogin: TextView
     lateinit var btnRegister: Button
 
@@ -37,6 +38,7 @@ class RegistrerActivity : AppCompatActivity() {
         NomeUtente=binding.registerNomeutente
         Email=binding.registerEmail
         Password=binding.registerPassword
+        ConfirmPassword=binding.registerConfirmPassword
 
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -64,6 +66,10 @@ class RegistrerActivity : AppCompatActivity() {
         else if(TextUtils.isEmpty(NomeUtente.text.toString())){
             NomeUtente.setError("Password non puo essere vuoto")
             NomeUtente.requestFocus()
+        }
+        else if(Password.text.toString() !=ConfirmPassword.text.toString()  ){
+            ConfirmPassword.setError("Password non corrisponde")
+            ConfirmPassword.requestFocus()
         }
         else{
             auth.createUserWithEmailAndPassword(Email.text.toString(), Password.text.toString())
