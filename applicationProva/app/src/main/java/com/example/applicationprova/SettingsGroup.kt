@@ -10,8 +10,10 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.applicationprova.databinding.ActivitySettingsGroupBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -49,6 +51,8 @@ class SettingsGroup : AppCompatActivity() {
                 listkey.add(postSnapshot.key.toString())
 
             }
+
+
             binding.listaUtenti.isClickable = true
             binding.listaUtenti.adapter = SettingGroupAdapter(this, list)
 
@@ -100,6 +104,9 @@ class SettingsGroup : AppCompatActivity() {
     }
 
     private fun fabOnClick(keygroup:String,namegroup:String) {
+
+
+
 
         val builder: AlertDialog.Builder =AlertDialog.Builder(this)
         builder.setTitle("Inserisci un Nuovo Componente")

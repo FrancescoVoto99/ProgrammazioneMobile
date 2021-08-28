@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -41,6 +42,10 @@ class ListOfGroups : AppCompatActivity() {
 
         val rv: RecyclerView = binding.listaGruppi
         rv.layoutManager = LinearLayoutManager(this)
+
+        val divider = MaterialDividerItemDecoration(rv.context, LinearLayoutManager.VERTICAL /*or LinearLayoutManager.HORIZONTAL*/)
+        rv.addItemDecoration(divider)
+
 
         val child=currentUser?.email.toString().replace(".","")
         myRef.child(child).get().addOnSuccessListener {

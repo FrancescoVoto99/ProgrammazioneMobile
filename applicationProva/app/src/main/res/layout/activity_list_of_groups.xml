@@ -12,11 +12,16 @@
         android:layout_height="match_parent"
         tools:context=".ListOfGroups">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listaGruppi"
             android:layout_width="match_parent"
             android:scrollbars="vertical"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+
+
+
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

@@ -21,6 +21,9 @@ class ListOfShopAdapter (val data: List<String>,val data2: List<String>,val data
             MyViewHolder {
         val layout = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_shop, parent, false)
+
+
+
         val holder = MyViewHolder(layout)
         holder.row.setOnClickListener(){
             Snackbar.make(parent.rootView,"Click!", Snackbar.LENGTH_SHORT).show()

@@ -1,16 +1,19 @@
 package com.example.applicationprova
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationprova.databinding.ActivityListOfProductsBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+
 
 class ListOfShop : AppCompatActivity() {
 
@@ -41,7 +44,13 @@ class ListOfShop : AppCompatActivity() {
 
 
         val rv: RecyclerView = binding.listaProdotti
+
+
+
+
         rv.layoutManager = LinearLayoutManager(this)
+
+
 
         val extras = intent.extras
         if (extras != null) {
@@ -55,7 +64,7 @@ class ListOfShop : AppCompatActivity() {
                         price.add(postSnapshot.child("totale").getValue().toString())
                     }
                 }
-                rv.adapter = ListOfShopAdapter(nameShop, whobuy,price, value.toString())
+                rv.adapter = ListOfShopAdapter(nameShop, whobuy, price, value.toString())
 
 
             }.addOnFailureListener {
