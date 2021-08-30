@@ -83,4 +83,5 @@ class ListOfProducts : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
 }
