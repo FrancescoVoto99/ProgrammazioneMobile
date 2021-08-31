@@ -119,6 +119,7 @@ class EditProduct: AppCompatActivity() {
 
 
         binding.btnUpdate.setOnClickListener{
+
             updateProduct()
         }
         binding.btnlogout.setOnClickListener(){
@@ -128,31 +129,8 @@ class EditProduct: AppCompatActivity() {
             startActivity(intent)
 
         }
-        binding.btnCancel.setOnClickListener{
-            val extras = intent.extras
-            val value = extras?.getString("key")
-            val intent = Intent(this, ListOfProducts::class.java)
-            intent.putExtra("key", value.toString())
-            startActivity(intent)
-        }
-        binding.btnDelete.setOnClickListener{
-            deleteProduct()
-        }
     }
-    private fun deleteProduct(){
-        val extras = intent.extras
-        if (extras != null) {
-            val value = extras.getString("key")
-            val idProduct= extras.getString("idProduct")
-            auth = Firebase.auth
-            myRef.child(value.toString()).child("prodotti").child(idProduct.toString()).removeValue().addOnSuccessListener {
-                val intent = Intent(this, ListOfProducts::class.java)
-                intent.putExtra("key", value.toString())
-                startActivity(intent)
 
-            }
-        }
-    }
     private fun updateProduct(){
         val extras = intent.extras
         if (extras != null) {
