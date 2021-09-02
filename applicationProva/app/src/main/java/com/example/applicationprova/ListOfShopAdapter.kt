@@ -27,10 +27,10 @@ class ListOfShopAdapter (val data: List<String>,val data2: List<String>,val data
         val holder = MyViewHolder(layout)
         holder.row.setOnClickListener(){
             Snackbar.make(parent.rootView,"Click!", Snackbar.LENGTH_SHORT).show()
-            //val intent = Intent(holder.row.context, EditProduct::class.java)
+            //val intent = Intent(holder.row.context, ListOfProductsBought::class.java)
             //intent. putExtra("key", idGroup)
-            //intent.putExtra("idProduct", holder.textView2.text.toString())
-           // holder.row.context.startActivity(intent)
+            //intent.putExtra("idshop", holder.textView2.text.toString())
+            //holder.row.context.startActivity(intent)
 
         }
         return holder
