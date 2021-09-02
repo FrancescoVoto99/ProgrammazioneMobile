@@ -62,14 +62,14 @@ class ListofProductAdapter (val data: List<String>,val data2: List<String>, val 
                 if(!checkBoxStateArray.get(adapterPosition,false))
                 {//checkbox checked
                     checkBox.isChecked = true
-                    SingletonIdProducts.addId(textView2.toString())
+                    SingletonIdProducts.addId(textView2.text.toString())
                     //stores checkbox states and position
                     checkBoxStateArray.put(adapterPosition,true)
                 }
                 else
                 {//checkbox unchecked
                     checkBox.isChecked = false
-                    SingletonIdProducts.removeId(textView2.toString())
+                    SingletonIdProducts.removeId(textView2.text.toString())
                     //stores checkbox states and position.
                     checkBoxStateArray.put(adapterPosition,false)
                 }

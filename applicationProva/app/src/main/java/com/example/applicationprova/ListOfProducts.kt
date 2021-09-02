@@ -6,6 +6,7 @@ import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationprova.databinding.ActivityListOfProductsBinding
+import com.example.progetto.Prodotto
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -22,7 +24,6 @@ class ListOfProducts : AppCompatActivity() {
     lateinit var database: FirebaseDatabase
     lateinit var myRef: DatabaseReference
     lateinit var searchproducts: DatabaseReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val list = mutableListOf<String>()
@@ -52,7 +53,7 @@ class ListOfProducts : AppCompatActivity() {
 
             searchproducts.child(value.toString()).child("prodotti").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
-                    if(!postSnapshot.child("buy").getValue().toString().toBoolean()) {
+                    if((postSnapshot.child("buy").getValue().toString()).equals("0")) {
                         list.add(postSnapshot.child("nome").getValue().toString())
                         list2.add(postSnapshot.key.toString())
                     }
@@ -88,16 +89,24 @@ class ListOfProducts : AppCompatActivity() {
             //set content area
             builder.setMessage("Inserisci il prezzo della spesa")
             //textInput
+            val layout = LinearLayout(this)
+            layout.orientation = LinearLayout.VERTICAL
             val input = EditText(this)
             input.setHint("Prezzo")
             input.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
-            builder.setView(input)
+            layout.addView(input)
+            val nome = EditText(this)
+            nome.setHint("Nome Spesa")
+            nome.inputType = InputType.TYPE_CLASS_TEXT
+            layout.addView(nome)
+            builder.setView(layout)
             //set positive button
             builder.setPositiveButton(
                 "Conferma") { dialog, id ->
                 // User clicked Update Now button
                 var prezzo = input.text.toString().toFloat()
-                confermaSpesa(prezzo)
+                var nomeSpesa = nome.text.toString()
+                insertSpesa(prezzo, nomeSpesa)
 
             }
 
@@ -109,8 +118,7 @@ class ListOfProducts : AppCompatActivity() {
 
             }
             builder.show()
-            //val pop = Popup()
-            //pop.show(supportFragmentManager, "Popup")
+
         }
 
 
@@ -125,19 +133,36 @@ class ListOfProducts : AppCompatActivity() {
         }
         startActivity(intent)
     }
-    private fun confermaSpesa(costo: Float) {
 
-        //Come faccio a modificare il valore buy dei prodotti acquistati?
-        //Creare spesa su firebase e popolarla
-        //lista con gli id dei prodotti acquistati
+
+    private fun insertSpesa(costo: Float, nomeSpesa: String){
         val idList = SingletonIdProducts.getId()
-
-        val intent = Intent(this, ListOfShop::class.java)
-        val extras = this.intent.extras
+        val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")
-            intent.putExtra("key", value.toString())
+            val auth = Firebase.auth
+            val currentUser = auth.currentUser
+            val spesa = Spesa(currentUser?.uid.toString() ,currentUser?.displayName.toString(),nomeSpesa,costo,idList)
+            myRef=database.getReference("gruppi")
+            myRef.child(value.toString()).child("spese").push().setValue(spesa).addOnSuccessListener {
+                changeBuyBit()
+                SingletonIdProducts.clear()
+                val intent = Intent(this, ListOfShop::class.java)
+                intent.putExtra("key", value.toString())
+                startActivity(intent)
+
+            }
         }
-        startActivity(intent)
+    }
+    private fun changeBuyBit(){
+        val idList = SingletonIdProducts.getId()
+        myRef=database.getReference("gruppi")
+        val extras = intent.extras
+        val value = extras?.getString("key")
+        for(item in idList){
+            myRef.child(value.toString()).child("prodotti").child(item).child("buy").setValue("1") .addOnSuccessListener {
+                Log.d("Firebase", "Modified buy bit")
+            }
+        }
     }
 }

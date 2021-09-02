@@ -13,4 +13,7 @@ object SingletonIdProducts{
       fun getId(): List<String>{
             return idList
       }
+      fun clear(){
+            idList = emptyList()
+      }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationprova.databinding.ActivityListOfProductsBinding
+import com.example.applicationprova.databinding.ActivityListOfShopBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -29,8 +30,8 @@ class ListOfShop : AppCompatActivity() {
         val price = mutableListOf<String>()
 
         //data binding al posto del classico inflate
-        val binding: ActivityListOfProductsBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_list_of_products
+        val binding: ActivityListOfShopBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_list_of_shop
         )
         //setContentView(R.layout.activity_list_of_groups)
 
@@ -43,7 +44,7 @@ class ListOfShop : AppCompatActivity() {
         searchshop = database.getReference("gruppi")
 
 
-        val rv: RecyclerView = binding.listaProdotti
+        val rv: RecyclerView = binding.listaSpese
 
 
 
@@ -59,8 +60,8 @@ class ListOfShop : AppCompatActivity() {
             searchshop.child(value.toString()).child("spese").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
                     if (!postSnapshot.child("buy").getValue().toString().toBoolean()) {
-                        nameShop.add(postSnapshot.child("nome spesa").getValue().toString())
-                        whobuy.add(postSnapshot.child("nome utente").getValue().toString())
+                        nameShop.add(postSnapshot.child("nomespesa").getValue().toString())
+                        whobuy.add(postSnapshot.child("nomeutente").getValue().toString())
                         price.add(postSnapshot.child("totale").getValue().toString())
                     }
                 }
