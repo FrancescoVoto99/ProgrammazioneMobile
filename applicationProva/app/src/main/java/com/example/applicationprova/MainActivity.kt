@@ -1,12 +1,11 @@
 package com.example.applicationprova
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.applicationprova.databinding.ActivityMainBinding
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_main)
+                this, R.layout.activity_main)
         // Initialize Firebase Auth
         auth = Firebase.auth
 
@@ -43,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             val intent = Intent(this, ListOfGroups::class.java)
             startActivity(intent)
+
         }
 
     }

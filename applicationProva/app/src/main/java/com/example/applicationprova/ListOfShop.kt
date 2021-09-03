@@ -1,5 +1,6 @@
 package com.example.applicationprova
 
+import android.icu.number.Precision
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlin.math.round
 
 
 class ListOfShop : AppCompatActivity() {
@@ -27,7 +29,7 @@ class ListOfShop : AppCompatActivity() {
 
         val nameShop = mutableListOf<String>()
         val whobuy = mutableListOf<String>()
-        val price = mutableListOf<String>()
+        val price = mutableListOf<Int>()
 
         //data binding al posto del classico inflate
         val binding: ActivityListOfShopBinding = DataBindingUtil.setContentView(
@@ -62,10 +64,17 @@ class ListOfShop : AppCompatActivity() {
                     if (!postSnapshot.child("buy").getValue().toString().toBoolean()) {
                         nameShop.add(postSnapshot.child("nomespesa").getValue().toString())
                         whobuy.add(postSnapshot.child("nomeutente").getValue().toString())
-                        price.add(postSnapshot.child("totale").getValue().toString())
+                        price.add(postSnapshot.child("totale").getValue().toString().toInt())
                     }
                 }
+
                 rv.adapter = ListOfShopAdapter(nameShop, whobuy, price, value.toString())
+                binding.spesaTotale.text=price.sum().toFloat().toString().format("%.2g%n")+"€"
+
+                searchshop.child(value.toString()).child("gruppo").get().addOnSuccessListener {
+                    binding.miaSpesa.text =(price.sum()/it.children.count()).toFloat().toString().format("%.2g%n")+"€"
+                }
+
 
 
             }.addOnFailureListener {

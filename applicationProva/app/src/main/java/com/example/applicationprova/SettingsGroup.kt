@@ -25,7 +25,7 @@ class SettingsGroup : AppCompatActivity() {
     var searchUser: DatabaseReference = database.getReference("gruppi")
     var myRefutenti: DatabaseReference = database.getReference("utentiGruppi")
     val list = ArrayList<String>()
-    val listkey = ArrayList<String>()
+
 
 
 
@@ -47,8 +47,8 @@ class SettingsGroup : AppCompatActivity() {
         searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").get().addOnSuccessListener {
             for (postSnapshot in it.children) {
 
-                list.add(postSnapshot.getValue().toString())
-                listkey.add(postSnapshot.key.toString())
+                list.add(postSnapshot.key.toString().replace("'","."))
+
 
             }
 
@@ -68,7 +68,7 @@ class SettingsGroup : AppCompatActivity() {
                 alertDialog.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
 
 
-                    searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").child(listkey[position]).removeValue().addOnSuccessListener {
+                    searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").child(list[position].replace(".","'")).removeValue().addOnSuccessListener {
                         myRefutenti.child(email.replace(".","")).child("-MhxU2gVL0ZZrvfrYOsN").removeValue().addOnSuccessListener {
                             val intent = Intent(this, SettingsGroup::class.java)
                             startActivity(intent)

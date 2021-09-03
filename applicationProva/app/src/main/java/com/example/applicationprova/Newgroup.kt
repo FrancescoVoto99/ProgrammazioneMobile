@@ -3,6 +3,7 @@ package com.example.applicationprova
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -29,7 +30,7 @@ class Newgroup : AppCompatActivity() {
         val binding: ActivityNewgroupBinding = DataBindingUtil.setContentView(
             this, R.layout.activity_newgroup)
 
-        val list = mutableListOf<String>()
+        val list = mutableMapOf<String,String>()
 
 
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -48,16 +49,27 @@ class Newgroup : AppCompatActivity() {
         })
 
         binding.agg.setOnClickListener{
-            list.add(binding.aggiungimembro.text.toString())
-            binding.componenti.append(binding.aggiungimembro.text.toString()+ System.getProperty ("line.separator"))
-            binding.aggiungimembro.setText("")
+            if(TextUtils.isEmpty(binding.aggiungimembro.text.toString())){
+                binding.aggiungimembro.setError("email non puo essere vuoto")
+                binding.aggiungimembro.requestFocus()
+            }
+            else if(TextUtils.isEmpty(binding.Nomemembro.text.toString())){
+                binding.Nomemembro.setError("Nome non puo essere vuoto")
+                binding.Nomemembro.requestFocus()
+            }
+            else {
+                list.put(binding.aggiungimembro.text.toString().replace(".","'"), binding.Nomemembro.text.toString())
+                binding.componenti.append(binding.Nomemembro.text.toString() + "  " + binding.aggiungimembro.text.toString() + System.getProperty("line.separator"))
+                binding.aggiungimembro.setText("")
+                binding.Nomemembro.setText("")
+            }
         }
 
         binding.creaGruppo.setOnClickListener{
 
             val auth = Firebase.auth
             val currentUser = auth.currentUser
-            list.add(currentUser?.email.toString())
+            list.put(currentUser?.email.toString().replace(".","'"),currentUser?.displayName.toString())
             val group = Gruppo(binding.Nomegruppo.text.toString(),list)
 
 
@@ -65,7 +77,7 @@ class Newgroup : AppCompatActivity() {
             myRef.child(groupid).setValue(group).addOnSuccessListener {
 
                 list.forEach{
-                    myRefutenti.child(it.replace(".","")).child(groupid).setValue(binding.Nomegruppo.text.toString())
+                    myRefutenti.child(it.key.replace("'","")).child(groupid).setValue(binding.Nomegruppo.text.toString())
                     Log.d("email",currentUser?.email.toString())
                 }
                 val intent = Intent(this, MainActivity::class.java)
