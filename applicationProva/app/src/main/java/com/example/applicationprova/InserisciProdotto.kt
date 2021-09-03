@@ -1,11 +1,14 @@
 package com.example.applicationprova
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.applicationprova.databinding.ActivityInserisciProdottoBinding
 import com.example.progetto.Prodotto
@@ -13,8 +16,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 
 class InserisciProdotto: AppCompatActivity() {
     lateinit var nome : EditText
@@ -33,7 +34,7 @@ class InserisciProdotto: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityInserisciProdottoBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_inserisci_prodotto)
+                this, R.layout.activity_inserisci_prodotto)
         //setContentView(R.layout.activity_inserisci_prodotto)
 
         nome=binding.Nomeprodotto
@@ -43,9 +44,9 @@ class InserisciProdotto: AppCompatActivity() {
 
         val spinCat: Spinner = binding.spinnerCategory
         ArrayAdapter.createFromResource(
-            this,
-            R.array.categorie,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.categorie,
+                android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -55,9 +56,9 @@ class InserisciProdotto: AppCompatActivity() {
 
         val spinQuant: Spinner = binding.spinnerQuantity
         ArrayAdapter.createFromResource(
-            this,
-            R.array.quantita,
-            android.R.layout.simple_spinner_item
+                this,
+                R.array.quantita,
+                android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -70,10 +71,11 @@ class InserisciProdotto: AppCompatActivity() {
         myRef = database.getReference("gruppi")
 
         myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot){
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists())
-                    productid= dataSnapshot.childrenCount.toLong()
+                    productid = dataSnapshot.childrenCount.toLong()
             }
+
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
                 Log.w("prova", "Failed to read value.", error.toException())
@@ -100,13 +102,25 @@ class InserisciProdotto: AppCompatActivity() {
             val value = extras.getString("key")
         auth = Firebase.auth
         val currentUser = auth.currentUser
-            val prodotto = Prodotto(nome.text.toString(),categoria.getSelectedItem().toString(),quantita.getSelectedItem().toString(),note.text.toString(),currentUser?.uid.toString(),currentUser?.displayName.toString())
+            if(TextUtils.equals(categoria.getSelectedItem().toString(), "Seleziona categoria")){
+                val errorText = categoria.getSelectedView() as TextView
+                errorText.error = "Seleziona una categoria"
+
+            }
+            else if (TextUtils.equals(quantita.getSelectedItem().toString(), "Seleziona quantità")){
+                val errorText = quantita.getSelectedView() as TextView
+                errorText.error = "Seleziona Una quantità"
+
+            }
+            else{
+            val prodotto = Prodotto(nome.text.toString(), categoria.getSelectedItem().toString(), quantita.getSelectedItem().toString(), note.text.toString(), currentUser?.uid.toString(), currentUser?.displayName.toString())
         myRef.child(value.toString()).child("prodotti").push().setValue(prodotto).addOnSuccessListener {
             val intent = Intent(this, ListOfProducts::class.java)
             intent.putExtra("key", value.toString())
             startActivity(intent)
 
         }
+            }
         }
 
 
