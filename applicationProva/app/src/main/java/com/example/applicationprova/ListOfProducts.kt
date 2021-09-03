@@ -142,7 +142,7 @@ class ListOfProducts : AppCompatActivity() {
             val value = extras.getString("key")
             val auth = Firebase.auth
             val currentUser = auth.currentUser
-            val spesa = Spesa(currentUser?.uid.toString() ,currentUser?.displayName.toString(),nomeSpesa,costo,idList)
+            val spesa = Spesa(currentUser?.email.toString().replace(".","'") ,currentUser?.displayName.toString(),nomeSpesa,costo,idList)
             myRef=database.getReference("gruppi")
             myRef.child(value.toString()).child("spese").push().setValue(spesa).addOnSuccessListener {
                 changeBuyBit()

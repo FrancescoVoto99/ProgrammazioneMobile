@@ -53,6 +53,7 @@ class ListOfGroups : AppCompatActivity() {
 
                     list.add(postSnapshot.getValue().toString())
                     list2.add(postSnapshot.key.toString())
+              
 
             }
 
