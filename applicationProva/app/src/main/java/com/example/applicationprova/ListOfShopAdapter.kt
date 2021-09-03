@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
-class ListOfShopAdapter (val data: List<String>,val data2: List<String>,val data3: List<Int>, val idGroup: String):
+class ListOfShopAdapter (val data: List<String>,val data2: List<String>,val data3: List<Float>, val idGroup: String):
     RecyclerView.Adapter<ListOfShopAdapter.MyViewHolder>() {
 
     class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {

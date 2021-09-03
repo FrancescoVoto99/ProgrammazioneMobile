@@ -29,7 +29,7 @@ class ListOfShop : AppCompatActivity() {
 
         val nameShop = mutableListOf<String>()
         val whobuy = mutableListOf<String>()
-        val price = mutableListOf<Int>()
+        val price = mutableListOf<Float>()
 
         //data binding al posto del classico inflate
         val binding: ActivityListOfShopBinding = DataBindingUtil.setContentView(
@@ -64,12 +64,12 @@ class ListOfShop : AppCompatActivity() {
                     if (!postSnapshot.child("buy").getValue().toString().toBoolean()) {
                         nameShop.add(postSnapshot.child("nomespesa").getValue().toString())
                         whobuy.add(postSnapshot.child("nomeutente").getValue().toString())
-                        price.add(postSnapshot.child("totale").getValue().toString().toInt())
+                        price.add(postSnapshot.child("totale").getValue().toString().format("%.2g%n").toFloat())
                     }
                 }
 
                 rv.adapter = ListOfShopAdapter(nameShop, whobuy, price, value.toString())
-                binding.spesaTotale.text=price.sum().toFloat().toString().format("%.2g%n")+"€"
+                binding.spesaTotale.text="%.2f".format(price.sum())+"€"
 
                 searchshop.child(value.toString()).child("gruppo").get().addOnSuccessListener {
                     binding.miaSpesa.text =(price.sum()/it.children.count()).toFloat().toString().format("%.2g%n")+"€"
