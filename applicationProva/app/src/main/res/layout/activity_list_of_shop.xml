@@ -12,11 +12,48 @@
         android:layout_height="match_parent"
         tools:context=".ListOfShop">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listaSpese"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:scrollbars="vertical"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listaSpese"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+
+                <TextView
+                    android:id="@+id/miaSpesa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="TextView"
+                    android:textSize="40sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/spesaTotale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="TextView"
+                    android:textSize="40sp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
