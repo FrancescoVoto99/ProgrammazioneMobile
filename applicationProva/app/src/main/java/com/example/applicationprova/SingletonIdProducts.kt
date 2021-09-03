@@ -16,4 +16,5 @@ object SingletonIdProducts{
       fun clear(){
             idList = emptyList()
       }
+
 }

@@ -4,12 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,12 +24,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-class ListOfProducts : AppCompatActivity() {
+ class ListOfProducts : AppCompatActivity() {
     lateinit var database: FirebaseDatabase
     lateinit var myRef: DatabaseReference
     lateinit var searchproducts: DatabaseReference
-    override fun onCreate(savedInstanceState: Bundle?) {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
         val list = mutableListOf<String>()
         val list2 = mutableListOf<String>()
         super.onCreate(savedInstanceState)
@@ -34,7 +38,8 @@ class ListOfProducts : AppCompatActivity() {
             this, R.layout.activity_list_of_products
         )
 
-        //setContentView(R.layout.activity_list_of_groups)
+
+
 
         var auth = Firebase.auth
         val currentUser = auth.currentUser
@@ -46,7 +51,6 @@ class ListOfProducts : AppCompatActivity() {
 
         val rv: RecyclerView = binding.listaProdotti
         rv.layoutManager = LinearLayoutManager(this)
-
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")
@@ -60,13 +64,10 @@ class ListOfProducts : AppCompatActivity() {
                 }
                 rv.adapter = ListofProductAdapter(list, list2,value.toString())
 
-
             }.addOnFailureListener{
                 Log.e("firebase", "Error getting data", it)
               //  rv.adapter = ListofProductAdapter(list, list2)
             }
-
-
 
         }
 
@@ -124,7 +125,7 @@ class ListOfProducts : AppCompatActivity() {
 
     }
 
-    private fun fabOnClick() {
+    public fun fabOnClick() {
         val intent = Intent(this, InserisciProdotto::class.java)
         val extras = this.intent.extras
         if (extras != null) {
@@ -164,5 +165,14 @@ class ListOfProducts : AppCompatActivity() {
                 Log.d("Firebase", "Modified buy bit")
             }
         }
+    }
+    public fun delete(item: String){
+        myRef=database.getReference("gruppi")
+        val extras = intent.extras
+        val value = extras?.getString("key")
+            myRef.child(value.toString()).child("prodotti").child(item).removeValue().addOnSuccessListener {
+                Log.d("Firebase", "Deleted product")
+            }
+
     }
 }

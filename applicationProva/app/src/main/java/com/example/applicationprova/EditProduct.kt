@@ -1,5 +1,6 @@
 package com.example.applicationprova
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 
@@ -122,12 +123,12 @@ class EditProduct: AppCompatActivity() {
 
             updateProduct()
         }
-        binding.btnlogout.setOnClickListener(){
-            auth = Firebase.auth
-            auth.signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-
+        binding.btnCancel.setOnClickListener(){
+            onBackPressed()
+            false
+        }
+        binding.btnDelete.setOnClickListener(){
+            delete()
         }
     }
 
@@ -146,7 +147,19 @@ class EditProduct: AppCompatActivity() {
 
             }
         }
-
+    }
+    private fun delete(){
+        myRef=database.getReference("gruppi")
+        val extras = intent.extras
+        val value = extras?.getString("key")
+        val idProduct= extras?.getString("idProduct").toString()
+        myRef.child(value.toString()).child("prodotti").child(idProduct).removeValue().addOnSuccessListener {
+            Log.d("Firebase", "Deleted product")
+            val intent = Intent(this, ListOfProducts::class.java)
+            intent.putExtra("key", value.toString())
+            startActivity(intent)
+        }
 
     }
+
 }

@@ -1,33 +1,79 @@
 package com.example.applicationprova
 
+import android.app.Activity
 import android.content.Intent
+import android.icu.lang.UCharacter.GraphemeClusterBreak.V
 import android.util.Log
 import android.util.SparseBooleanArray
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.appcompat.view.ActionMode
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 class ListofProductAdapter (val data: List<String>,val data2: List<String>, val idGroup: String):
     RecyclerView.Adapter<ListofProductAdapter.MyViewHolder>() {
     var checkBoxStateArray = SparseBooleanArray()
+    lateinit var database: FirebaseDatabase
+    lateinit var myRef: DatabaseReference
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             MyViewHolder {
         val layout = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_products, parent, false)
         val holder = MyViewHolder(layout)
+        var auth = Firebase.auth
+        database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
+        myRef= database.getReference("gruppi")
         holder.row.setOnClickListener(){
-            Snackbar.make(parent.rootView,"Click!", Snackbar.LENGTH_SHORT).show()
+            //(prodActivity as ListOfProducts).fabOnClick()
             val intent = Intent(holder.row.context, EditProduct::class.java)
             intent.putExtra("key", idGroup)
             intent.putExtra("idProduct", holder.textView2.text.toString())
             holder.row.context.startActivity(intent)
 
         }
+        holder.row.setOnLongClickListener(){
+            val pop= PopupMenu(it.context,it)
+            pop.inflate(R.menu.cab_menu)
+            pop.setOnMenuItemClickListener {item->
+
+                when(item.itemId)
+
+                {
+                    R.id.context_delete->{
+                        myRef.child(idGroup).child("prodotti").child(holder.textView2.text.toString()).removeValue().addOnSuccessListener {
+                            Log.d("Firebase", "Product deleted")
+                        }
+                        val intent = Intent(holder.row.context, ListOfProducts::class.java)
+                        intent.putExtra("key", idGroup)
+                        intent.putExtra("idProduct", holder.textView2.text.toString())
+                        holder.row.context.startActivity(intent)
+
+                    }
+
+                    R.id.context_edit->{
+                        val intent = Intent(holder.row.context, EditProduct::class.java)
+                        intent.putExtra("key", idGroup)
+                        intent.putExtra("idProduct", holder.textView2.text.toString())
+                        holder.row.context.startActivity(intent)
+                    }
+
+
+                }
+                true
+            }
+            pop.show()
+            true
+        }
+
         return holder
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
