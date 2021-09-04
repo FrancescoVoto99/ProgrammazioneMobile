@@ -49,5 +49,23 @@
             app:layout_constraintBottom_toBottomOf="@+id/buyBut"
             app:layout_constraintEnd_toStartOf="@+id/buyBut"
             app:layout_constraintTop_toTopOf="@+id/buyBut" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation"
+                    app:itemIconTint="@color/primaryColor"
+                    app:itemTextColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/secondaryColor"
+                    app:menu="@menu/bottom_navigation_menu" />
+
+
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

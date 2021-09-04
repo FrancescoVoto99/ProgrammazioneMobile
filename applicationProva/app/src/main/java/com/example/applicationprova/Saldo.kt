@@ -42,6 +42,8 @@ class Saldo : AppCompatActivity() {
 
                     listspese2.put(postSnapshot.key.toString(),0.00f)
 
+
+
                     //listNomiUtenti.add(postSnapshot.value.toString())
                     //listspese.add(0.00f)
 
@@ -51,6 +53,7 @@ class Saldo : AppCompatActivity() {
         searchUser.child("-MignrLG-d51pOLQA7Ob").child("spese").get().addOnSuccessListener {
 
         for (postSnapshot in it.children) {
+            Log.d("map", listspese2[postSnapshot.child("idutente").value.toString()].toString() )
                 val spesa : Float? =listspese2.get(postSnapshot.child("idutente").value.toString())
                 if (spesa != null) {
                     listspese2[postSnapshot.child("idutente").value.toString()]=spesa + postSnapshot.child("totale").value.toString().toFloat()

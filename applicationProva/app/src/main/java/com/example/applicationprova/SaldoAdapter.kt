@@ -23,10 +23,10 @@ class SaldoAdapter(private val context : Activity, private  val map: Map<String,
         val dovuto: Float=map.values.toFloatArray()[position]-divisione
 
         if (dovuto>0){
-            saldo.setBackgroundColor(Color.RED)
+            saldo.background.setTint(Color.GREEN)
         }
         else{
-            saldo.setBackgroundColor(Color.GREEN)
+            saldo.background.setTint(Color.RED)
         }
         saldo.text=dovuto.toString()
 

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationprova.databinding.ActivityListOfProductsBinding
 import com.example.progetto.Prodotto
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -69,6 +70,28 @@ import com.google.firebase.ktx.Firebase
               //  rv.adapter = ListofProductAdapter(list, list2)
             }
 
+        }
+
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.listaprodotti -> {
+                    // Respond to navigation item 1 click
+                    true
+                }
+                R.id.listaSpese -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.saldi -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.statistiche -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                else -> false
+            }
         }
 
 
