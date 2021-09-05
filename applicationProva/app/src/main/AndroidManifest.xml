@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ApplicationProva">
-        <activity android:name=".Saldo"></activity>
+        <activity android:name=".ListOfProductCategory"></activity>
+        <activity android:name=".Saldo" />
         <activity android:name=".Statistic" />
         <activity android:name=".ListOfProductsBought" />
         <activity android:name=".MyAccount" />
