@@ -71,22 +71,33 @@ import com.google.firebase.ktx.Firebase
             }
 
         }
-
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.listaprodotti -> {
-                    // Respond to navigation item 1 click
+                    val intent = Intent(this, ListOfProducts::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
                     true
                 }
-                R.id.listaSpese -> {
+                R.id.listaspese -> {
+                    val intent = Intent(this, ListOfShop::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
                     // Respond to navigation item 2 click
-                    true
+                   true
                 }
                 R.id.saldi -> {
+                    val intent = Intent(this, Saldo::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
                     // Respond to navigation item 2 click
                     true
                 }
                 R.id.statistiche -> {
+                    val intent = Intent(this, Statistic::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
                     // Respond to navigation item 2 click
                     true
                 }

@@ -17,18 +17,26 @@ class SaldoAdapter(private val context : Activity, private  val map: Map<String,
         val Utente : TextView = view.findViewById(R.id.utente)
         val saldo : TextView = view.findViewById(R.id.saldo)
 
-        Utente.text=arrayList[position]
+
 
         val divisione: Float=map.values.sum()/map.size
         val dovuto: Float=map.values.toFloatArray()[position]-divisione
 
         if (dovuto>0){
+            Utente.text=arrayList[position]
+            saldo.setBackgroundResource(R.drawable.round_corner)
             saldo.background.setTint(Color.GREEN)
+            saldo.text=dovuto.toString()
+
         }
         else{
-            saldo.background.setTint(Color.RED)
+            saldo.text=arrayList[position]
+            Utente.text=dovuto.toString()
+            Utente.setBackgroundResource(R.drawable.round_corner)
+            Utente.background.setTint(Color.RED)
+
         }
-        saldo.text=dovuto.toString()
+
 
         return view
     }
