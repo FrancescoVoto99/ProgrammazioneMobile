@@ -31,6 +31,7 @@ class ListOfProductBoughtAdapter (val prodotti: List<Prodotto>):
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textView.text = prodotti.get(position).nome.toString()
         holder.textView2.text = prodotti.get(position).iduser.toString()
+        holder.textView3.append( prodotti.get(position).quantita.toString())
 
         //gets position from data object
         var data_position = prodotti[position]
@@ -43,6 +44,7 @@ class ListOfProductBoughtAdapter (val prodotti: List<Prodotto>):
     inner class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
         val textView = row.findViewById<TextView>(R.id.item)
         val textView2 = row.findViewById<TextView>(R.id.idproduct)
+        val textView3 = row.findViewById<TextView>(R.id.quantita)
 
 
     }

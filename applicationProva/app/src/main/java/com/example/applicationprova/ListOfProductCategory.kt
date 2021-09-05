@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationprova.databinding.ActivityListOfProductCategoryBinding
 import com.example.applicationprova.databinding.ActivityListOfProductsBinding
 import com.example.applicationprova.databinding.ActivityListOfProductsBoughtBinding
 import com.example.progetto.Prodotto
@@ -23,11 +24,11 @@ class ListOfProductCategory : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val list = mutableListOf<String>()
+
         val list2 = mutableListOf<Prodotto>()
         super.onCreate(savedInstanceState)
         //data binding al posto del classico inflate
-        val binding: ActivityListOfProductsBoughtBinding = DataBindingUtil.setContentView(
+        val binding: ActivityListOfProductCategoryBinding = DataBindingUtil.setContentView(
                 this, R.layout.activity_list_of_product_category
         )
         //setContentView(R.layout.activity_list_of_groups)
@@ -48,13 +49,13 @@ class ListOfProductCategory : AppCompatActivity() {
             searchproducts.child(value.toString()).child("prodotti").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
                     if ((postSnapshot.child("buy").getValue().toString()).equals("1") &&
-                            (postSnapshot.child("categoria").getValue().toString()).equals(categoria)) {
-                        list.add(postSnapshot.child("nome").getValue().toString())
-                        val product: Prodotto = it.getValue<Prodotto>() as Prodotto
+                            (postSnapshot.child("categoria").getValue().toString()).equals(categoria.toString())) {
+                        val product: Prodotto = postSnapshot.getValue<Prodotto>() as Prodotto
                         list2.add(product)
-                        rv.adapter = ListOfProductBoughtAdapter(list2)
+
                     }
                 }
+                rv.adapter = ListOfProductBoughtAdapter(list2)
 
             }
         }

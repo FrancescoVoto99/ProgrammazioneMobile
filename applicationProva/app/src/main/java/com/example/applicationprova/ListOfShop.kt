@@ -66,15 +66,15 @@ class ListOfShop : AppCompatActivity() {
                     if (!postSnapshot.child("buy").getValue().toString().toBoolean()) {
                         nameShop.add(postSnapshot.child("nomespesa").getValue().toString())
                         whobuy.add(postSnapshot.child("nomeutente").getValue().toString())
-                        price.add(postSnapshot.child("totale").getValue().toString().format("%.2g%n").toFloat())
+                        price.add(postSnapshot.child("totale").getValue().toString().toFloat())
                     }
                 }
 
                 rv.adapter = ListOfShopAdapter(nameShop, whobuy, price, value.toString())
-                binding.spesaTotale.text="%.2f".format(price.sum())+"€"
+                binding.spesaTotale.text=String.format("%.2f", price.sum())+"€"
 
                 searchshop.child(value.toString()).child("gruppo").get().addOnSuccessListener {
-                    binding.miaSpesa.text =(price.sum()/it.children.count()).toFloat().toString().format("%.2g%n")+"€"
+                    binding.miaSpesa.text =String.format("%.2f", price.sum()/it.children.count())+"€"
                 }
 
 

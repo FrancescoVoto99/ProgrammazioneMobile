@@ -37,78 +37,68 @@ class Statistic : AppCompatActivity() {
         val entries: ArrayList<PieEntry> = ArrayList()
         val colors: ArrayList<Int> = ArrayList()
 
-        val intent = Intent(this, ListOfProductCategory::class.java)
+        val newintent = Intent(this, ListOfProductCategory::class.java)
 
         val extras = intent.extras
-        if (extras == null) {
-            //val value = extras.getString("key")
+        if (extras != null) {
+            val value = extras.getString("key")
 
-            searchproducts.child("-MignrLG-d51pOLQA7Ob").child("prodotti").get().addOnSuccessListener {
-                for (item in 0..(categorie.size-1)) {
-                    for (postSnapshot in it.children) {
-                        if ((postSnapshot.child("buy").getValue()
-                                .toString()).equals("1") && (postSnapshot.child("categoria")
-                                .getValue().toString()).equals(categorie[item])
-                        ) {
-                            quantita[item] =
+            searchproducts.child(value.toString()).child("prodotti").get()
+                .addOnSuccessListener {
+                    for (item in 0..(categorie.size - 1)) {
+                        for (postSnapshot in it.children) {
+                            if ((postSnapshot.child("buy").getValue()
+                                    .toString()).equals("1") && (postSnapshot.child("categoria")
+                                    .getValue().toString()).equals(categorie[item])
+                            ) {
+                                quantita[item] =
                                     (quantita[item] + (postSnapshot.child("quantita").value
-                                    .toString().toInt()))
-                            print("proviamo " + quantita[item])
+                                        .toString().toInt()))
+                                print("proviamo " + quantita[item])
 
+                            }
                         }
-                    }}
-
-
-
-                piechart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
-                    override fun onValueSelected(e: Entry, h: Highlight) {
-                        intent.putExtra("key", "-MignrLG-d51pOLQA7Ob")
-                        intent.putExtra("categoria", e.data.toString())
-                        startActivity(intent)
-                        val y = e.y
-                        Log.d("prova",y.toString()+"  "+ e.data)
                     }
 
-                    override fun onNothingSelected() {}
-                })
-
-                    for (item in 0..(categorie.size-1)) {
-                        if(quantita[item]!=0){
-                            val norma=quantita[item] / quantita.sum().toFloat()
-                        entries.add(PieEntry(norma, categorie[item],categorie[item]))
-
-                    }}
 
 
-                insertcolors(colors)
-                createPieChart(entries, piechart, colors)
-                createLegend(piechart)
+                    piechart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+                        override fun onValueSelected(e: Entry, h: Highlight) {
+                            newintent.putExtra("key", value.toString())
+                            newintent.putExtra("categoria", e.data.toString())
+                            startActivity(newintent)
+                            val y = e.y
+                            Log.d("prova", y.toString() + "  " + e.data)
+                        }
+
+                        override fun onNothingSelected() {}
+                    })
+
+                    for (item in 0..(categorie.size - 1)) {
+                        if (quantita[item] != 0) {
+                            val norma = quantita[item] / quantita.sum().toFloat()
+                            entries.add(PieEntry(norma, categorie[item], categorie[item]))
+
+                        }
+                    }
 
 
+                    insertcolors(colors)
+                    createPieChart(entries, piechart, colors)
+                    createLegend(piechart)
 
 
-            }.addOnFailureListener {
+                }.addOnFailureListener {
                 Log.e("firebase", "Error getting data", it)
                 //  rv.adapter = ListofProductAdapter(list, list2)
             }
-
-
-
-
-
-
-
-
-
-
-
 
 
         }
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigation.selectedItemId = R.id.statistiche
         bottomNavigation.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.listaprodotti -> {
                     val intent = Intent(this, ListOfProducts::class.java)
                     intent.putExtra("key", extras?.getString("key"))
@@ -130,16 +120,17 @@ class Statistic : AppCompatActivity() {
                     true
                 }
                 R.id.statistiche -> {
-                    /*val intent = Intent(this, Statistic::class.java)
+                    val intent = Intent(this, Statistic::class.java)
                     intent.putExtra("key", extras?.getString("key"))
                     startActivity(intent)
                     // Respond to navigation item 2 click
 
-                     */
+
                     true
                 }
                 else -> false
             }
+        }
     }
 
     fun insertcolors(colors: ArrayList<Int>){
