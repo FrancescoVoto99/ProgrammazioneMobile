@@ -1,19 +1,23 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/screens/authentication/registration.dart';
+import 'package:flutterapp/services/auth.dart';
 
-import 'package:flutterapp/screens/home/groups.dart';
+import '../home/groups.dart';
 
-class NewGroup extends StatelessWidget {
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Registration',
+      title: 'Login',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Nuovo gruppo'),
+      home: MyHomePage(title: 'Login'),
     );
   }
 }
@@ -26,17 +30,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+ final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
-    final groupnameField = TextField(
-      obscureText: false,
-      style: style,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Nome del gruppo",
-          border:
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
     final emailField = TextField(
       obscureText: false,
       style: style,
@@ -47,66 +44,56 @@ class _MyHomePageState extends State<MyHomePage> {
           OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
-
-    final addButton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Colors.blue,
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Groups()));
-
-        },
-        child: Text("Aggiungi",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
-      ),
-
+    final passwordField = TextField(
+      obscureText: true,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Password",
+          border:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
-    final removeButton = Material(
+
+
+    final registrationButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Colors.blue,
+      color: Colors.red,
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Groups()));
-
+              MaterialPageRoute(builder: (context) => Registration()));
         },
-        child: Text("Rimuovi",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.red, fontWeight: FontWeight.bold)),
-      ),
-
-
-
-    );
-    final createGroup = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Colors.blue,
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Groups()));
-
-        },
-        child: Text("Crea Gruppo",
+        child: Text("Registrati",
             textAlign: TextAlign.center,
             style: style.copyWith(
                 color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
+    final loginButton = Material(
+      elevation: 5.0,
+      borderRadius: BorderRadius.circular(30.0),
+      color: Colors.blue,
+      child: MaterialButton(
+        minWidth: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        onPressed: () async {
+          dynamic result = await _auth.signInAnon();
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => Groups()));
+
+        },
+        child: Text("Login",
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+                color: Colors.white, fontWeight: FontWeight.bold)),
+      ),
+    );
+
+
     return Scaffold(
         body: SingleChildScrollView(
           child: Center(
@@ -122,24 +109,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 155.0,
                     ),
                     SizedBox(height: 45.0),
-                    Text("Nome del gruppo"),
-                    groupnameField,
-                    SizedBox(height: 45.0),
-                    Text("Email componente"),
-                    SizedBox(height: 45.0),
                     emailField,
+                    SizedBox(height: 25.0),
+                    passwordField,
+                    SizedBox(
+                      height: 35.0,
+                    ),
+                    loginButton,
                     SizedBox(
                       height: 15.0,
                     ),
-                    removeButton,
+                    registrationButton,
                     SizedBox(
                       height: 15.0,
                     ),
-                    addButton,
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    createGroup,
                   ],
                 ),
               ),
@@ -148,24 +131,4 @@ class _MyHomePageState extends State<MyHomePage> {
         )
     );
   }
-}
-Widget _buildPopupDialog(BuildContext context) {
-  return new AlertDialog(
-    title: const Text('Popup example'),
-    content: new Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text("Hello"),
-      ],
-    ),
-    actions: <Widget>[
-      new TextButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        child: const Text('Fatto'),
-      ),
-    ],
-  );
 }
