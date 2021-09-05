@@ -16,7 +16,8 @@
             android:id="@+id/listaProdotti"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
 
 
         <Button
@@ -27,7 +28,7 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Compra"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="@+id/fabProduct"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toStartOf="@+id/fabProduct"
             app:layout_constraintTop_toTopOf="@+id/fabProduct" />
 
@@ -48,25 +49,25 @@
             android:layout_margin="16dp"
             android:contentDescription="Add product"
             android:src="@drawable/ic_add_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@color/primaryColor"
+            app:itemIconTint="@color/secondaryColor"
+            app:itemTextColor="@color/black"
+            app:labelVisibilityMode="selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_navigation_menu"
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_navigation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/primaryColor"
-                app:itemIconTint="@color/secondaryColor"
-                app:itemTextColor="@color/black"
-                app:menu="@menu/bottom_navigation_menu" />
+            />
 
 
-        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

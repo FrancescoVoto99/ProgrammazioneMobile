@@ -72,13 +72,16 @@ import com.google.firebase.ktx.Firebase
 
         }
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.listaProdotti
         bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.listaprodotti -> {
-                    val intent = Intent(this, ListOfProducts::class.java)
+                    /*val intent = Intent(this, ListOfProducts::class.java)
                     intent.putExtra("key", extras?.getString("key"))
                     startActivity(intent)
+                    */
                     true
+
                 }
                 R.id.listaspese -> {
                     val intent = Intent(this, ListOfShop::class.java)

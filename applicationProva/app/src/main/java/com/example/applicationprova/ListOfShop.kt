@@ -1,5 +1,6 @@
 package com.example.applicationprova
 
+import android.content.Intent
 import android.icu.number.Precision
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationprova.databinding.ActivityListOfProductsBinding
 import com.example.applicationprova.databinding.ActivityListOfShopBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -84,5 +86,42 @@ class ListOfShop : AppCompatActivity() {
 
 
         }
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.listaspese
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.listaprodotti -> {
+                    val intent = Intent(this, ListOfProducts::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    true
+                }
+                R.id.listaspese -> {
+                    /*val intent = Intent(this, ListOfShop::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    // Respond to navigation item 2 click
+
+                     */
+                    true
+                }
+                R.id.saldi -> {
+                    val intent = Intent(this, Saldo::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.statistiche -> {
+                    val intent = Intent(this, Statistic::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    // Respond to navigation item 2 click
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 }
