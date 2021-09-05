@@ -10,18 +10,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ListOfGroups">
+        tools:context=".ListOfGroups"
+        >
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/topAppBar_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Gruppi"
+                app:menu="@menu/bar_groups"
+                app:navigationIcon="@drawable/ic_menu_24dp"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listaGruppi"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:scrollbars="vertical"
-            android:layout_height="match_parent"
-
-
-
-            />
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar_l" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

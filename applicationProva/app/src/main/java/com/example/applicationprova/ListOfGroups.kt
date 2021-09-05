@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,6 @@ class ListOfGroups : AppCompatActivity() {
     lateinit var searchgroups: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         val list = mutableListOf<String>()
         val list2 = mutableListOf<String>()
         super.onCreate(savedInstanceState)
@@ -68,6 +68,29 @@ class ListOfGroups : AppCompatActivity() {
         val fab: View = binding.fab
         fab.setOnClickListener {
             fabOnClick()
+        }
+        //topAppBar
+        setSupportActionBar(binding.topAppBar)
+        binding.topAppBar.inflateMenu(R.menu.bar_groups)
+        binding.topAppBar.setNavigationOnClickListener {
+            // Handle navigation icon press
+        }
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.account -> {
+                    // Handle favorite icon press
+                    true
+                }
+                R.id.search -> {
+                    // Handle search icon press
+                    true
+                }
+                R.id.more -> {
+                    // Handle more item (inside overflow menu) press
+                    true
+                }
+                else -> false
+            }
         }
     }
 
