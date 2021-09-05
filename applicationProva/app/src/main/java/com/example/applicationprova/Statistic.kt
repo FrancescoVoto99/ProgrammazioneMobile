@@ -15,6 +15,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.FirebaseDatabase
 
 
@@ -104,6 +105,41 @@ class Statistic : AppCompatActivity() {
 
 
         }
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.statistiche
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.listaprodotti -> {
+                    val intent = Intent(this, ListOfProducts::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    true
+                }
+                R.id.listaspese -> {
+                    val intent = Intent(this, ListOfShop::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.saldi -> {
+                    val intent = Intent(this, Saldo::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.statistiche -> {
+                    /*val intent = Intent(this, Statistic::class.java)
+                    intent.putExtra("key", extras?.getString("key"))
+                    startActivity(intent)
+                    // Respond to navigation item 2 click
+
+                     */
+                    true
+                }
+                else -> false
+            }
     }
 
     fun insertcolors(colors: ArrayList<Int>){
