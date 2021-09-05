@@ -26,12 +26,12 @@ class SaldoAdapter(private val context : Activity, private  val map: Map<String,
             Utente.text=arrayList[position]
             saldo.setBackgroundResource(R.drawable.round_corner)
             saldo.background.setTint(Color.GREEN)
-            saldo.text=dovuto.toString()
+            saldo.text=String.format("%.2f", dovuto)+"€"
 
         }
         else{
             saldo.text=arrayList[position]
-            Utente.text=dovuto.toString()
+            Utente.text=String.format("%.2f", dovuto)+"€"
             Utente.setBackgroundResource(R.drawable.round_corner)
             Utente.background.setTint(Color.RED)
 
