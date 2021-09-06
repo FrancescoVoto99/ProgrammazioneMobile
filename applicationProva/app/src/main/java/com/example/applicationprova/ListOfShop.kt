@@ -32,6 +32,7 @@ class ListOfShop : AppCompatActivity() {
         val nameShop = mutableListOf<String>()
         val whobuy = mutableListOf<String>()
         val price = mutableListOf<Float>()
+        val idshop = mutableListOf<String>()
 
         //data binding al posto del classico inflate
         val binding: ActivityListOfShopBinding = DataBindingUtil.setContentView(
@@ -67,10 +68,11 @@ class ListOfShop : AppCompatActivity() {
                         nameShop.add(postSnapshot.child("nomespesa").getValue().toString())
                         whobuy.add(postSnapshot.child("nomeutente").getValue().toString())
                         price.add(postSnapshot.child("totale").getValue().toString().toFloat())
+                        idshop.add(postSnapshot.key.toString())
                     }
                 }
 
-                rv.adapter = ListOfShopAdapter(nameShop, whobuy, price, value.toString())
+                rv.adapter = ListOfShopAdapter(nameShop, whobuy, price, value.toString(),idshop)
                 binding.spesaTotale.text=String.format("%.2f", price.sum())+"€"
 
                 searchshop.child(value.toString()).child("gruppo").get().addOnSuccessListener {

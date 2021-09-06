@@ -32,6 +32,7 @@ class ListOfProductBoughtAdapter (val prodotti: List<Prodotto>):
         holder.textView.text = prodotti.get(position).nome.toString()
         holder.textView2.text = prodotti.get(position).iduser.toString()
         holder.textView3.append( prodotti.get(position).quantita.toString())
+        holder.textView4.append( prodotti.get(position).nomeutente.toString().toUpperCase())
 
         //gets position from data object
         var data_position = prodotti[position]
@@ -45,6 +46,7 @@ class ListOfProductBoughtAdapter (val prodotti: List<Prodotto>):
         val textView = row.findViewById<TextView>(R.id.item)
         val textView2 = row.findViewById<TextView>(R.id.idproduct)
         val textView3 = row.findViewById<TextView>(R.id.quantita)
+        val textView4 = row.findViewById<TextView>(R.id.utente)
 
 
     }
