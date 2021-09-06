@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -58,8 +59,12 @@ class Newgroup : AppCompatActivity() {
                 binding.Nomemembro.requestFocus()
             }
             else {
+                if (binding.CardView.getVisibility() == View.INVISIBLE) {
+                    binding.CardView.setVisibility(View.VISIBLE);
+                }
                 list.put(binding.aggiungimembro.text.toString().replace(".","'"), binding.Nomemembro.text.toString())
-                binding.componenti.append(binding.Nomemembro.text.toString() + "  " + binding.aggiungimembro.text.toString() + System.getProperty("line.separator"))
+                binding.nomeUtente.append(binding.Nomemembro.text.toString() + System.getProperty("line.separator"))
+                binding.componenti.append(binding.aggiungimembro.text.toString() + System.getProperty("line.separator"))
                 binding.aggiungimembro.setText("")
                 binding.Nomemembro.setText("")
             }
