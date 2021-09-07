@@ -75,12 +75,29 @@ class ListOfGroups : AppCompatActivity() {
             binding.drawerLayout.openDrawer(Gravity.LEFT)
         }
 
-        //binding.navigationView.setNavigationItemSelectedListener { menuItem ->
-            // Handle menu item selected
-        //    menuItem.isChecked = true
-       //     drawerLayout.close()
-       //     true
-      //  }
+        binding.navDrawer.setNavigationItemSelectedListener { menuItem ->
+             //Handle menu item selected
+            menuItem.isChecked = true
+            binding.drawerLayout.closeDrawer(Gravity.LEFT)
+            when (menuItem.itemId) {
+                R.id.account -> {
+                    // Handle favorite icon press
+                    val intent = Intent(this, MyAccount::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.search -> {
+                    // Handle search icon press
+                    true
+                }
+                R.id.more -> {
+                    // Handle more item (inside overflow menu) press
+                    true
+                }
+                else -> false
+            }
+            true
+        }
 
 
 

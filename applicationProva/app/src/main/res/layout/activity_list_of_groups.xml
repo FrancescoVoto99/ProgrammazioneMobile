@@ -1,62 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout>
 
     <data>
 
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="start"
         tools:context=".ListOfGroups"
         >
-
-        <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:openDrawer="start">
+        android:layout_height="match_parent">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
 
-            <com.google.android.material.appbar.AppBarLayout
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
-                android:fitsSystemWindows="true">
+                android:layout_height="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="Gruppi"
+                app:titleTextColor="@android:color/white"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="@drawable/ic_menu_24dp"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/topAppBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:title="prova"
-                    app:navigationIcon="@drawable/ic_menu_24dp"
-                    style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-                    android:background="@android:color/transparent"
-                    android:elevation="0dp" />
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <!-- Screen content -->
-            <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            app:menu="@menu/bar_groups"
-            app:headerLayout="@layout/header_navigation_drawer"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start" />
-
-    </androidx.drawerlayout.widget.DrawerLayout>
-
+                />
 
 
 
@@ -76,5 +52,15 @@
             android:src="@drawable/ic_add_black_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navDrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/drawer_groups"
+            app:headerLayout="@layout/header_navigation_drawer"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
