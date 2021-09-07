@@ -41,7 +41,7 @@ class GroupsState extends State<Groups> {
 
     String? child=user?.email.toString().replaceAll('.','');
     myRef.child(child.toString()).once().then((DataSnapshot? snapshot) {
-      for (var postSnapshot in snapshot.value) {
+      for (var postSnapshot in snapshot!.value) {
 
         list.add(postSnapshot.getValue().toString());
         list2.add(postSnapshot.key.toString());
