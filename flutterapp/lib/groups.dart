@@ -22,6 +22,7 @@ class GroupsState extends State<Groups> {
   late DatabaseReference searchgroups;
   List<String> list = List<String>.empty();
   List<String> list2 =  List<String>.empty();
+  late final FirebaseApp app;
 
   User? user= FirebaseAuth.instance.currentUser;
 
@@ -34,14 +35,13 @@ class GroupsState extends State<Groups> {
   @override
   void initState() {
     super.initState();
-
     final FirebaseDatabase database = FirebaseDatabase(databaseURL: "https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/");
     myRef = database.reference().child("utentiGruppi");
     searchgroups= database.reference().child("gruppi");
 
     String? child=user?.email.toString().replaceAll('.','');
     myRef.child(child.toString()).once().then((DataSnapshot? snapshot) {
-      for (var postSnapshot in snapshot?.value) {
+      for (var postSnapshot in snapshot.value) {
 
         list.add(postSnapshot.getValue().toString());
         list2.add(postSnapshot.key.toString());

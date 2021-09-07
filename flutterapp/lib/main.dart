@@ -6,20 +6,26 @@ import 'package:flutterapp/screens/wrapper.dart';
 
 import 'groups.dart';
 
-void main() {
-  Firebase.initializeApp();
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   FirebaseAuth auth = FirebaseAuth.instance;
 
   User? user= auth.currentUser;
 
-    if (user == null) {
-      runApp(MyApp());
+  if (user == null) {
+    runApp(MyApp());
 
-    } else {
-      runApp(Groups());
-    }
+  } else {
+    runApp(Groups());
   }
+
+
+}
+
+
+
+
 
 
 

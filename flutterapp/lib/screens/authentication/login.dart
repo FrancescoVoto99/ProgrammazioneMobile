@@ -28,9 +28,11 @@ final password = TextEditingController();
 
 Future<void> checkLogin(BuildContext context) async {
   try {
+    String email1=password.text.toString();
+
     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email.text ,
-        password: password.text
+        email: email.text.toString() ,
+        password: password.text.toString()
 
     );
     Navigator.push(context,
@@ -74,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final passwordField = TextField(
       obscureText: true,
       style: style,
+      controller: password,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
