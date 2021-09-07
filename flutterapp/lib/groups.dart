@@ -1,29 +1,69 @@
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/newgroup.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-class Groups extends StatelessWidget {
-  const Groups({Key? key}) : super(key: key);
+class Groups extends StatefulWidget {
 
-  static const appTitle = 'Gruppi';
+
+ // final FirebaseApp app;
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: appTitle,
-      home: MyHomePage(title: appTitle),
-    );
-  }
+  GroupsState createState() => GroupsState();
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  final String title;
+
+class GroupsState extends State<Groups> {
+
+  late DatabaseReference myRef;
+  late DatabaseReference searchgroups;
+  List<String> list = List<String>.empty();
+  List<String> list2 =  List<String>.empty();
+
+  User? user= FirebaseAuth.instance.currentUser;
+
+  bool _anchorToBottom = false;
+
+  String _kTestKey = 'Hello';
+  String _kTestValue = 'world!';
+  DatabaseError? _error;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final FirebaseDatabase database = FirebaseDatabase(databaseURL: "https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/");
+    myRef = database.reference().child("utentiGruppi");
+    searchgroups= database.reference().child("gruppi");
+
+    String? child=user?.email.toString().replaceAll('.','');
+    myRef.child(child.toString()).once().then((DataSnapshot? snapshot) {
+      for (var postSnapshot in snapshot?.value) {
+
+        list.add(postSnapshot.getValue().toString());
+        list2.add(postSnapshot.key.toString());
+
+
+      }
+    });
+
+
+
+
+
+
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text("ciao")),
       body: const Center(
         child: Text('Non hai ancora nessun gruppo.'),
       ),
@@ -73,3 +113,8 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+
+
+
+

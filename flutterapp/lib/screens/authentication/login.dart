@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,31 @@ class Login extends StatelessWidget {
   }
 }
 
+final email = TextEditingController();
+final password = TextEditingController();
+
+Future<void> checkLogin(BuildContext context) async {
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.text ,
+        password: password.text
+
+    );
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => Groups()));
+
+
+
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found') {
+      print('No user found for that email.');
+    } else if (e.code == 'wrong-password') {
+      print('Wrong password provided for that user.');
+    }
+  }
+
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, String? title}) : super(key: key);
   @override
@@ -37,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final emailField = TextField(
       obscureText: false,
       style: style,
+      controller: email,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
@@ -80,10 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () async {
-          dynamic result = await _auth.signInAnon();
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Groups()));
+        onPressed: () {
+          checkLogin(context);
+
 
         },
         child: Text("Login",
