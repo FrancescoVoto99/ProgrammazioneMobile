@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.Menu
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -69,31 +70,46 @@ class ListOfGroups : AppCompatActivity() {
         fab.setOnClickListener {
             fabOnClick()
         }
-        //topAppBar
-        setSupportActionBar(binding.topAppBar)
-        binding.topAppBar.inflateMenu(R.menu.bar_groups)
-        binding.topAppBar.setNavigationOnClickListener {
-            // Handle navigation icon press
-        }
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.account -> {
-                    // Handle favorite icon press
-                    true
-                }
-                R.id.search -> {
-                    // Handle search icon press
-                    true
-                }
-                R.id.more -> {
-                    // Handle more item (inside overflow menu) press
-                    true
-                }
-                else -> false
-            }
-        }
-    }
 
+        binding.topAppBar.setNavigationOnClickListener {
+            binding.drawerLayout.openDrawer(Gravity.LEFT)
+        }
+
+        //binding.navigationView.setNavigationItemSelectedListener { menuItem ->
+            // Handle menu item selected
+        //    menuItem.isChecked = true
+       //     drawerLayout.close()
+       //     true
+      //  }
+
+
+
+        /*     //topAppBar
+            setSupportActionBar(binding.topAppBar)
+            binding.topAppBar.inflateMenu(R.menu.bar_groups)
+            binding.topAppBar.setNavigationOnClickListener {
+                // Handle navigation icon press
+            }
+           binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.account -> {
+                        // Handle favorite icon press
+                        true
+                    }
+                    R.id.search -> {
+                        // Handle search icon press
+                        true
+                    }
+                    R.id.more -> {
+                        // Handle more item (inside overflow menu) press
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+    */
+    }
     private fun fabOnClick() {
         val intent = Intent(this, Newgroup::class.java)
         startActivity(intent)
