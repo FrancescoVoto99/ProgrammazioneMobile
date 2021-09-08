@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/ListOfProduct.dart';
@@ -11,7 +10,7 @@ import 'package:flutterapp/screens/authentication/login.dart';
 class Groups extends StatefulWidget {
 
 
- // final FirebaseApp app;
+  // final FirebaseApp app;
 
   @override
   GroupsState createState() => GroupsState();
@@ -71,82 +70,80 @@ class GroupsState extends State<Groups> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter layout demo',
-        home:Scaffold(
-      appBar: AppBar(title: Text(user!.displayName.toString())),
-      body:Column(
-    children: <Widget>[
-    Expanded(
-        child: ListView.builder(
-        padding: const EdgeInsets.all(8),
-    itemCount: list.length,
-    itemBuilder: (BuildContext context, int index) {
-    return GestureDetector(
-        onTap: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return ListOfProduct(idgroup: list2[index]);
-            }),
-          );
+      title: 'Flutter layout demo',
+      home:Scaffold(
+        appBar: AppBar(title: Text(user!.displayName.toString())),
+        body:Column(
+            children: <Widget>[
+              Expanded(
+                  child: ListView.builder(
+                      padding: const EdgeInsets.all(8),
+                      itemCount: list.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return ListOfProduct(idgroup: list2[index]);
+                                }),
+                              );
 
-      print('Container clicked ${list2[index]}' );
-    },
-      child:Container(
-    height: 50,
-    margin: EdgeInsets.all(2),
-    color: Colors.blue[400],
-  //  msgCount[index]>3? Colors.blue[100]: Colors.grey
-    child: Center(
-    child: Text('${list[index]}',
-    style: TextStyle(fontSize: 18),
-    ),
+                              print('Container clicked ${list2[index]}' );
+                            },
+                            child:Container(
+                              height: 50,
+                              margin: EdgeInsets.all(2),
+                              color: Colors.blue[400],
+                              //  msgCount[index]>3? Colors.blue[100]: Colors.grey
+                              child: Center(
+                                child: Text('${list[index]}',
+                                  style: TextStyle(fontSize: 18),
+                                ),
 
-    ),
-      ));}))]),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+                              ),
+                            ));}))]),
+        drawer: Drawer(
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Spesa condivisa'),
               ),
-              child: Text('Spesa condivisa'),
-            ),
-            ListTile(
-              title: const Text('Il mio account'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Logout'),
-              onTap: () {
-                signOut();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Login()));
-              },
-            ),
-          ],
+              ListTile(
+                title: const Text('Il mio account'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Logout'),
+                onTap: () {
+                  signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login()));
+                },
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => NewGroup()));
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
-    ),);
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(NewGroup());
+          },
+          child: const Icon(Icons.add),
+          backgroundColor: Colors.green,
+        ),
+      ),);
   }
 }
-
