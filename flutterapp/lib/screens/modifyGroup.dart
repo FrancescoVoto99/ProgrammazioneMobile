@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/screens/home/groups.dart';
+import 'package:flutterapp/groups.dart';
 
 class ModifyGroup extends StatelessWidget {
   @override

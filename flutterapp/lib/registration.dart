@@ -1,7 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/login.dart';
+import 'package:flutterapp/screens/authentication/login.dart';
+import 'package:flutterapp/screens/authentication/login.dart';
 
 class Registration extends StatelessWidget {
   @override
