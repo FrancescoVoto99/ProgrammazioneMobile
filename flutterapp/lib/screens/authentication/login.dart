@@ -4,9 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/authentication/registration.dart';
-import 'package:flutterapp/services/auth.dart';
 
-import '../home/groups.dart';
+
+import 'package:flutterapp/groups.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -50,6 +50,12 @@ Future<void> checkLogin(BuildContext context) async {
 
 }
 
+Future <Login> signOut()  async{
+  await FirebaseAuth.instance.signOut();
+
+  return new Login();
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, String? title}) : super(key: key);
   @override
@@ -58,7 +64,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
- final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {

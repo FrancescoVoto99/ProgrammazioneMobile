@@ -41,9 +41,13 @@ class ListOfProductState extends State<ListOfProduct> {
     searchproducts.child(idgroup.toString()).child("prodotti").once().then((DataSnapshot? snapshot) {
       Map<dynamic,dynamic>.from(snapshot!.value).forEach((key, value) {
         setState(() {
-        
-          list.add(value);
-          list2.add(key.toString());
+          if(value['buy'].toString() == '0'){
+            list.add(value['nome'].toString());
+            list2.add(key.toString());
+          } else {
+
+          }
+
 
         });
 
@@ -134,7 +138,8 @@ class ListOfProductState extends State<ListOfProduct> {
           child: const Icon(Icons.add),
           backgroundColor: Colors.green,
         ),
-      ),);
+      ),
+    );
   }
 }
 

@@ -5,6 +5,7 @@ import 'package:flutterapp/ListOfProduct.dart';
 import 'package:flutterapp/newgroup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutterapp/screens/authentication/login.dart';
 
 class Groups extends StatefulWidget {
 
@@ -114,10 +115,10 @@ class GroupsState extends State<Groups> {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Statistiche'),
+              child: Text('Spesa condivisa'),
             ),
             ListTile(
-              title: const Text('Statistica 1'),
+              title: const Text('Il mio account'),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -126,12 +127,10 @@ class GroupsState extends State<Groups> {
               },
             ),
             ListTile(
-              title: const Text('Statistica 2'),
+              title: const Text('Logout'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                signOut();
+                Navigator.pushNamed(context, "/login");
               },
             ),
           ],
@@ -148,8 +147,4 @@ class GroupsState extends State<Groups> {
     ),);
   }
 }
-
-
-
-
 

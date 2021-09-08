@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutterapp/screens/home/groups.dart';
+import 'groups.dart';
 
 class NewGroup extends StatelessWidget {
   @override
