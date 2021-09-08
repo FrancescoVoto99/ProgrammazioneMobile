@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
@@ -32,6 +33,13 @@ class Statistic : AppCompatActivity() {
         val categorie = listOf<String>("Cibo", "Bagno", "Casa", "Salute", "Divertimento", "Altro")
         val quantita = mutableListOf<Int>(0, 0, 0, 0, 0, 0)
 
+
+        /*
+        findViewById<Toolbar>(R.id.topAppBar).setNavigationOnClickListener {
+            onBackPressed()
+            false
+        }
+        */
 
         var piechart: PieChart = findViewById(R.id.piechart)
         val entries: ArrayList<PieEntry> = ArrayList()

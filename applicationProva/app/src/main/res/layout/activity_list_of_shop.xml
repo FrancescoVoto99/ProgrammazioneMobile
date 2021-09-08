@@ -11,96 +11,106 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ListOfShop">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Lista delle spese"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_back"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaSpese"
+            android:layout_width="match_parent"
+            android:layout_height="575dp"
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@id/topAppBar">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
+            android:id="@+id/linLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="70dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listaSpese"
-                android:layout_width="match_parent"
-                android:layout_height="633dp"
-                android:scrollbars="vertical">
-
-            </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="serif"
+                    android:text="Il Mio Totale"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:fontFamily="serif"
-                        android:text="Il Mio Totale"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:fontFamily="serif"
-                        android:text="Totale Spese"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="serif"
+                    android:text="Totale Spese"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-                    android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
 
 
-                    <TextView
-                        android:id="@+id/miaSpesa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:fontFamily="serif"
-                        android:text=""
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="40sp"
-                        android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/miaSpesa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:fontFamily="serif"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="40sp"
+                    android:textStyle="bold|italic" />
 
-                    <TextView
-                        android:id="@+id/spesaTotale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:fontFamily="serif"
-                        android:text=""
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="40sp"
-                        android:textStyle="bold|italic" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/spesaTotale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:fontFamily="serif"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="40sp"
+                    android:textStyle="bold|italic" />
             </LinearLayout>
 
         </LinearLayout>
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

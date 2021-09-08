@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.applicationprova.databinding.ActivityMainBinding
@@ -25,10 +26,19 @@ class MyAccount : AppCompatActivity() {
         // Initialize Firebase Auth
         var auth = Firebase.auth
         val currentUser = auth.currentUser
+        setSupportActionBar(binding.topAppBar)
 
         binding.updateNomeutente.setText(currentUser?.displayName.toString())
         binding.updateEmail.setText(currentUser?.email.toString())
-
+        binding.cancel.setOnClickListener{
+            onBackPressed()
+            false
+        }
+        setSupportActionBar(binding.topAppBar)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            false
+        }
         binding.updateButton.setOnClickListener {
 
             if (TextUtils.isEmpty(binding.updateNomeutente.text.toString())) {

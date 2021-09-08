@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -106,6 +103,49 @@ import com.google.firebase.ktx.Firebase
                 }
                 else -> false
             }
+        }
+        setSupportActionBar(binding.topAppBar)
+
+        //binding.topAppBar.inflateMenu(R.menu.bar_products)
+        // and finally set click listener
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.gruppi -> {
+                    val intent = Intent(this, ListOfGroups::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                else -> false
+            }
+        }
+        binding.topAppBar.setNavigationOnClickListener {
+            binding.drawerLayout.openDrawer(Gravity.LEFT)
+        }
+
+        binding.navDrawer.setNavigationItemSelectedListener { menuItem ->
+            //Handle menu item selected
+            menuItem.isChecked = true
+            binding.drawerLayout.closeDrawer(Gravity.LEFT)
+            when (menuItem.itemId) {
+                R.id.account -> {
+                    val intent = Intent(this, MyAccount::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.groups -> {
+                    val intent = Intent(this, ListOfGroups::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.settingsGroup -> {
+                    val intent = Intent(this, SettingsGroup::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+            true
         }
 
 
@@ -212,4 +252,9 @@ import com.google.firebase.ktx.Firebase
             }
 
     }
+     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+         // Inflate the menu; this adds items to the action bar if it is present.
+         menuInflater.inflate(R.menu.bar_products, menu)
+         return true
+     }
 }

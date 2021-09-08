@@ -29,6 +29,10 @@ class Saldo : AppCompatActivity() {
                 this, R.layout.activity_saldo
         )
 
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            false
+        }
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")

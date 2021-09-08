@@ -12,20 +12,35 @@
         tools:context=".SettingsGroup"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Saldo"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_back"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginTop="?attr/actionBarSize"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar">
 
             <TextView
                 android:id="@+id/Nomegruppo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="30dp"
+                android:text=""
                 android:textAlignment="center"
-                android:text="" />
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/listaSaldi"

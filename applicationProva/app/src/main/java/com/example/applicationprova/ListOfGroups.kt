@@ -6,12 +6,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -71,21 +75,37 @@ class ListOfGroups : AppCompatActivity() {
             fabOnClick()
         }
 
+
+        setSupportActionBar(binding.topAppBar)
+
+        binding.topAppBar.inflateMenu(R.menu.bar_groups)
+        // and finally set click listener
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.account -> {
+                    val intent = Intent(this, MyAccount::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                else -> false
+            }
+        }
         binding.topAppBar.setNavigationOnClickListener {
             binding.drawerLayout.openDrawer(Gravity.LEFT)
         }
 
         binding.navDrawer.setNavigationItemSelectedListener { menuItem ->
-             //Handle menu item selected
+            //Handle menu item selected
             menuItem.isChecked = true
             binding.drawerLayout.closeDrawer(Gravity.LEFT)
             when (menuItem.itemId) {
                 R.id.account -> {
-                    // Handle favorite icon press
                     val intent = Intent(this, MyAccount::class.java)
                     startActivity(intent)
                     true
                 }
+                /*
                 R.id.search -> {
                     // Handle search icon press
                     true
@@ -94,41 +114,21 @@ class ListOfGroups : AppCompatActivity() {
                     // Handle more item (inside overflow menu) press
                     true
                 }
+                 */
                 else -> false
             }
             true
         }
 
 
-
-        /*     //topAppBar
-            setSupportActionBar(binding.topAppBar)
-            binding.topAppBar.inflateMenu(R.menu.bar_groups)
-            binding.topAppBar.setNavigationOnClickListener {
-                // Handle navigation icon press
-            }
-           binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.account -> {
-                        // Handle favorite icon press
-                        true
-                    }
-                    R.id.search -> {
-                        // Handle search icon press
-                        true
-                    }
-                    R.id.more -> {
-                        // Handle more item (inside overflow menu) press
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-    */
     }
     private fun fabOnClick() {
         val intent = Intent(this, Newgroup::class.java)
         startActivity(intent)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.bar_groups, menu)
+        return true
     }
 }
