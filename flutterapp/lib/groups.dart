@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/ListOfProduct.dart';
+import 'package:flutterapp/main.dart';
 import 'package:flutterapp/newgroup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -22,8 +23,8 @@ class GroupsState extends State<Groups> {
 
   late DatabaseReference myRef;
   late DatabaseReference searchgroups;
-  List<String> list=["laaa"] ;
-  List<String> list2= ["egew"] ;
+  List<String> list=[] ;
+  List<String> list2= [] ;
 
   late final FirebaseApp app;
 
@@ -72,7 +73,7 @@ class GroupsState extends State<Groups> {
     return MaterialApp(
         title: 'Flutter layout demo',
         home:Scaffold(
-      appBar: AppBar(title: Text("ciao")),
+      appBar: AppBar(title: Text(user!.displayName.toString())),
       body:Column(
     children: <Widget>[
     Expanded(
@@ -130,7 +131,8 @@ class GroupsState extends State<Groups> {
               title: const Text('Logout'),
               onTap: () {
                 signOut();
-                Navigator.pushNamed(context, "/login");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Login()));
               },
             ),
           ],

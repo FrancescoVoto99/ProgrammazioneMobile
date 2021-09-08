@@ -14,10 +14,14 @@ void main() async {
   User? user= auth.currentUser;
 
   if (user == null) {
+    print("sono nel main, nell'if");
     runApp(MyApp());
 
   } else {
+    print("sono nel main nell'else");
+    print(user.displayName.toString());
     runApp(Groups());
+
   }
 
 

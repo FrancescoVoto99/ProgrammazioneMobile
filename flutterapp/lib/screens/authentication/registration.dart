@@ -170,6 +170,7 @@ Future<void> tryRegistration(TextEditingController nomeutente,
           email: email.text,
           password: password.text,
     );
+          await FirebaseAuth.instance.currentUser!.updateDisplayName(nomeutente.text);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
       print('The password provided is too weak.');
