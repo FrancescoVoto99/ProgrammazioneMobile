@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/Prodotto.dart';
 import 'package:flutterapp/buy.dart';
+import 'package:flutterapp/newProduct.dart';
 import 'package:flutterapp/newgroup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -18,6 +19,8 @@ class ListOfProduct extends StatefulWidget {
   @override
   ListOfProductState createState() => ListOfProductState(idgroup);
 }
+
+
 
 
 
@@ -124,9 +127,9 @@ class ListOfProductState extends State<ListOfProduct> {
               ListTile(
                 title: const Text('Logout'),
                 onTap: () {
-                 signOut();
-                 Navigator.push(context,
-                     MaterialPageRoute(builder: (context) => Login()));
+                  signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login()));
                 },
               ),
             ],
@@ -135,7 +138,7 @@ class ListOfProductState extends State<ListOfProduct> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Buy()));
+                MaterialPageRoute(builder: (context) => Buy());
           },
           child: const Icon(Icons.add),
           backgroundColor: Colors.green,
@@ -144,6 +147,13 @@ class ListOfProductState extends State<ListOfProduct> {
     );
   }
 }
+
+
+
+
+
+
+
 
 
 
