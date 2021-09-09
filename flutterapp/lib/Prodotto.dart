@@ -19,7 +19,23 @@ class Prodotto {
       this.note,
       this.iduser,
       this.nomeutente,
-      this.buy); // Constructor, with syntactic sugar for assignment to members.
+      this.buy);
+
+  // Constructor, with syntactic sugar for assignment to members.
+
+  Map<String, dynamic> toJson() =>
+      {
+        'nome': nome,
+        'categoria': categoria,
+        'quantita': quantita,
+        'note': note,
+        'iduser': iduser,
+        'nomeutente': nomeutente,
+        'buy': buy,
+
+      };
+
+
 
   factory Prodotto.fromJson(dynamic json){
     return Prodotto(json['nome'] as String,

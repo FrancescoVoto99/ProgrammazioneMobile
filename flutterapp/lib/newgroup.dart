@@ -52,8 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void add() {
     list[email.text.toString().replaceAll(".","'")] = nomeUtente.text.toString();
+    setState(() {
+      Membro=Membro+nomeUtente.text.toString()+"  "+email.text.toString()+"\n";
+    });
 
-    Membro=Membro+nomeUtente.text.toString()+"  "+email.text.toString()+"/n";
     nomeUtente.text="";
     email.text="";
 
@@ -72,8 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Gruppo group = Gruppo(nomeGruppo.text.toString(),list);
 
     String groupid= myRef.push().key.toString();
-
-    myRef.child(groupid).set(group).whenComplete(() =>
+    myRef.child(groupid).child("nomeGruppo").set(nomeGruppo.text.toString());
+    myRef.child(groupid).child("gruppo").set(list).whenComplete(() =>
         list.forEach((key, value) {
           myRefutenti.child(key.replaceAll("'","")).child(groupid).set(nomeGruppo.text.toString());
 
