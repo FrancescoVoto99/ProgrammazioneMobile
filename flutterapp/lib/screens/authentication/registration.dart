@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +16,6 @@ class Registration extends StatelessWidget {
     );
   }
 }
-final nomeutente = TextEditingController();
-final email = TextEditingController();
-final password = TextEditingController();
-final confirmpassword = TextEditingController();
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, String? title}) : super(key: key);
@@ -37,15 +32,22 @@ class _MyHomePageState extends State<MyHomePage> {
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Nome utente",
+          hintText: "Nome",
           border:
           OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
-
+    final surnameField = TextField(
+      obscureText: false,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Cognome",
+          border:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
     final emailField = TextField(
       obscureText: false,
       style: style,
-      controller: email,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
@@ -54,7 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final passwordField = TextField(
-      controller: password,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
@@ -81,9 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () => {
-
-          tryRegistration(nomeutente, email, password, confirmpassword),
-         _buildPopupDialog(context),
+          _buildPopupDialog(context),
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => Login())),
         },
@@ -111,6 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: 45.0),
                     nameField,
+                    SizedBox(height: 45.0),
+                    surnameField,
 
                     SizedBox(height: 45.0),
                     emailField,
@@ -158,26 +159,27 @@ Widget _buildPopupDialog(BuildContext context) {
     ],
   );
 }
-
-
 Future<void> tryRegistration(TextEditingController nomeutente,
-                            TextEditingController email,
-                          TextEditingController password,
-                          TextEditingController confirmpassword) async {
+    TextEditingController email,
+    TextEditingController password,
+    TextEditingController confirmpassword) async {
 
-     try {
-          UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email.text,
-          password: password.text,
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email.text,
+      password: password.text,
     );
-          await FirebaseAuth.instance.currentUser!.updateDisplayName(nomeutente.text);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
+    User user;
+    user = userCredential.user!;
+    user.updateDisplayName(nomeutente.text);
+
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'weak-password') {
       print('The password provided is too weak.');
     } else if (e.code == 'email-already-in-use') {
       print('The account already exists for that email.');
     }
-    } catch (e) {
-      print(e);
-    }
+  } catch (e) {
+    print(e);
+  }
 }

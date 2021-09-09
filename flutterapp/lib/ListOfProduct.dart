@@ -2,9 +2,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/Prodotto.dart';
+import 'package:flutterapp/buy.dart';
 import 'package:flutterapp/newgroup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutterapp/buy.dart';
+import 'package:flutterapp/screens/authentication/login.dart';
 
 class ListOfProduct extends StatefulWidget {
   const ListOfProduct({Key? key, required this.idgroup}) : super(key: key);
@@ -71,7 +74,7 @@ class ListOfProductState extends State<ListOfProduct> {
     return MaterialApp(
       title: 'Flutter layout demo',
       home:Scaffold(
-        appBar: AppBar(title: Text("ciao")),
+        appBar: AppBar(title: Text("Lista della spesa")),
         body:Column(
             children: <Widget>[
               Expanded(
@@ -107,10 +110,10 @@ class ListOfProductState extends State<ListOfProduct> {
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
-                child: Text('Statistiche'),
+                child: Text('Spesa convdivisa'),
               ),
               ListTile(
-                title: const Text('Statistica 1'),
+                title: const Text('Il mio account'),
                 onTap: () {
                   // Update the state of the app
                   // ...
@@ -119,12 +122,11 @@ class ListOfProductState extends State<ListOfProduct> {
                 },
               ),
               ListTile(
-                title: const Text('Statistica 2'),
+                title: const Text('Logout'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                 signOut();
+                 Navigator.push(context,
+                     MaterialPageRoute(builder: (context) => Login()));
                 },
               ),
             ],
@@ -133,7 +135,7 @@ class ListOfProductState extends State<ListOfProduct> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => NewGroup()));
+                MaterialPageRoute(builder: (context) => Buy()));
           },
           child: const Icon(Icons.add),
           backgroundColor: Colors.green,
