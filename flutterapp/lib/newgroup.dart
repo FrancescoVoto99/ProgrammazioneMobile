@@ -192,13 +192,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      height: 155.0,
-                    ),
-                    SizedBox(height: 45.0),
+
                     Text("Nome del gruppo"),
                     groupnameField,
-                    SizedBox(height: 45.0),
+                      SizedBox(height: 45.0),
                     Text("Nome Componente"),
                     nomeUtenteField,
                     SizedBox(height: 45.0),

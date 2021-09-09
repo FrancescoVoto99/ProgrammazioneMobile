@@ -113,7 +113,7 @@ class ListOfProductState extends State<ListOfProduct> {
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
-                child: Text('Spesa convdivisa'),
+                child: Text('Spesa condivisa'),
               ),
               ListTile(
                 title: const Text('Il mio account'),
@@ -138,7 +138,9 @@ class ListOfProductState extends State<ListOfProduct> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Buy());
+                MaterialPageRoute(builder: (context) => Buy(idgroup: idgroup,),
+                                  )
+            );
           },
           child: const Icon(Icons.add),
           backgroundColor: Colors.green,

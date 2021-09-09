@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'ListOfProduct.dart';
 import 'Prodotto.dart';
 import 'groups.dart';
 
@@ -27,6 +28,9 @@ FirebaseAuth auth = FirebaseAuth.instance;
 
 
 class Buy extends StatelessWidget {
+  Buy({Key? key, required this.idgroup}) : super(key: key);
+  final String idgroup;
+
   @override
   Widget build(BuildContext context) {
     print('sei su buy.dart');
@@ -36,7 +40,7 @@ class Buy extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:MyHomePage(title: 'Compra'),
+      home:MyHomePage(idgroup: idgroup),
     );
   }
 
@@ -44,13 +48,16 @@ class Buy extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
-  MyHomePage({Key? key, String? title}) : super(key: key);
+  MyHomePage({Key? key, required this.idgroup}) : super(key: key);
+  final String idgroup;
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(idgroup);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  String idgroup;
+  _MyHomePageState(this.idgroup);
   void getDropDownItem(){
     setState((){
       holderCategory = dropDownValueCategory;
@@ -168,7 +175,9 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
-          _insertProduct();
+          _insertProduct(idgroup);
+          MaterialPageRoute(builder: (context) => ListOfProduct(idgroup: idgroup,)
+                           );
         },
         child: Text("INSERISCI",
             textAlign: TextAlign.center,
@@ -209,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-void _insertProduct() {
+void _insertProduct(String idgroup) {
   if(nomeprodotto.toString() == "Nome"){
     print('Inserisci un nome valido');
   } else {
@@ -220,8 +229,10 @@ void _insertProduct() {
       note.text.toString(),
       user!.uid,
       user!.displayName.toString(),
-      "1"
+      "0"
     );
+    String idproduct= myRef.child(idgroup).child("prodotti").push().key.toString();
+    myRef.child(idgroup).child("prodotti").child(idproduct).set(p.toJson());
     print(p.toString());
   }
 
