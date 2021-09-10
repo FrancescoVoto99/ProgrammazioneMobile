@@ -53,27 +53,25 @@ class ListOfProductBoughtState extends State<ListOfProductBought> {
     searchproducts.child(idgroup.toString()).child("spese").child(idshop).child("prodotti")
         .once()
         .then((DataSnapshot? snapshot) {
-      Map<dynamic, dynamic>.from(snapshot!.value).forEach((key, value) {
-        setState(() {
-          list.add(value);
+          List<dynamic>.from(snapshot!.value).forEach((element) {
+            list.add(element);
+          });
+          list.forEach((element) {
+            searchproducts.child(idgroup.toString()).child("prodotti").child(element)
+                .once()
+                .then((DataSnapshot? snapshot) {
 
-        });
-      });
-    });
+                setState(() {
+                  nomeProdotto.add(snapshot!.value["nome"]);
+                  quantita.add(snapshot!.value["quantita"]);
+                });
 
-    list.forEach((element) {
-      searchproducts.child(idgroup.toString()).child("prodotti").child(element)
-          .once()
-          .then((DataSnapshot? snapshot) {
-        Map<dynamic, dynamic>.from(snapshot!.value).forEach((key, value) {
-            setState(() {
-              nomeProdotto.add(value["totale"]);
-              quantita.add(value["totale"]);
             });
-        });
-      });
 
+          });
     });
+
+
 
   }
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
@@ -100,7 +98,7 @@ class ListOfProductBoughtState extends State<ListOfProductBought> {
                               style: TextStyle(fontSize: 18),
                             ),
                               Text(
-                                ' QUnatità: ${quantita[index]}',
+                                ' Qunatità: ${quantita[index]}',
                                 style: TextStyle(fontSize: 18),
                               ),
                             ]

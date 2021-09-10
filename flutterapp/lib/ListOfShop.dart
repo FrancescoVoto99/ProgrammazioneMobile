@@ -69,13 +69,14 @@ class ListOfShopState extends State<ListOfShop> {
           utenti.add(key.toString());
         });
       });
+      setState(() {
+        double sum = 0.00;
+        price.forEach((double e){sum += e;});
+        spesaTotale=sum.toStringAsFixed(2);
+        miaSpesa=(sum/utenti.length).toStringAsFixed(2);
+      });
     });
-    setState(() {
-      double sum = 0.00;
-      price.forEach((double e){sum += e;});
-      spesaTotale=sum.toStringAsFixed(2);
-      miaSpesa=(sum/utenti.length).toStringAsFixed(2);
-    });
+
 
   }
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
@@ -112,7 +113,7 @@ class ListOfShopState extends State<ListOfShop> {
                     style: TextStyle(fontSize: 18),
                     ),
                     Text(
-                    ' ${price[index]}',
+                    ' ${price[index].toStringAsFixed(2)}',
                     style: TextStyle(fontSize: 18),
                     ),
                       
@@ -127,33 +128,36 @@ class ListOfShopState extends State<ListOfShop> {
                     ),);})),
           Row(
             children: <Widget>[
-              Row(
+              Column(
                 children: <Widget>[
-                  Text(
-                    'Mia Spesa',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Text(
-                    ' Spesa Totale',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    '${miaSpesa}',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    ' Qunatità: ${spesaTotale}',
-                    style: TextStyle(fontSize: 20),
-                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Mia Spesa',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        ' Spesa Totale',
+                        style: TextStyle(fontSize: 18),
+                      ),
 
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        '${miaSpesa}',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        ' Qunatità: ${spesaTotale}',
+                        style: TextStyle(fontSize: 20),
+                      ),
+
+                    ],
+                  ),
                 ],
-              ),
-              
+              )
             ],
           )
         ]),
