@@ -2,6 +2,7 @@ package com.example.applicationprova
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +34,10 @@ class ListOfProductCategory : AppCompatActivity() {
         )
         //setContentView(R.layout.activity_list_of_groups)
 
-
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            false
+        }
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         searchproducts = database.getReference("gruppi")
 

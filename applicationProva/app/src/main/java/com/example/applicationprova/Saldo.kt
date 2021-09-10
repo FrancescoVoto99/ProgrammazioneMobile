@@ -39,7 +39,7 @@ class Saldo : AppCompatActivity() {
 
             searchUser.child(value.toString()).child("nomeGruppo").get()
                 .addOnSuccessListener {
-                    binding.Nomegruppo.setText(it.value.toString())
+                    binding.Nomegruppo.setText("Utenti gruppo: ${it.value.toString()}")
                 }.addOnFailureListener {
                 Log.e("firebase", "Error getting data", it)
             }

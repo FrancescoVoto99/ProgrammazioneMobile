@@ -94,6 +94,8 @@ class Statistic : AppCompatActivity() {
                     insertcolors(colors)
                     createPieChart(entries, piechart, colors)
                     createLegend(piechart)
+                    piechart.invalidate()
+                    piechart.refreshDrawableState()
 
 
                 }.addOnFailureListener {
