@@ -227,9 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      height: 155.0,
-                    ),
+
                     Text("Nome Prodotto"),
                     nameProductField,
                     SizedBox(height: 45.0),

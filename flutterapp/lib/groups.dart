@@ -76,7 +76,7 @@ class GroupsState extends State<Groups> {
     return MaterialApp(
       title: 'Flutter layout demo',
       home:Scaffold(
-        appBar: AppBar(title: Text(user!.displayName.toString())),
+        appBar: AppBar(title: Text('Username:\t ' + user!.displayName.toString())),
         body:Column(
             children: <Widget>[
               Expanded(
