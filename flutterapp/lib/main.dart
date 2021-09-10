@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/wrapper.dart';
 
-import 'groups.dart';
+import 'screens/groups.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

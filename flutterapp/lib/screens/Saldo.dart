@@ -3,9 +3,9 @@ import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/Prodotto.dart';
-import 'package:flutterapp/newProduct.dart';
-import 'package:flutterapp/newgroup.dart';
+import 'package:flutterapp/model/Prodotto.dart';
+import 'package:flutterapp/controller/newProduct.dart';
+import 'package:flutterapp/controller/newgroup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutterapp/screens/authentication/login.dart';

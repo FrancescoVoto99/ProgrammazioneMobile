@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/authentication/registration.dart';
 
 
-import 'package:flutterapp/groups.dart';
+import 'package:flutterapp/screens/groups.dart';
 
 class Login extends StatelessWidget {
   @override

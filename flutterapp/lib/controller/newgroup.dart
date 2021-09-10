@@ -5,9 +5,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'groups.dart';
-
-import 'Gruppo.dart';
+import '../../screens/groups.dart';
+import '../model/Gruppo.dart';
 
 class NewGroup extends StatelessWidget {
   @override
