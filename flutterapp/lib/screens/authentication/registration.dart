@@ -32,9 +32,56 @@ class _MyHomePageState extends State<MyHomePage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   @override
   Widget build(BuildContext context) {
+    Future<void>  _passwordsDoNotMatch() async {
+      return showDialog<void>(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context){
+              return AlertDialog(
+                  title: const Text('Errore'),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: const <Widget>[
+                        Text('Errore'),
+                        Text('Le password non coincidono'),
+                      ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(child:const Text('OK'),
+                        onPressed: (){
+                          Navigator.of(context).pop();
+                        })
+                  ],
+              );
+            },
+      );}
+  Future<void> tryRegistration(TextEditingController nomeutente,
+      TextEditingController email,
+      TextEditingController password) async {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email.text,
+          password: password.text,
+        );
+        User? u = userCredential.user;
+        u!.updateDisplayName(nomeutente.text);
+
+        await FirebaseAuth.instance.currentUser!.updateDisplayName(nomeutente.text);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for  that email.');
+        }
+      } catch (e) {
+        print(e);
+      }
+  }
     final nameField = TextField(
       obscureText: false,
       style: style,
+      controller: nomeutente,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Nome utente",
@@ -66,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final confirmPasswordField = TextField(
       obscureText: true,
       style: style,
+      controller: confirmpassword,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Conferma Password",
@@ -81,11 +129,15 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () => {
+          if(password.text != confirmpassword.text)
+       { _passwordsDoNotMatch(),}
 
-          tryRegistration(nomeutente, email, password, confirmpassword),
-          _buildPopupDialog(context),
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Login())),
+          else {
+        tryRegistration(nomeutente, email, password),
+        Navigator.push(context,
+        MaterialPageRoute(builder: (context) => Login())),
+
+    }
         },
         child: Text("Registrati",
             textAlign: TextAlign.center,
@@ -156,24 +208,5 @@ Widget _buildPopupDialog(BuildContext context) {
 }
 
 
-Future<void> tryRegistration(TextEditingController nomeutente,
-    TextEditingController email,
-    TextEditingController password,
-    TextEditingController confirmpassword) async {
 
-  try {
-    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email.text,
-      password: password.text,
-    );
-    await FirebaseAuth.instance.currentUser!.updateDisplayName(nomeutente.text);
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
-    } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for  that email.');
-    }
-  } catch (e) {
-    print(e);
-  }
-}
+

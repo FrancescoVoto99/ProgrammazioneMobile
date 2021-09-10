@@ -143,7 +143,6 @@ class GroupsState extends State<Groups> {
             ],
           ),
         ),
-
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             runApp(NewGroup());

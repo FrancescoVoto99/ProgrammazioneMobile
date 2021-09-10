@@ -71,6 +71,20 @@ class ListOfProductState extends State<ListOfProduct> {
     });
   }
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Index 0: Home'),
+    Text('Index 1: Spese'),
+    Text('Index 2: Saldo'),
+    Text('Index 3: Statistiche'),
+  ];
+  void _onItemTapped(int index) {
+    setState((){
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -127,6 +141,7 @@ class ListOfProductState extends State<ListOfProduct> {
                           ),
                         ));
                   })),
+          SizedBox(height: 25.0),
           Material(
             elevation: 5.0,
             borderRadius: BorderRadius.circular(30.0),
