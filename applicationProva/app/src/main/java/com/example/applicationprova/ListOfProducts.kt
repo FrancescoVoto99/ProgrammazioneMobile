@@ -143,6 +143,12 @@ import com.google.firebase.ktx.Firebase
                     startActivity(intent)
                     true
                 }
+                R.id.logout -> {
+                    auth.signOut()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
             true

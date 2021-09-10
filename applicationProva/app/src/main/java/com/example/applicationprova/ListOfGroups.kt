@@ -81,12 +81,16 @@ class ListOfGroups : AppCompatActivity() {
         binding.topAppBar.inflateMenu(R.menu.bar_groups)
         // and finally set click listener
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            //Handle menu item selected
+            menuItem.isChecked = true
+            binding.drawerLayout.closeDrawer(Gravity.LEFT)
             when (menuItem.itemId) {
                 R.id.account -> {
                     val intent = Intent(this, MyAccount::class.java)
                     startActivity(intent)
                     true
                 }
+
 
                 else -> false
             }
@@ -102,6 +106,14 @@ class ListOfGroups : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.account -> {
                     val intent = Intent(this, MyAccount::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.logout -> {
+                    Snackbar.make(findViewById(android.R.id.content),"Click!", Snackbar.LENGTH_SHORT).show()
+                    auth = Firebase.auth
+                    auth.signOut()
+                    val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     true
                 }

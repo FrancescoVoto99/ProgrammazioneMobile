@@ -10,6 +10,12 @@
             android:title="My Account"
             android:contentDescription="account"
             />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout_svgrepo_com"
+            android:title="Logout"
+            android:contentDescription="Logout"
+            />
 
     </group>
 </menu>
