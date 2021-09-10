@@ -179,16 +179,6 @@ class SaldoState extends State<Saldo> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Buy(idgroup: idgroup,),
-                )
-            );
-          },
-          child: const Icon(Icons.add),
-          backgroundColor: Colors.green,
-        ),
       ),
     );
   }
