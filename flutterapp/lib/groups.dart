@@ -73,9 +73,11 @@ class GroupsState extends State<Groups> {
 
   @override
   Widget build(BuildContext context) {
+    User? u = user;
     return MaterialApp(
       title: 'Flutter layout demo',
       home:Scaffold(
+
         appBar: AppBar(title: Text('Username:\t ' + user!.displayName.toString())),
         body:Column(
             children: <Widget>[

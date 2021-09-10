@@ -7,6 +7,7 @@ import 'package:flutterapp/newProduct.dart';
 import 'package:flutterapp/newgroup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutterapp/screens/authentication/login.dart';
 
 import 'EditProduct.dart';
 import 'Saldo.dart';
@@ -75,7 +76,7 @@ class ListOfProductState extends State<ListOfProduct> {
     return MaterialApp(
       title: 'Flutter layout demo',
       home: Scaffold(
-        appBar: AppBar(title: Text("ciao")),
+        appBar: AppBar(title: Text("Prodotti")),
         body: Column(children: <Widget>[
           Expanded(
               child: ListView.builder(
@@ -155,10 +156,10 @@ class ListOfProductState extends State<ListOfProduct> {
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
-                child: Text('Statistiche'),
+                child: Text('Spesa condivisa'),
               ),
               ListTile(
-                title: const Text('Statistica 1'),
+                title: const Text('Il mio account'),
                 onTap: () {
                   // Update the state of the app
                   // ...
@@ -167,12 +168,11 @@ class ListOfProductState extends State<ListOfProduct> {
                 },
               ),
               ListTile(
-                title: const Text('Statistica 2'),
+                title: const Text('Log out'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login()));
                 },
               ),
             ],
