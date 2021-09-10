@@ -89,11 +89,20 @@ class ListOfProductState extends State<ListOfProduct> {
                               prodotti[index].isSelected = false;
                             });
                           }
-                          else{
+                          else
+                          { bool hasSelected = false;
+                          for (int i=0; i < prodotti.length; i++){
+                            if (prodotti[i].isSelected == true) hasSelected=true;
+                          }
+                          if (hasSelected==true){
+                            setState(() {
+                              prodotti[index].isSelected = true;
+                            });
+                          } else{
                              Navigator.push(context,
                               MaterialPageRoute(builder: (context) => EditProduct(idgroup: idgroup,idproduct: list2[index])));
 
-                          }
+                          }}
                           print('Container clicked ${list2[index]}');
                         },
                         onLongPress: () {
