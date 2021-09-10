@@ -49,7 +49,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:fontFamily="serif"
-                    android:text="Quantità: "
+                    android:text="@string/quantita2"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -66,7 +66,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:fontFamily="serif"
-                android:text="Comprato da: "
+                android:text="@string/comprato_da"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />

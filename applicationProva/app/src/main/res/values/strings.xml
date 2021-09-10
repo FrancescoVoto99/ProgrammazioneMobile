@@ -1,6 +1,10 @@
 <resources>
+<<<<<<< Updated upstream
     <string name="app_name">Spesa Condivisa</string>
 
+=======
+    <string name="app_name">applicationProva</string>
+>>>>>>> Stashed changes
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

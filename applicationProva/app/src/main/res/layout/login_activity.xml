@@ -35,7 +35,7 @@
                     android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email" />
+                    android:hint="@string/email" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -51,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:padding="12dp"
-                android:text="Login"
+                android:text="@string/login"
                 android:textAllCaps="false" />
 
             <LinearLayout
@@ -77,13 +77,13 @@
                     android:id="@+id/noAccaunt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Don't have Account? " />
+                    android:text="@string/non_hai_account" />
 
                 <TextView
                     android:id="@+id/navigateToRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Registrati"
+                    android:text="@string/registrati"
                     android:textColor="@color/purple_700" />
             </LinearLayout>
         </LinearLayout>

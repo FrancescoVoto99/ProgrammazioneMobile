@@ -61,7 +61,7 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:fontFamily="serif"
-            android:text="Pagato da: "
+            android:text="@string/pagato_da"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold" />

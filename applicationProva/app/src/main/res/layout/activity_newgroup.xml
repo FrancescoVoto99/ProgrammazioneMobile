@@ -29,7 +29,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:fontFamily="serif"
-                android:text="Inserisci Nuovo Gruppo"
+                android:text="@string/inserisci_nuovo_gruppo"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -40,14 +40,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Nome Gruppo" />
+                android:hint="@string/nome_gruppo"
+                android:importantForAutofill="no"
+                tools:ignore="TextFields" />
 
             <EditText
                 android:id="@+id/Nomemembro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Nome membro" />
+                android:hint="@string/nome_membro"
+                android:importantForAutofill="no"
+                tools:ignore="TextFields" />
 
 
             <EditText
@@ -55,7 +59,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Email membro" />
+                android:hint="@string/email_membro"
+                android:importantForAutofill="no"
+                tools:ignore="TextFields" />
 
 
 
@@ -122,7 +128,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@color/secondaryColor"
-                    android:text="Aggiungi" />
+                    android:text="@string/aggiungi"
+                    tools:ignore="ButtonStyle,NestedWeights" />
 
                 <Button
                     android:id="@+id/creaGruppo"
@@ -130,7 +137,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@color/secondaryColor"
-                    android:text="Crea Gruppo" />
+                    android:text="@string/crea_gruppo"
+                    tools:ignore="ButtonStyle" />
             </LinearLayout>
 
         </LinearLayout>

@@ -17,7 +17,7 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="My Account"
+        app:title="@string/my_account"
         app:titleTextColor="@android:color/white"
         android:background="?attr/colorPrimary"
         app:navigationIcon="@drawable/ic_back"
@@ -37,7 +37,8 @@
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="216dp"
-            app:srcCompat="@drawable/avatar" />
+            app:srcCompat="@drawable/avatar"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -49,7 +50,7 @@
                 android:id="@+id/updateNomeutente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Inserisci il tuo Nome" />
+                android:hint="@string/inserisci_il_tuo_nome" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -62,7 +63,7 @@
                 android:id="@+id/updateEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email" />
+                android:hint="@string/email" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -78,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:hint="Conferma Password"
+                android:hint="@string/conferma_password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:padding="12dp"
-            android:text="Modifica"
+            android:text="@string/modifica"
             android:textAllCaps="false" />
 
         <com.google.android.material.button.MaterialButton
@@ -114,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:padding="12dp"
-            android:text="Anulla"
+            android:text="@string/annulla"
             android:textAllCaps="false" />
 
     </LinearLayout>

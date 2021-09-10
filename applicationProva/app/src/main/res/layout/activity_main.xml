@@ -21,13 +21,13 @@
                 android:id="@+id/welcome"
                 android:layout_width="match_parent"
                 android:layout_height="124dp"
-                android:text="Benvenuto , tu sei autenticato" />
+                android:text="@string/benvenuto_ti_sei_autenticato" />
 
             <Button
                 android:id="@+id/btnLogaut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LogOut" />
+                android:text="@string/logout" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -115,10 +115,10 @@ class EditProduct: AppCompatActivity() {
 
         }
 
-
-
-
-
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            false
+        }
         binding.btnUpdate.setOnClickListener{
 
             updateProduct()

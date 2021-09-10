@@ -24,7 +24,8 @@
             android:textStyle="bold"
             android:textSize="30dp"
             android:textAlignment="center"
-            android:text="" />
+            android:text=""
+            tools:ignore="SpUsage" />
 
         <ListView
             android:id="@+id/listaUtenti"
@@ -38,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="Add user"
+        android:contentDescription="@string/aggiungi_utente"
         android:src="@drawable/ic_add_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

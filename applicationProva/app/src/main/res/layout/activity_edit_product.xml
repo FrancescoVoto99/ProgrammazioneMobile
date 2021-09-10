@@ -12,18 +12,33 @@
         android:layout_height="match_parent"
         tools:context=".EditProduct">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back"
+
+            app:title="@string/modifica_prodotto"
+            app:titleTextColor="@android:color/white" />
+
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="56dp"
             android:orientation="vertical"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nuovo Prodotto" />
+                android:text="@string/nuovo_prodotto" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -36,28 +51,28 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="27dp"
-                android:text="Inserisci i Dati" />
+                android:text="@string/inserisci_i_Dati" />
 
             <EditText
                 android:id="@+id/Nomeprodotto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Nome" />
+                android:hint="@string/nome" />
 
             <Spinner
                 android:id="@+id/spinnerCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="categoria" />
+                android:hint="@string/categoria" />
 
             <Spinner
                 android:id="@+id/spinnerQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="quantità" />
+                android:hint="@string/quantita" />
 
 
             <EditText
@@ -65,11 +80,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="note aggiuntive" />
+                android:hint="@string/note_aggiuntive" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
 
                 <Button
                     android:id="@+id/btnDelete"
@@ -77,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
-                    android:text="Elimina"
+                    android:text="@string/elimina"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,11 +103,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="25dp"
-                    android:text="Modifica"
+                    android:text="@string/modifica"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             <Button
@@ -99,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Annulla" />
+                android:text="@string/annulla" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

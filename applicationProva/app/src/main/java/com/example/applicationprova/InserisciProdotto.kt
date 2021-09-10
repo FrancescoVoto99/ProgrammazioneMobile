@@ -66,7 +66,10 @@ class InserisciProdotto: AppCompatActivity() {
             spinQuant.adapter = adapter
         }
 
-
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            false
+        }
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         myRef = database.getReference("gruppi")
 
@@ -87,12 +90,9 @@ class InserisciProdotto: AppCompatActivity() {
 
            insertProduct()
         }
-        binding.btnlogout.setOnClickListener(){
-            auth = Firebase.auth
-            auth.signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-
+        binding.btncancel.setOnClickListener(){
+            onBackPressed()
+            false
         }
    }
 

@@ -17,7 +17,7 @@
             android:layout_height="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Prodotti per categoria"
+            app:title="@string/prodotti_categoria"
             app:titleTextColor="@android:color/white"
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_back"
