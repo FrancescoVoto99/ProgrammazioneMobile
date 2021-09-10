@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -36,16 +37,14 @@ import com.google.firebase.ktx.Firebase
             this, R.layout.activity_list_of_products
         )
 
-
-
+        //Hide message
+        binding.empty.visibility = TextView.INVISIBLE
 
         var auth = Firebase.auth
         val currentUser = auth.currentUser
 
-
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         searchproducts= database.getReference("gruppi")
-
 
         val rv: RecyclerView = binding.listaProdotti
         rv.layoutManager = LinearLayoutManager(this)
@@ -61,7 +60,9 @@ import com.google.firebase.ktx.Firebase
                     }
                 }
                 rv.adapter = ListofProductAdapter(list, list2,value.toString())
-
+                if(list.isEmpty()){
+                    binding.empty.visibility = TextView.VISIBLE
+                }
             }.addOnFailureListener{
                 Log.e("firebase", "Error getting data", it)
               //  rv.adapter = ListofProductAdapter(list, list2)
@@ -161,7 +162,6 @@ import com.google.firebase.ktx.Firebase
             fabOnClick()
         }
         //button
-
         binding.buyBut.setOnClickListener{
 
             //Instantiate builder variable
@@ -175,14 +175,14 @@ import com.google.firebase.ktx.Firebase
             //textInput
             val layout = LinearLayout(this)
             layout.orientation = LinearLayout.VERTICAL
-            val input = EditText(this)
-            input.setHint("Prezzo")
-            input.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
-            layout.addView(input)
             val nome = EditText(this)
-            nome.setHint("Nome Spesa")
+            nome.hint = "Nome Spesa"
             nome.inputType = InputType.TYPE_CLASS_TEXT
             layout.addView(nome)
+            val input = EditText(this)
+            input.hint = "Prezzo"
+            input.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+            layout.addView(input)
             builder.setView(layout)
             //set positive button
             builder.setPositiveButton(

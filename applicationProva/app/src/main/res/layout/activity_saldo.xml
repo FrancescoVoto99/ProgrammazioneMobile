@@ -52,12 +52,15 @@
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="265dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:text="Il saldo in rosso indica la somma dovuta,
-            il saldo in verde la somma da ricevere"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            android:fontFamily="serif"
+            android:text="Il saldo in rosso indica la somma dovuta, il saldo in verde la somma da ricevere"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

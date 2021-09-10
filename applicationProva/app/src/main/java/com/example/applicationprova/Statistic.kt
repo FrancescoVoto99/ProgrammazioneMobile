@@ -4,8 +4,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
+import com.example.applicationprova.databinding.ActivityStatisticBinding
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.Entry
@@ -25,7 +29,9 @@ class Statistic : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_statistic)
+        val binding: ActivityStatisticBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_statistic)
+        //setContentView(R.layout.activity_statistic)
 
         val database =
             FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -46,13 +52,15 @@ class Statistic : AppCompatActivity() {
         val colors: ArrayList<Int> = ArrayList()
 
         val newintent = Intent(this, ListOfProductCategory::class.java)
-
+        //Hide message
+        binding.empty.visibility = TextView.INVISIBLE
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")
 
             searchproducts.child(value.toString()).child("prodotti").get()
                 .addOnSuccessListener {
+                    var flag = false
                     for (item in 0..(categorie.size - 1)) {
                         for (postSnapshot in it.children) {
                             if ((postSnapshot.child("buy").getValue()
@@ -63,11 +71,14 @@ class Statistic : AppCompatActivity() {
                                     (quantita[item] + (postSnapshot.child("quantita").value
                                         .toString().toInt()))
                                 print("proviamo " + quantita[item])
+                                flag=true
 
                             }
                         }
                     }
-
+                    if(!flag){
+                        binding.empty.visibility = TextView.VISIBLE
+                    }
 
 
                     piechart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {

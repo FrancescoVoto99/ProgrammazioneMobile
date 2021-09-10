@@ -4,6 +4,7 @@ import android.content.Intent
 import android.icu.number.Precision
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -39,7 +40,7 @@ class ListOfShop : AppCompatActivity() {
             this, R.layout.activity_list_of_shop
         )
         //setContentView(R.layout.activity_list_of_groups)
-
+        binding.empty.visibility = TextView.INVISIBLE
         var auth = Firebase.auth
         val currentUser = auth.currentUser
 
@@ -74,7 +75,9 @@ class ListOfShop : AppCompatActivity() {
                         idshop.add(postSnapshot.key.toString())
                     }
                 }
-
+                if(nameShop.isEmpty()){
+                    binding.empty.visibility = android.widget.TextView.VISIBLE
+                }
                 rv.adapter = ListOfShopAdapter(nameShop, whobuy, price, value.toString(),idshop)
                 binding.spesaTotale.text=String.format("%.2f", price.sum())+"€"
 
@@ -91,6 +94,7 @@ class ListOfShop : AppCompatActivity() {
 
 
         }
+
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigation.selectedItemId = R.id.listaspese
         bottomNavigation.setOnItemSelectedListener { item ->

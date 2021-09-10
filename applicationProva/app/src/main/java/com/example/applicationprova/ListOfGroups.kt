@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -34,8 +35,8 @@ class ListOfGroups : AppCompatActivity() {
         //data binding al posto del classico inflate
         val binding: ActivityListOfGroupsBinding = DataBindingUtil.setContentView(
             this, R.layout.activity_list_of_groups)
-        //setContentView(R.layout.activity_list_of_groups)
-
+        //Hide message
+        binding.empty.visibility = TextView.INVISIBLE
         var auth = Firebase.auth
         val currentUser = auth.currentUser
 
@@ -61,7 +62,9 @@ class ListOfGroups : AppCompatActivity() {
               
 
             }
-
+            if(list.isEmpty()){
+                binding.empty.visibility = TextView.VISIBLE
+            }
 
                  rv.adapter = ListofGroupsAdapter(list,list2)
             }.addOnFailureListener{
