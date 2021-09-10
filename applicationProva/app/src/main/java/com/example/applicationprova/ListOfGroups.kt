@@ -120,16 +120,6 @@ class ListOfGroups : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
-                /*
-                R.id.search -> {
-                    // Handle search icon press
-                    true
-                }
-                R.id.more -> {
-                    // Handle more item (inside overflow menu) press
-                    true
-                }
-                 */
                 else -> false
             }
             true
@@ -145,5 +135,8 @@ class ListOfGroups : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.bar_groups, menu)
         return true
+    }
+    private fun deleteGroup(){
+
     }
 }
