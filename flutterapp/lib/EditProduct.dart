@@ -6,8 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/ListOfProduct.dart';
 import 'package:flutterapp/Prodotto.dart';
-import 'package:flutterapp/buy.dart';
-
 
 
 class EditProduct extends StatelessWidget {
@@ -273,8 +271,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Elinina"),
-      content: Text("Sei Sicuro di voler eliminare: ${nomeprodotto.text}"),
+      title: Text("Elimina"),
+      content: Text("Sei Sicuro di voler eliminare: ${nomeProdotto.text}"),
       actions: [
         cancelButton,
         continueButton,
