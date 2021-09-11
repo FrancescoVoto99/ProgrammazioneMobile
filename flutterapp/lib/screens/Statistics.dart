@@ -3,8 +3,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutterapp/screens/ListOfProduct.dart';
+import 'package:flutterapp/screens/ListOfShop.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
 import 'package:pie_chart/pie_chart.dart';
+
+import 'Saldo.dart';
 
 
 class Statistics extends StatefulWidget {
@@ -73,8 +77,28 @@ class StatisticsState extends State<Statistics> {
 
 
   }
-
-
+  int _selectedIndex = 3;
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Index 0: Home'),
+    Text('Index 1: Spese'),
+    Text('Index 2: Saldo'),
+    Text('Index 3: Statistiche'),
+  ];
+  void _onItemTapped(int index) {
+    setState((){
+      switch(index){
+        case 0: Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ListOfProduct(idgroup: idgroup))); break;
+        case 1:   Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ListOfShop(idgroup: idgroup))); break;
+        case 2: Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Saldo(idgroup: idgroup))); break;
+        case 3: break;
+      }
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,8 +147,34 @@ class StatisticsState extends State<Statistics> {
             ],
           ),
         ),
-      ),
-    );
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_shopping_cart),
+              label: 'Spese',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.attach_money),
+              label: 'Saldo',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.analytics),
+              label: 'Statistiche',
+              backgroundColor: Colors.red,
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+        ),
+      ));
   }
 }
 

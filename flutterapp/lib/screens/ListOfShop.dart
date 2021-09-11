@@ -9,8 +9,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import '../controller/EditProduct.dart';
+import 'ListOfProduct.dart';
 import 'ListOfProductBought.dart';
 import 'Saldo.dart';
+import 'Statistics.dart';
 
 class ListOfShop extends StatefulWidget {
   const ListOfShop({Key? key, required this.idgroup}) : super(key: key);
@@ -79,13 +81,35 @@ class ListOfShopState extends State<ListOfShop> {
 
 
   }
+  int _selectedIndex = 1;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Index 0: Home'),
+    Text('Index 1: Spese'),
+    Text('Index 2: Saldo'),
+    Text('Index 3: Statistiche'),
+  ];
+  void _onItemTapped(int index) {
+    setState((){
+      switch(index){
+        case 0:  Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ListOfProduct(idgroup: idgroup))); break;
+        case 1:   break;
+        case 2: Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Saldo(idgroup: idgroup))); break;
+        case 3: Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Statistics(idgroup: idgroup))); break;
+      }
+      _selectedIndex = index;
+    });}
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter layout demo',
       home: Scaffold(
-        appBar: AppBar(title: Text("ciao")),
+        appBar: AppBar(title: Text("Spese")),
         body: Column(children: <Widget>[
           Expanded(
               child: ListView.builder(
@@ -150,7 +174,7 @@ class ListOfShopState extends State<ListOfShop> {
                         style: TextStyle(fontSize: 20),
                       ),
                       Text(
-                        ' Qunatità: ${spesaTotale}',
+                        ' Quantità: ${spesaTotale}',
                         style: TextStyle(fontSize: 20),
                       ),
 
@@ -161,6 +185,33 @@ class ListOfShopState extends State<ListOfShop> {
             ],
           )
         ]),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_shopping_cart),
+              label: 'Spese',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.attach_money),
+              label: 'Saldo',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.analytics),
+              label: 'Statistiche',
+              backgroundColor: Colors.red,
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+        ),
         drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
           // through the options in the drawer if there isn't enough vertical
@@ -196,16 +247,7 @@ class ListOfShopState extends State<ListOfShop> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => newProduct(idgroup: idgroup)));
-          },
-          child: const Icon(Icons.add),
-          backgroundColor: Colors.green,
-        ),
+
       ),
     );
   }

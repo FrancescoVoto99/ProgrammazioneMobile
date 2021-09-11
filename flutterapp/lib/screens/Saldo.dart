@@ -8,7 +8,11 @@ import 'package:flutterapp/controller/newProduct.dart';
 import 'package:flutterapp/controller/newgroup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutterapp/screens/Statistics.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
+
+import 'ListOfProduct.dart';
+import 'ListOfShop.dart';
 
 class Saldo extends StatefulWidget {
   const Saldo({Key? key, required this.idgroup}) : super(key: key);
@@ -105,19 +109,37 @@ class SaldoState extends State<Saldo> {
   }
 
 
-
+  int _selectedIndex = 2;
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Index 0: Home'),
+    Text('Index 1: Spese'),
+    Text('Index 2: Saldo'),
+    Text('Index 3: Statistiche'),
+  ];
+  void _onItemTapped(int index) {
+    setState((){
+      switch(index){
+        case 0: Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ListOfProduct(idgroup: idgroup))); break;
+        case 1:   Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ListOfShop(idgroup: idgroup))); break;
+        case 2: break;
+        case 3: Navigator.push(context, MaterialPageRoute(builder: (context) => Statistics(idgroup: idgroup)));
+      }
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter layout demo',
       home:Scaffold(
-        appBar: AppBar(title: Text("Lista della spesa")),
+        appBar: AppBar(title: Text("Saldo")),
         body:Column(
             children: <Widget>[
-              Text('${nomeGruppo}',
-                style: TextStyle(fontSize: 18),
-              ),
+
               Expanded(
                   child: ListView.builder(
                       padding: const EdgeInsets.all(8),
@@ -143,7 +165,35 @@ class SaldoState extends State<Saldo> {
 
                               ),
                             ));}))]),
-        drawer: Drawer(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_shopping_cart),
+              label: 'Spese',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.attach_money),
+              label: 'Saldo',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.analytics),
+              label: 'Statistiche',
+              backgroundColor: Colors.red,
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+        ),
+        drawer: Drawer
+          (
           // Add a ListView to the drawer. This ensures the user can scroll
           // through the options in the drawer if there isn't enough vertical
           // space to fit everything.

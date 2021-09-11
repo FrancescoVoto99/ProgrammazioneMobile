@@ -7,6 +7,8 @@ import 'package:flutterapp/controller/newProduct.dart';
 import 'package:flutterapp/model/Prodotto.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutterapp/screens/ListOfShop.dart';
+import 'package:flutterapp/screens/Statistics.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
 
 import 'Saldo.dart';
@@ -80,6 +82,15 @@ class ListOfProductState extends State<ListOfProduct> {
   ];
   void _onItemTapped(int index) {
     setState((){
+      switch(index){
+        case 0: break;
+        case 1:   Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ListOfShop(idgroup: idgroup))); break;
+        case 2: Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Saldo(idgroup: idgroup))); break;
+        case 3: Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Statistics(idgroup: idgroup))); break;
+      }
       _selectedIndex = index;
     });
   }
