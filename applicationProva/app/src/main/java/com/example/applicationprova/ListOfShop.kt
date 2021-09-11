@@ -56,11 +56,9 @@ class ListOfShop : AppCompatActivity() {
 
 
         rv.layoutManager = LinearLayoutManager(this)
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding.topAppBar.setNavigationOnClickListener {
-            onBackPressed()
-            false
-        }
 
         val extras = intent.extras
         if (extras != null) {

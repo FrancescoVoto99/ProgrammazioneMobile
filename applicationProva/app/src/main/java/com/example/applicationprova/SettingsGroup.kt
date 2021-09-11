@@ -36,9 +36,10 @@ class SettingsGroup : AppCompatActivity() {
 
 
         val binding: ActivitySettingsGroupBinding = DataBindingUtil.setContentView(
-                this, R.layout.activity_settings_group
+            this, R.layout.activity_settings_group
         )
-
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")
@@ -55,10 +56,7 @@ class SettingsGroup : AppCompatActivity() {
                 }
 
 
-                binding.topAppBar.setNavigationOnClickListener {
-                    onBackPressed()
-                    false
-                }
+
                 binding.listaUtenti.isClickable = true
                 binding.listaUtenti.adapter = SettingGroupAdapter(this, listNomeUtente)
 
@@ -97,9 +95,9 @@ class SettingsGroup : AppCompatActivity() {
 
             }
 
-                    .addOnFailureListener {
-                        Log.e("firebase", "Error getting data", it)
-                    }
+                .addOnFailureListener {
+                    Log.e("firebase", "Error getting data", it)
+                }
 
 
 
@@ -107,11 +105,11 @@ class SettingsGroup : AppCompatActivity() {
 
 
 
-        val fab: View = binding.fabNewUser
-        fab.setOnClickListener {
-            fabOnClick(value.toString(),binding.Nomegruppo.text.toString())
+            val fab: View = binding.fabNewUser
+            fab.setOnClickListener {
+                fabOnClick(value.toString(),binding.Nomegruppo.text.toString())
+            }
         }
-    }
     }
 
     private fun fabOnClick(keygroup:String, namegroup:String) {
@@ -146,13 +144,11 @@ class SettingsGroup : AppCompatActivity() {
 
 
             }
-
-
         })
 
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
 //
-        }
     }
+}

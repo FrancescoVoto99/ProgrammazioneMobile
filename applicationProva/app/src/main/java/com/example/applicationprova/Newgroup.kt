@@ -33,7 +33,8 @@ class Newgroup : AppCompatActivity() {
 
         val list = mutableMapOf<String,String>()
 
-
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         myRef = database.getReference("gruppi")
         var myRefutenti = database.getReference("utentiGruppi")

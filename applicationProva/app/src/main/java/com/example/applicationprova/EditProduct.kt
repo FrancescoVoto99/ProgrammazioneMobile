@@ -115,10 +115,8 @@ class EditProduct: AppCompatActivity() {
 
         }
 
-        binding.topAppBar.setNavigationOnClickListener {
-            onBackPressed()
-            false
-        }
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.btnUpdate.setOnClickListener{
 
             updateProduct()

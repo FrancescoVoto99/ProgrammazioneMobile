@@ -40,12 +40,8 @@ class Statistic : AppCompatActivity() {
         val quantita = mutableListOf<Int>(0, 0, 0, 0, 0, 0)
 
 
-        /*
-        findViewById<Toolbar>(R.id.topAppBar).setNavigationOnClickListener {
-            onBackPressed()
-            false
-        }
-        */
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         var piechart: PieChart = findViewById(R.id.piechart)
         val entries: ArrayList<PieEntry> = ArrayList()

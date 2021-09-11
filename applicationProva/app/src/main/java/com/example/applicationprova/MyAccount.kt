@@ -35,10 +35,7 @@ class MyAccount : AppCompatActivity() {
             false
         }
         setSupportActionBar(binding.topAppBar)
-        binding.topAppBar.setNavigationOnClickListener {
-            onBackPressed()
-            false
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.updateButton.setOnClickListener {
 
             if (TextUtils.isEmpty(binding.updateNomeutente.text.toString())) {

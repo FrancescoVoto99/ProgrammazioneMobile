@@ -12,12 +12,27 @@
         android:layout_height="match_parent"
         tools:context=".Newgroup">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/lista_delle_spese"
+            app:titleTextColor="@android:color/white"
+
+            tools:layout_editor_absoluteX="0dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="56dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/textView3"
@@ -64,19 +79,18 @@
                 tools:ignore="TextFields" />
 
 
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/CardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:visibility="invisible"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardMaxElevation="10dp"
                 app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                android:visibility="invisible">
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
