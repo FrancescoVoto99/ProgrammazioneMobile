@@ -6,6 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
 
+/**
+ * Schermata che mostra i gruppi di cui fa parte l'utente loggato
+ */
 class Groups extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
