@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:title="@string/gruppi"
                 app:titleTextColor="@android:color/white"
-                android:background="?attr/colorPrimary"
+                android:background="@color/primaryColor"
                 app:navigationIcon="@drawable/ic_menu_24dp"
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
 
@@ -49,6 +49,7 @@
             android:layout_margin="16dp"
             android:contentDescription="@string/add_group"
             android:src="@drawable/ic_add_black_24dp"
+            android:backgroundTint="@color/secondaryColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
         <TextView

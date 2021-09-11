@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/my_account"
         app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_back"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
 
@@ -106,6 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:padding="12dp"
+            android:backgroundTint="@color/secondaryColor"
             android:text="@string/modifica"
             android:textAllCaps="false" />
 
@@ -115,6 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:padding="12dp"
+            android:backgroundTint="@color/secondaryColor"
             android:text="@string/annulla"
             android:textAllCaps="false" />
 
