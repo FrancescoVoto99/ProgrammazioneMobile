@@ -18,6 +18,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Activity per effettuare la registrazione di un nuovo utente
+ */
 class RegistrerActivity : AppCompatActivity() {
 
     lateinit var Email: TextInputEditText
@@ -55,6 +58,10 @@ class RegistrerActivity : AppCompatActivity() {
 
 
     }
+
+    /**
+     * Aggiunge il nuovo utente al database, dopo vari controlli dei campi email, password, nome utente, conferma password
+     */
     private fun creteUser(){
         if(TextUtils.isEmpty(Email.text.toString())){
             Email.setError("email non puo essere vuoto")
