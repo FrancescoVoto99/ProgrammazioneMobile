@@ -132,58 +132,62 @@ class ListOfShopState extends State<ListOfShop> {
                           children: <Widget>[
                             Row(
                     children: <Widget>[
-                    Text(
-                    '${nameShop[index]}',
-                    style: TextStyle(fontSize: 18),
-                    ),
-                    Text(
-                    ' ${price[index].toStringAsFixed(2)}',
-                    style: TextStyle(fontSize: 18),
-                    ),
+                      Expanded(child: Text(
+                        '${nameShop[index]}',
+                        style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
+                      ),),
+                    Expanded(child:  Text(
+                      ' ${price[index].toStringAsFixed(2)}',
+                      style: TextStyle(fontSize: 22),
+                    ),)
+
+
                       
                     ]
                     ),
                             Text(
                             'Acquistato da :${whobuy[index]}',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 15),
                           ),
                           ]
                       ),
                     ),);})),
-          Row(
-            children: <Widget>[
+          Card(child:
               Column(
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text(
+                      Expanded(child: Text(
                         'Mia Spesa',
                         style: TextStyle(fontSize: 18),
-                      ),
-                      Text(
+                      ),),
+                      Expanded(child: Text(
                         ' Spesa Totale',
                         style: TextStyle(fontSize: 18),
-                      ),
+                      ),)
+
 
                     ],
                   ),
                   Row(
                     children: <Widget>[
-                      Text(
-                        '${miaSpesa}',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        ' Quantità: ${spesaTotale}',
-                        style: TextStyle(fontSize: 20),
-                      ),
+                      Expanded(child: Text(
+                        '${miaSpesa}€',
+                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                      ),),
+                      Expanded(child: Text(
+                        ' ${spesaTotale}€',
+                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                      ),)
+
+
 
                     ],
                   ),
                 ],
-              )
-            ],
-          )
+              ))
+
+
         ]),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[

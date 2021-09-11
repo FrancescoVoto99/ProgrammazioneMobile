@@ -2,43 +2,48 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/controller/newgroup.dart';
 import 'package:flutterapp/screens/ListOfProduct.dart';
-import 'package:flutterapp/main.dart';
-import 'package:flutterapp/model/Gruppo.dart';
-import 'package:flutterapp/model/Prodotto.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
 
+class Groups extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Registration',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home:MyHomePage(title: 'NewGroup'),
+    );
+  }
 
 
+}
 
-class Groups extends StatefulWidget {
 
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, String? title}) : super(key: key);
 
   // final FirebaseApp app;
 
   @override
-  GroupsState createState() => GroupsState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 
 
-class GroupsState extends State<Groups> {
+class _MyHomePageState extends State<MyHomePage> {
 
   late DatabaseReference myRef;
   late DatabaseReference searchgroups;
   List<String> list=[] ;
   List<String> list2= [] ;
 
-  late final FirebaseApp app;
 
   User? user= FirebaseAuth.instance.currentUser;
 
-  bool _anchorToBottom = false;
-
-  String _kTestKey = 'Hello';
-  String _kTestValue = 'world!';
-  DatabaseError? _error;
 
   @override
   void initState() {
@@ -48,22 +53,18 @@ class GroupsState extends State<Groups> {
     searchgroups= database.reference().child("gruppi");
 
     String? child=user?.email.toString().replaceAll('.','');
-    myRef.child(child.toString()).once().then((DataSnapshot? snapshot) {
-      Map<dynamic,dynamic>.from(snapshot!.value).forEach((key, value) {
-        setState(() {
 
+    myRef.child(child.toString()).onValue.listen((event) {
+      list.clear();
+      list2.clear();
+      Map<dynamic,dynamic>.from(event.snapshot!.value).forEach((key, value) {
+        setState(() {
           list.add(value.toString());
           list2.add(key.toString());
 
         });
-
-
       });
-
     });
-
-
-
 
 
 
@@ -75,9 +76,7 @@ class GroupsState extends State<Groups> {
   @override
   Widget build(BuildContext context) {
     User? u = user;
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      home:Scaffold(
+    return Scaffold(
 
         appBar: AppBar(title: Text('Username:\t ' + user!.displayName.toString())),
         body:Column(
@@ -152,6 +151,6 @@ class GroupsState extends State<Groups> {
           child: const Icon(Icons.add),
           backgroundColor: Colors.green,
         ),
-      ),);
+      );
   }
 }
