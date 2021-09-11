@@ -324,7 +324,7 @@ class ListOfProductState extends State<ListOfProduct> {
       if (element.isSelected) {
         keysProdotti[i.toString()] = element.data;
         i++;
-      }
+      }});
       String spesaid = searchproducts.child("spese").push().key.toString();
       searchproducts
           .child(idgroup.toString())
@@ -357,7 +357,7 @@ class ListOfProductState extends State<ListOfProduct> {
           .child("prodotti")
           .set(keysProdotti)
           .whenComplete(() => changeBuyBit(keysProdotti));
-    });
+
   }
 
   /**
