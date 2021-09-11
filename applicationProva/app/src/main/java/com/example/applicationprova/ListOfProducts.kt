@@ -134,13 +134,12 @@ import com.google.firebase.ktx.Firebase
                     startActivity(intent)
                     true
                 }
-                R.id.groups -> {
-                    val intent = Intent(this, ListOfGroups::class.java)
-                    startActivity(intent)
-                    true
-                }
                 R.id.settingsGroup -> {
                     val intent = Intent(this, SettingsGroup::class.java)
+                    if (extras != null) {
+                        val value = extras.getString("key")
+                        intent.putExtra("key",value.toString()  )
+                    }
                     startActivity(intent)
                     true
                 }

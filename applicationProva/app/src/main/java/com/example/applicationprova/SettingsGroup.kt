@@ -29,6 +29,7 @@ class SettingsGroup : AppCompatActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,12 +49,15 @@ class SettingsGroup : AppCompatActivity() {
 
             searchUser.child(value.toString()).child("gruppo").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
-
-                    list.add(postSnapshot.key.toString().replace("'", "."))
+                    list.add(postSnapshot.getValue().toString())
+                    //list.add(postSnapshot.key.toString().replace("'", "."))
                 }
 
 
-
+                binding.topAppBar.setNavigationOnClickListener {
+                    onBackPressed()
+                    false
+                }
                 binding.listaUtenti.isClickable = true
                 binding.listaUtenti.adapter = SettingGroupAdapter(this, list)
 
@@ -69,9 +73,13 @@ class SettingsGroup : AppCompatActivity() {
                     alertDialog.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
 
 
-                        searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").child(list[position].replace(".", "'")).removeValue().addOnSuccessListener {
-                            myRefutenti.child(email.replace(".", "")).child("-MhxU2gVL0ZZrvfrYOsN").removeValue().addOnSuccessListener {
+                        searchUser.child(value.toString()).child("gruppo").child(list[position].replace(".", "'")).removeValue().addOnSuccessListener {
+                            myRefutenti.child(email.replace(".", "")).child(value.toString()).removeValue().addOnSuccessListener {
                                 val intent = Intent(this, SettingsGroup::class.java)
+                                if (extras != null) {
+                                    val value = extras.getString("key")
+                                    intent.putExtra("key",value.toString()  )
+                                }
                                 startActivity(intent)
                             }
 
@@ -105,41 +113,45 @@ class SettingsGroup : AppCompatActivity() {
     }
     }
 
-    private fun fabOnClick(keygroup:String,namegroup:String) {
+    private fun fabOnClick(keygroup:String, namegroup:String) {
 
 
 
 
         val builder: AlertDialog.Builder =AlertDialog.Builder(this)
         builder.setTitle("Inserisci un Nuovo Componente")
-
-        val input = EditText(this)
-        input.setHint("Email")
-        input.inputType = InputType.TYPE_CLASS_TEXT
-        builder.setView(input)
-
+        val layout = LinearLayout(this)
+        val nome = EditText(this)
+        nome.hint = "Nome"
+        nome.inputType = InputType.TYPE_CLASS_TEXT
+        layout.addView(nome)
+        val email = EditText(this)
+        email.hint = "Email"
+        email.inputType = InputType.TYPE_CLASS_TEXT
+        layout.addView(email)
+        builder.setView(layout)
 
         builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
 
-            var email = input.text.toString()
-
+            var email = email.text.toString()
+            var nome = nome.text.toString()
             searchUser.child(keygroup).child("gruppo").push().setValue(email).addOnSuccessListener {
                 myRefutenti.child(email.replace(".","")).child(keygroup).setValue(namegroup).addOnSuccessListener {
-                    val intent = Intent(this, SettingsGroup::class.java)
-                    startActivity(intent)
+
                 }
-
-
+            }
+            searchUser.child(keygroup).child("gruppo").child(email.replace(".","")).setValue(nome).addOnSuccessListener {
+                myRefutenti.child(email.replace(".","")).setValue(namegroup).addOnSuccessListener {
+                }
             }
 
+            val intent = Intent(this, SettingsGroup::class.java)
+            startActivity(intent)
         })
 
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
 //
+        }
     }
-
-
-
-}
