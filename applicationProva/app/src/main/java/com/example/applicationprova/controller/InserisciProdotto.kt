@@ -73,7 +73,10 @@ class InserisciProdotto: AppCompatActivity() {
         }
 
         setSupportActionBar(binding.topAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            true
+        }
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         myRef = database.getReference("gruppi")
 

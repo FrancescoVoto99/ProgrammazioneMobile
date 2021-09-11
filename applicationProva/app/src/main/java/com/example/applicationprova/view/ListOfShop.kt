@@ -55,7 +55,10 @@ class ListOfShop : AppCompatActivity() {
 
 
         rv.layoutManager = LinearLayoutManager(this)
-        setSupportActionBar(binding.topAppBar)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            true
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 

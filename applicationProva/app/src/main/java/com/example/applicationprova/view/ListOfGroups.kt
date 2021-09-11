@@ -141,7 +141,4 @@ class ListOfGroups : AppCompatActivity() {
         menuInflater.inflate(R.menu.bar_groups, menu)
         return true
     }
-    private fun deleteGroup(){
-
-    }
 }

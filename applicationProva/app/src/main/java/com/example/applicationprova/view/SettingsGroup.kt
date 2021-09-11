@@ -41,7 +41,10 @@ class SettingsGroup : AppCompatActivity() {
             this, R.layout.activity_settings_group
         )
         setSupportActionBar(binding.topAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            true
+        }
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")

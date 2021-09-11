@@ -30,7 +30,10 @@ class ListOfProductCategory : AppCompatActivity() {
         //setContentView(R.layout.activity_list_of_groups)
 
         setSupportActionBar(binding.topAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            true
+        }
 
         database = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
         searchproducts = database.getReference("gruppi")

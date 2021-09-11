@@ -35,7 +35,10 @@ class Saldo : AppCompatActivity() {
         )
 
         setSupportActionBar(binding.topAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            true
+        }
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")
