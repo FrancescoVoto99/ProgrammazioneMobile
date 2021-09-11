@@ -25,6 +25,7 @@ class SettingsGroup : AppCompatActivity() {
     var searchUser: DatabaseReference = database.getReference("gruppi")
     var myRefutenti: DatabaseReference = database.getReference("utentiGruppi")
     val list = ArrayList<String>()
+    val listNomeUtente = ArrayList<String>()
 
 
 
@@ -49,8 +50,8 @@ class SettingsGroup : AppCompatActivity() {
 
             searchUser.child(value.toString()).child("gruppo").get().addOnSuccessListener {
                 for (postSnapshot in it.children) {
-                    list.add(postSnapshot.getValue().toString())
-                    //list.add(postSnapshot.key.toString().replace("'", "."))
+                    listNomeUtente.add(postSnapshot.getValue().toString())
+                    list.add(postSnapshot.key.toString().replace("'", "."))
                 }
 
 
@@ -59,7 +60,7 @@ class SettingsGroup : AppCompatActivity() {
                     false
                 }
                 binding.listaUtenti.isClickable = true
-                binding.listaUtenti.adapter = SettingGroupAdapter(this, list)
+                binding.listaUtenti.adapter = SettingGroupAdapter(this, listNomeUtente)
 
                 binding.listaUtenti.setOnItemClickListener { parent, view, position, id ->
 
@@ -68,7 +69,7 @@ class SettingsGroup : AppCompatActivity() {
 
                     val alertDialog = AlertDialog.Builder(this)
                     alertDialog.setTitle("Eliminazione")
-                    alertDialog.setMessage("Sei sicuro di voler eliminare l'utente: " + email)
+                    alertDialog.setMessage("Sei sicuro di voler eliminare l'utente: " + listNomeUtente[position])
 
                     alertDialog.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
 
