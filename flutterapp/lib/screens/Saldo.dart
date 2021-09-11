@@ -58,7 +58,7 @@ class SaldoState extends State<Saldo> {
     //String? child=user?.email.toString().replaceAll('.','');
     searchUser.child(idgroup.toString()).child("nomeGruppo").once().then((DataSnapshot? snapshot) {
         setState(() {
-          nomeGruppo=snapshot.toString();
+          nomeGruppo=snapshot!.value.toString();
       });
     });
 
@@ -86,20 +86,6 @@ class SaldoState extends State<Saldo> {
       });
     });
 
-    CalcolaSaldo(int position)  {
-      double sum = 0.00;
-      listaspese.values.forEach((double e){sum += e;});
-      double divisione=sum/listaspese.length;
-      double dovuto= listaspese.values.toList()[position]-divisione;
-      return dovuto.toString();
-
-    }
-
-
-
-
-
-
 
   }
 
@@ -111,7 +97,15 @@ class SaldoState extends State<Saldo> {
     listaspese.values.forEach((double e){sum += e;});
     double divisione=sum/listaspese.length;
     double dovuto= listaspese.values.toList()[position]-divisione;
-    return dovuto.toString();
+    return dovuto.toStringAsFixed(2);
+
+  }
+  CalcolaSaldoint(int position)  {
+    double sum = 0.00;
+    listaspese.values.forEach((double e){sum += e;});
+    double divisione=sum/listaspese.length;
+    double dovuto= listaspese.values.toList()[position]-divisione;
+    return dovuto;
 
   }
 
@@ -160,15 +154,20 @@ class SaldoState extends State<Saldo> {
                             child:Container(
                               height: 50,
                               margin: EdgeInsets.all(2),
-                              color: Colors.blue[400],
+                              color: CalcolaSaldoint(index)>0
+                            ? Colors.green
+                                : Colors.red,
                               //  msgCount[index]>3? Colors.blue[100]: Colors.grey
                               child: Row(
-                                children:<Widget> [Text('${listUtenti[index]}',
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                                  Text('${CalcolaSaldo(index)}',
-                              style: TextStyle(fontSize: 18),
-                            ),],
+                                children:<Widget> [
+                                  Expanded(child: Text('${listUtenti[index]}',
+                                    style: TextStyle(fontSize: 23,fontWeight: FontWeight.bold),
+                                  ),),
+                                  Expanded(child: Text('${CalcolaSaldo(index)}',
+                                    style: TextStyle(fontSize: 20),
+                                  ),)
+
+                                  ],
 
                               ),
                             ));}))]),
