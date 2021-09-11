@@ -37,59 +37,60 @@ class SettingsGroup : AppCompatActivity() {
                 this, R.layout.activity_settings_group
         )
 
-
-        searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("nomeGruppo").get().addOnSuccessListener {
-            binding.Nomegruppo.setText(it.value.toString())
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
-
-        searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").get().addOnSuccessListener {
-            for (postSnapshot in it.children) {
-
-                list.add(postSnapshot.key.toString().replace("'","."))
-
-
+        val extras = intent.extras
+        if (extras != null) {
+            val value = extras.getString("key")
+            searchUser.child(value.toString()).child("nomeGruppo").get().addOnSuccessListener {
+                binding.Nomegruppo.setText(it.value.toString())
+            }.addOnFailureListener {
+                Log.e("firebase", "Error getting data", it)
             }
 
+            searchUser.child(value.toString()).child("gruppo").get().addOnSuccessListener {
+                for (postSnapshot in it.children) {
 
-            binding.listaUtenti.isClickable = true
-            binding.listaUtenti.adapter = SettingGroupAdapter(this, list)
-
-            binding.listaUtenti.setOnItemClickListener { parent, view, position, id ->
-
-                val email = list[position]
+                    list.add(postSnapshot.key.toString().replace("'", "."))
+                }
 
 
-                val alertDialog = AlertDialog.Builder(this)
-                alertDialog.setTitle("Eliminazione")
-                alertDialog.setMessage("Sei sicuro di voler eliminare l'utente: "+ email)
 
-                alertDialog.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+                binding.listaUtenti.isClickable = true
+                binding.listaUtenti.adapter = SettingGroupAdapter(this, list)
+
+                binding.listaUtenti.setOnItemClickListener { parent, view, position, id ->
+
+                    val email = list[position]
 
 
-                    searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").child(list[position].replace(".","'")).removeValue().addOnSuccessListener {
-                        myRefutenti.child(email.replace(".","")).child("-MhxU2gVL0ZZrvfrYOsN").removeValue().addOnSuccessListener {
-                            val intent = Intent(this, SettingsGroup::class.java)
-                            startActivity(intent)
+                    val alertDialog = AlertDialog.Builder(this)
+                    alertDialog.setTitle("Eliminazione")
+                    alertDialog.setMessage("Sei sicuro di voler eliminare l'utente: " + email)
+
+                    alertDialog.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+
+
+                        searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").child(list[position].replace(".", "'")).removeValue().addOnSuccessListener {
+                            myRefutenti.child(email.replace(".", "")).child("-MhxU2gVL0ZZrvfrYOsN").removeValue().addOnSuccessListener {
+                                val intent = Intent(this, SettingsGroup::class.java)
+                                startActivity(intent)
+                            }
+
+
                         }
 
+                    })
 
-                    }
+                    alertDialog.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
-                })
-
-                alertDialog.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
-
-                alertDialog.show()
+                    alertDialog.show()
 //
-            }
+                }
 
             }
 
-        .addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
+                    .addOnFailureListener {
+                        Log.e("firebase", "Error getting data", it)
+                    }
 
 
 
@@ -99,8 +100,9 @@ class SettingsGroup : AppCompatActivity() {
 
         val fab: View = binding.fabNewUser
         fab.setOnClickListener {
-            fabOnClick("-MhxU2gVL0ZZrvfrYOsN",binding.Nomegruppo.text.toString())
+            fabOnClick(value.toString(),binding.Nomegruppo.text.toString())
         }
+    }
     }
 
     private fun fabOnClick(keygroup:String,namegroup:String) {
@@ -112,7 +114,6 @@ class SettingsGroup : AppCompatActivity() {
         builder.setTitle("Inserisci un Nuovo Componente")
 
         val input = EditText(this)
-
         input.setHint("Email")
         input.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(input)
@@ -122,8 +123,8 @@ class SettingsGroup : AppCompatActivity() {
 
             var email = input.text.toString()
 
-            searchUser.child("-MhxU2gVL0ZZrvfrYOsN").child("gruppo").push().setValue(email).addOnSuccessListener {
-                myRefutenti.child(email.replace(".","")).child("-MhxU2gVL0ZZrvfrYOsN").setValue(namegroup).addOnSuccessListener {
+            searchUser.child(keygroup).child("gruppo").push().setValue(email).addOnSuccessListener {
+                myRefutenti.child(email.replace(".","")).child(keygroup).setValue(namegroup).addOnSuccessListener {
                     val intent = Intent(this, SettingsGroup::class.java)
                     startActivity(intent)
                 }
