@@ -49,7 +49,10 @@ class Statistic : AppCompatActivity() {
 
 
         setSupportActionBar(binding.topAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            true
+        }
 
         var piechart: PieChart = findViewById(R.id.piechart)
         val entries: ArrayList<PieEntry> = ArrayList()
