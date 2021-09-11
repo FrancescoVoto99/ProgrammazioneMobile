@@ -6,19 +6,23 @@ import 'package:flutterapp/screens/wrapper.dart';
 
 import 'screens/groups.dart';
 
+/**
+ * Entry pointdel'applicazione
+ */
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseAuth auth = FirebaseAuth.instance;
 
   User? user= auth.currentUser;
-
+  /**
+   * Se l'utente non è loggato, effettua la registrazione
+   * Altrimenti, va alla schermata gruppi
+   */
   if (user == null) {
-    print("sono nel main, nell'if");
     runApp(MyApp());
 
   } else {
-    print("sono nel main nell'else");
     print(user.displayName.toString());
     runApp(Groups());
 

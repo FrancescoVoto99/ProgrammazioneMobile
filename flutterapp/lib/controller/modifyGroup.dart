@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/groups.dart';
 
+/**
+ * Modifica i dati di un gruppo già esistente
+ */
 class ModifyGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

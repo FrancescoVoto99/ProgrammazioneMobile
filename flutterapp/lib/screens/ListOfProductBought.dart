@@ -11,6 +11,9 @@ import 'package:firebase_database/firebase_database.dart';
 import '../controller/EditProduct.dart';
 import 'Saldo.dart';
 
+/**
+ * Schermata che presenta i prodotti comprati
+ */
 class ListOfProductBought extends StatefulWidget {
   const ListOfProductBought({Key? key, required this.idgroup, required this.idshop}) : super(key: key);
   final String idgroup;
@@ -93,14 +96,16 @@ class ListOfProductBoughtState extends State<ListOfProductBought> {
                           color: Colors.blue[400],
                           //  msgCount[index]>3? Colors.blue[100]: Colors.grey
                           child: Row(
-                            children: <Widget>[Text(
-                              '${nomeProdotto[index]}',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                              Text(
+                            children: <Widget>[
+                              Expanded(child: Text(
+                                '${nomeProdotto[index]}',
+                                style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                              ),),
+                              Expanded(child: Text(
                                 ' Qunatità: ${quantita[index]}',
                                 style: TextStyle(fontSize: 18),
-                              ),
+                              ),),
+
                             ]
                           ),
                         );
