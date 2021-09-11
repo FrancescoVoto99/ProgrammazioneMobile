@@ -26,7 +26,11 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.FirebaseDatabase
 
-
+/**
+ * Schermata che visualizza una statistica:
+ * Percentuali di categoria di prodotti più acquistati dal gruppo
+ * Utilizza la libreria piechart
+ */
 class Statistic : AppCompatActivity() {
 
 

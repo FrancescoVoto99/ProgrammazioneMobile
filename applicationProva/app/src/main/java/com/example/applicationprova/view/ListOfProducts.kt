@@ -28,6 +28,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Activity che mostra i prodotti da acquistare di un gruppo
+ */
  class ListOfProducts : AppCompatActivity() {
     lateinit var database: FirebaseDatabase
     lateinit var myRef: DatabaseReference

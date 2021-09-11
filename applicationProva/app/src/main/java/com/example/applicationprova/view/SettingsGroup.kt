@@ -18,6 +18,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.ArrayList
 
+/**
+ * Schermata per visualizzare gli utenti del gruppo, eliminarli o aggiungerli
+ */
 class SettingsGroup : AppCompatActivity() {
 
     var database: FirebaseDatabase= FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")

@@ -17,7 +17,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-
+/**
+ * Activity che mostra le varie spese effettuate dal gruppo
+ */
 class ListOfShop : AppCompatActivity() {
 
     lateinit var database: FirebaseDatabase

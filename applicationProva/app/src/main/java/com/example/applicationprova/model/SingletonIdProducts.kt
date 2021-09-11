@@ -1,5 +1,8 @@
 package com.example.applicationprova.model
 
+/**
+ * Singleton usato per immagazzinare la lista dei prodotti selezionati (checkmark)
+ */
 object SingletonIdProducts{
       var idList: List<String> = emptyList()
       private set

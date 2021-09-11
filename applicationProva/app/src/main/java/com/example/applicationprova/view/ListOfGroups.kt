@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Activity per mostrare tutti i gruppi a cui appartiene l'utente loggato
+ */
 class ListOfGroups : AppCompatActivity() {
 
     lateinit var database: FirebaseDatabase

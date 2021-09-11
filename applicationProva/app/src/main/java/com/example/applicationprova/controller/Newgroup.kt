@@ -15,7 +15,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
-
+/**
+ * Activity per creare un nuovo gruppo,
+ * aggiungendo 0+ utenti
+ */
 class Newgroup : AppCompatActivity() {
 
     var groupid: String="prova"

@@ -14,7 +14,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-
+/**
+ * Adapter per la RecycleView che contiene la lista per tutti i gruppi
+ */
 class ListofGroupsAdapter (val data: List<String>,val data2: List<String>):
 
     RecyclerView.Adapter<ListofGroupsAdapter.MyViewHolder>() {
@@ -25,6 +27,11 @@ class ListofGroupsAdapter (val data: List<String>,val data2: List<String>):
             val textView2 = row.findViewById<TextView>(R.id.idgroup)
 
         }
+
+    /**
+     * Viene chiamata alla creazione del ViewHolder
+     *
+     */
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                 MyViewHolder {
             val layout = LayoutInflater.from(parent.context)

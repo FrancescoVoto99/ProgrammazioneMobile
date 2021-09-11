@@ -14,6 +14,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.ArrayList
 
+/**
+ * Activity che mostra il saldo complessivo del gruppo per le spese
+ */
 class Saldo : AppCompatActivity() {
     var database: FirebaseDatabase = FirebaseDatabase.getInstance("https://prova-14ff5-default-rtdb.europe-west1.firebasedatabase.app/")
     var searchUser: DatabaseReference = database.getReference("gruppi")
