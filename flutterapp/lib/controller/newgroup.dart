@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import '../../screens/groups.dart';
 import '../model/Gruppo.dart';
 
+/**
+ * Crea un nuovo gruppo di utenti
+ */
 class NewGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final nomeUtente = TextEditingController();
 
 
-
+  /**
+   * Aggiunge un utente ad un gruppo
+   */
   void add() {
     list[email.text.toString().replaceAll(".","'")] = nomeUtente.text.toString();
     setState(() {
@@ -60,6 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
+  /**
+   * Aggiunge il gruppo al database
+   */
   void creaGruppo() {
     DatabaseReference myRef= database.reference().child("gruppi");
     DatabaseReference myRefutenti=database.reference().child("utentiGruppi");
@@ -222,24 +230,4 @@ class _MyHomePageState extends State<MyHomePage> {
         )
     );
   }
-}
-Widget _buildPopupDialog(BuildContext context) {
-  return new AlertDialog(
-    title: const Text('Popup example'),
-    content: new Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text("Hello"),
-      ],
-    ),
-    actions: <Widget>[
-      new TextButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        child: const Text('Fatto'),
-      ),
-    ],
-  );
 }

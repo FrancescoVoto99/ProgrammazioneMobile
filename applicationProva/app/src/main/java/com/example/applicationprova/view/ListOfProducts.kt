@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,12 +11,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.ActionMode
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationprova.*
+import com.example.applicationprova.authentication.LoginActivity
+import com.example.applicationprova.authentication.MyAccount
+import com.example.applicationprova.controller.InserisciProdotto
 import com.example.applicationprova.databinding.ActivityListOfProductsBinding
-import com.example.progetto.Prodotto
+import com.example.applicationprova.model.SingletonIdProducts
+import com.example.applicationprova.model.Spesa
+import com.example.applicationprova.model.Statistic
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference

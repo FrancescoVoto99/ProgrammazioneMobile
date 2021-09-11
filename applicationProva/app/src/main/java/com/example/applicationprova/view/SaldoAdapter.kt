@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.view
 
 import android.app.Activity
 import android.graphics.Color
@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.example.applicationprova.R
 
-class SaldoAdapter(private val context : Activity, private  val map: Map<String,Float>,private  val arrayList: ArrayList<String>): ArrayAdapter<String>(context,R.layout.item_divisione_spese,arrayList) {
+class SaldoAdapter(private val context : Activity, private  val map: Map<String,Float>,private  val arrayList: ArrayList<String>): ArrayAdapter<String>(context,
+    R.layout.item_divisione_spese,arrayList) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         val inflater :LayoutInflater= LayoutInflater.from(context )
@@ -19,7 +21,7 @@ class SaldoAdapter(private val context : Activity, private  val map: Map<String,
 
 
 
-        val divisione: Float=map.values.sum()/map.size
+        val divisione = dividi(map)
         val dovuto: Float=map.values.toFloatArray()[position]-divisione
 
         if (dovuto>0){
@@ -41,5 +43,9 @@ class SaldoAdapter(private val context : Activity, private  val map: Map<String,
         return view
     }
 
+    fun dividi(spese: Map<String, Float>): Float {
+        val divisione = spese.values.sum()/spese.size
+        return divisione
+    }
 
 }

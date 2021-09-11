@@ -1,14 +1,13 @@
-package com.example.applicationprova
+package com.example.applicationprova.authentication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.Gravity
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.applicationprova.databinding.ActivityMainBinding
+import com.example.applicationprova.MainActivity
+import com.example.applicationprova.R
 import com.example.applicationprova.databinding.ActivityMyAccountBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest

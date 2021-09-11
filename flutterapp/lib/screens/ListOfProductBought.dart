@@ -11,6 +11,9 @@ import 'package:firebase_database/firebase_database.dart';
 import '../controller/EditProduct.dart';
 import 'Saldo.dart';
 
+/**
+ * Schermata che presenta i prodotti comprati
+ */
 class ListOfProductBought extends StatefulWidget {
   const ListOfProductBought({Key? key, required this.idgroup, required this.idshop}) : super(key: key);
   final String idgroup;

@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,14 +6,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationprova.authentication.LoginActivity
+import com.example.applicationprova.authentication.MyAccount
+import com.example.applicationprova.controller.Newgroup
+import com.example.applicationprova.R
 import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
@@ -34,7 +35,8 @@ class ListOfGroups : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //data binding al posto del classico inflate
         val binding: ActivityListOfGroupsBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_list_of_groups)
+            this, R.layout.activity_list_of_groups
+        )
         //Hide message
         binding.empty.visibility = TextView.INVISIBLE
         var auth = Firebase.auth

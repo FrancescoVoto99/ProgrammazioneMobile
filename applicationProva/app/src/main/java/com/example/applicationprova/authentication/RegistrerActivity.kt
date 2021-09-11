@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.authentication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
+import com.example.applicationprova.MainActivity
+import com.example.applicationprova.R
 import com.example.applicationprova.databinding.ActivityRegistrerBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth

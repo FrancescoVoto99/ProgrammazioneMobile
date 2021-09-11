@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/ListOfProduct.dart';
 import 'package:flutterapp/model/Prodotto.dart';
 
-
+/**
+ * Per modificare un prodotto di un gruppo
+ */
 class EditProduct extends StatelessWidget {
   EditProduct({Key? key, required this.idgroup,required this.idproduct}) : super(key: key);
   final String idgroup;
@@ -78,6 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   }
+
+  /**
+   * Aggiorna il prodotto nel database.
+   */
   void updateProduct(){
       DatabaseReference myRef= database.reference().child("gruppi");
       myRef.child(idgroup).child("prodotti").child(idproduct).child("nome").set(nomeProdotto.text.toString());

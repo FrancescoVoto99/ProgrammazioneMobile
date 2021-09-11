@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
 
+/**
+ * Classe per effettuare la modifica dell'account
+ */
 class Registration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,9 @@ class Registration extends StatelessWidget {
     );
   }
 }
+/**
+ * Controller dei vari campi
+ */
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
 class MyHomePage extends StatefulWidget {
@@ -143,9 +149,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+/**
+ * Mostra un popupDialog a modifica effettuata
+ */
 Widget _buildPopupDialog(BuildContext context) {
   return new AlertDialog(
-    title: const Text('Popup example'),
+    title: const Text('Registrazione effettuata'),
     content: new Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,

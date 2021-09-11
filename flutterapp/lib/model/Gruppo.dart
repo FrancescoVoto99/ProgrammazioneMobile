@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+/**
+ * Classe che modella i gruppi
+ */
 class Gruppo {
   String NomeGruppo;
   Map<String,String> gruppo;

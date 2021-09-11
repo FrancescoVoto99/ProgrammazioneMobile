@@ -14,6 +14,10 @@ import 'ListOfProductBought.dart';
 import 'Saldo.dart';
 import 'Statistics.dart';
 
+/**
+ * Lista delle spese effettuate da un gruppo
+ */
+
 class ListOfShop extends StatefulWidget {
   const ListOfShop({Key? key, required this.idgroup}) : super(key: key);
   final String idgroup;

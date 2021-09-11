@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.model
 
 object SingletonIdProducts{
       var idList: List<String> = emptyList()

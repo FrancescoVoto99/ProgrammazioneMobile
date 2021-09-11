@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.view
 
 import android.content.Intent
 import android.util.Log
@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
+import com.example.applicationprova.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -47,7 +46,7 @@ class ListofGroupsAdapter (val data: List<String>,val data2: List<String>):
                     when(item.itemId)
 
                     {
-                        R.id.context_delete->{
+                        R.id.context_delete ->{
                             myRef= database.getReference("gruppi")
                             myRef.child(holder.textView2.text.toString()).removeValue().addOnSuccessListener {
                                 Log.d("Firebase", "Group deleted")

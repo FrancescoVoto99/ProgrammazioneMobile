@@ -8,6 +8,9 @@ import 'package:flutterapp/screens/authentication/registration.dart';
 
 import 'package:flutterapp/screens/groups.dart';
 
+/**
+ * Schermata di Login
+ */
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,10 +25,14 @@ class Login extends StatelessWidget {
     );
   }
 }
-
+/**
+ * Controllers dei campi email e password
+ */
 final email = TextEditingController();
 final password = TextEditingController();
-
+/**
+ * Funzione per verificare se il login è andato a buon fine o no
+ */
 Future<void> checkLogin(BuildContext context) async {
   try {
     String email1=password.text.toString();
@@ -49,7 +56,9 @@ Future<void> checkLogin(BuildContext context) async {
   }
 
 }
-
+/**
+ * Funzione per effettuare il signOut
+ */
 Future <Login> signOut()  async{
   await FirebaseAuth.instance.signOut();
 
@@ -65,6 +74,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
+  /// Builder della schermata
   @override
   Widget build(BuildContext context) {
     final emailField = TextField(

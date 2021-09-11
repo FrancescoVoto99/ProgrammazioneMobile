@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.view
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -10,10 +10,9 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.applicationprova.R
 
 import com.example.applicationprova.databinding.ActivitySettingsGroupBinding
-import com.google.android.material.divider.MaterialDividerItemDecoration
 
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

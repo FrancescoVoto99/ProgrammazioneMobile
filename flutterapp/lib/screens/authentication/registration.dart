@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
 
+/**
+ * Classe per effettuare la registrazione di un nuovo utente
+ */
 class Registration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,9 @@ class Registration extends StatelessWidget {
     );
   }
 }
+/**
+ * Controllers dei vari campi nomeutente, email, password, conferma password
+ */
 final nomeutente = TextEditingController();
 final email = TextEditingController();
 final password = TextEditingController();
@@ -186,14 +192,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+/**
+ * Mostra un AlertDialog a registrazione effettuata
+ */
 Widget _buildPopupDialog(BuildContext context) {
   return new AlertDialog(
-    title: const Text('Popup example'),
+    title: const Text('Account registrato'),
     content: new Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("Hello"),
+        Text("Fatto"),
       ],
     ),
     actions: <Widget>[

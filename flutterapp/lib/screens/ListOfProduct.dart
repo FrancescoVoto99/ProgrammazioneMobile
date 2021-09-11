@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,8 @@ import 'package:flutterapp/screens/Statistics.dart';
 import 'package:flutterapp/screens/authentication/login.dart';
 
 import 'Saldo.dart';
+
+///Schermata che mostra tutti i prodotti da comprare inseriti da un gruppo
 
 class ListOfProduct extends StatefulWidget {
   const ListOfProduct({Key? key, required this.idgroup}) : super(key: key);
@@ -74,6 +75,9 @@ class ListOfProductState extends State<ListOfProduct> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   int _selectedIndex = 0;
 
+  /**
+   * Opzioni della bottom navigation bar
+   */
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Index 0: Home'),
     Text('Index 1: Spese'),
@@ -252,6 +256,9 @@ class ListOfProductState extends State<ListOfProduct> {
     }
   }
 
+  /**
+   * Prompt di conferma per la spesa, richiede il prezzo pagato e il nome della spesa effettuata
+   */
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
@@ -307,6 +314,9 @@ class ListOfProductState extends State<ListOfProduct> {
     );
   }
 
+  /**
+   * Inserisce la spesa effettuata tra le spese del gruppo
+   */
   void insertSpesa() {
     var keysProdotti = Map<String, String>();
     int i = 0;
@@ -350,6 +360,9 @@ class ListOfProductState extends State<ListOfProduct> {
     });
   }
 
+  /**
+   * Setta lo stato del prodotto a "comprato"
+   */
   void changeBuyBit(Map<String, String> keysProdotti) {
     keysProdotti.values.forEach((element) {
       searchproducts

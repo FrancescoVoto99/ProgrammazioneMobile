@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.authentication.LoginActivity
 import com.example.applicationprova.databinding.ActivityMainBinding
+import com.example.applicationprova.view.ListOfGroups
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
