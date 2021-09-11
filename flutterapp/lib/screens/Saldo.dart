@@ -14,6 +14,9 @@ import 'package:flutterapp/screens/authentication/login.dart';
 import 'ListOfProduct.dart';
 import 'ListOfShop.dart';
 
+/**
+ * Il saldo mostra tutte le rispettive spese del gruppo con il prezzo
+ */
 class Saldo extends StatefulWidget {
   const Saldo({Key? key, required this.idgroup}) : super(key: key);
   final String idgroup;
@@ -25,9 +28,9 @@ class Saldo extends StatefulWidget {
 }
 
 
-
-
-
+/**
+ * Stato della classe Saldo, a seconda del gruppo
+ */
 class SaldoState extends State<Saldo> {
   String idgroup;
 
@@ -99,6 +102,10 @@ class SaldoState extends State<Saldo> {
 
 
   }
+
+  /**
+   * Funzione che effettua la divisione delle spese
+   */
   CalcolaSaldo(int position)  {
     double sum = 0.00;
     listaspese.values.forEach((double e){sum += e;});

@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:object_mapper/object_mapper.dart';
 
+/**
+ * Classe che modella il concetto di prodotto
+ */
 class Prodotto {
   String nome;
   String categoria;
@@ -11,6 +14,9 @@ class Prodotto {
   String nomeutente;
   String buy;
 
+  /**
+   * Costruttore
+   */
   Prodotto(
 
       this.nome,
@@ -36,7 +42,9 @@ class Prodotto {
       };
 
 
-
+  /**
+   * Funzione per effettuare il mapping da json a oggetto Prodotto
+   */
   factory Prodotto.fromJson(dynamic json){
     return Prodotto(json['nome'] as String,
                    json['categoria'] as String,

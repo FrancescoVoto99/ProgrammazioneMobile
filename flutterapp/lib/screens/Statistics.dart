@@ -10,6 +10,10 @@ import 'package:pie_chart/pie_chart.dart';
 
 import 'Saldo.dart';
 
+/**
+ * Schermata per le statistiche: la statistica visualizzata è la percentuale di categorie di prodotti pi
+ *  acquistate da un gruppo. Utilizza la libreria PieChart
+ */
 
 class Statistics extends StatefulWidget {
   const Statistics({Key? key, required this.idgroup}) : super(key: key);
