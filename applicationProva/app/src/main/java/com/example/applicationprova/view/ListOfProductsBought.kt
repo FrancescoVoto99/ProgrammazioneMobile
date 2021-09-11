@@ -40,7 +40,7 @@ class ListOfProductsBought : AppCompatActivity() {
 
         setSupportActionBar(binding.topAppBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        
+
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")

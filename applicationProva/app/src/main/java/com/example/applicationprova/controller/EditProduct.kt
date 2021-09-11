@@ -124,6 +124,7 @@ class EditProduct: AppCompatActivity() {
             onBackPressed()
             true
         }
+
         binding.btnUpdate.setOnClickListener{
 
             updateProduct()
