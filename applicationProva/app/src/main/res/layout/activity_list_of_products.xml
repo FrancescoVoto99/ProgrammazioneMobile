@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/lista_della_spesa"
             app:titleTextColor="@android:color/white"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             app:navigationIcon="@drawable/ic_menu_24dp"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
 
@@ -60,6 +60,7 @@
             android:layout_marginEnd="35dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="@string/compra"
+            android:backgroundTint="@color/secondaryColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toStartOf="@+id/fabProduct"
@@ -81,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:contentDescription="@string/aggiungi_prodotto"
+            android:backgroundTint="@color/secondaryColor"
             android:src="@drawable/ic_add_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent" />

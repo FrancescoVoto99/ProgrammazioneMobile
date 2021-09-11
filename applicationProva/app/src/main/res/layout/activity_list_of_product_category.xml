@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/prodotti_categoria"
             app:titleTextColor="@android:color/white"
-            android:background="?attr/colorPrimary"
+            android:background="@color/primaryColor"
             app:navigationIcon="@drawable/ic_back"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
 

@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/inserisci_prodotto"
             app:titleTextColor="@android:color/white"
-            android:background="?attr/colorPrimary"
+            android:background="@color/primaryColor"
             app:navigationIcon="@drawable/ic_back"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
 
@@ -36,7 +36,12 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/nuovo_prodotto" />
+                android:text="@string/nuovo_prodotto"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -49,6 +54,9 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="27dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:text="@string/dati" />
 
             <EditText
@@ -84,6 +92,7 @@
                 android:id="@+id/btninsert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/secondaryColor"
                 android:layout_marginTop="20dp"
                 android:text="@string/inserisci" />
 
@@ -91,6 +100,7 @@
                 android:id="@+id/btncancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/secondaryColor"
                 android:layout_marginTop="20dp"
                 android:text="@string/annulla" />
         </LinearLayout>

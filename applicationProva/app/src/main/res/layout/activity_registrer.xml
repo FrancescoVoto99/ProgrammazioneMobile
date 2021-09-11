@@ -92,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:padding="12dp"
+                android:backgroundTint="@color/secondaryColor"
                 android:text="@string/registrati"
                 android:textAllCaps="false" />
 
