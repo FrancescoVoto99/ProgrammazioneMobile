@@ -38,10 +38,9 @@ class ListOfProductsBought : AppCompatActivity() {
         val rv: RecyclerView = binding.listaProdottiComprati
         rv.layoutManager = LinearLayoutManager(this)
 
-        binding.topAppBar.setNavigationOnClickListener {
-            onBackPressed()
-            false
-        }
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("key")
