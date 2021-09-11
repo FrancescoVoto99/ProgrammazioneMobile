@@ -136,18 +136,18 @@ class SettingsGroup : AppCompatActivity() {
 
             var email = email.text.toString()
             var nome = nome.text.toString()
-            searchUser.child(keygroup).child("gruppo").push().setValue(email).addOnSuccessListener {
-                myRefutenti.child(email.replace(".","")).child(keygroup).setValue(namegroup).addOnSuccessListener {
-
-                }
-            }
             searchUser.child(keygroup).child("gruppo").child(email.replace(".","")).setValue(nome).addOnSuccessListener {
                 myRefutenti.child(email.replace(".","")).setValue(namegroup).addOnSuccessListener {
+                    val intent = Intent(this, SettingsGroup::class.java)
+                    intent.putExtra("key",keygroup)
+                    startActivity(intent)
                 }
+
+
+
             }
 
-            val intent = Intent(this, SettingsGroup::class.java)
-            startActivity(intent)
+
         })
 
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
