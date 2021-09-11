@@ -1,4 +1,4 @@
-package com.example.applicationprova
+package com.example.applicationprova.controller
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,10 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.view.ListOfProducts
+import com.example.applicationprova.R
 import com.example.applicationprova.databinding.ActivityInserisciProdottoBinding
-import com.example.progetto.Prodotto
+import com.example.applicationprova.model.Prodotto
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -34,7 +36,8 @@ class InserisciProdotto: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityInserisciProdottoBinding = DataBindingUtil.setContentView(
-                this, R.layout.activity_inserisci_prodotto)
+                this, R.layout.activity_inserisci_prodotto
+        )
         //setContentView(R.layout.activity_inserisci_prodotto)
 
         nome=binding.Nomeprodotto
@@ -45,7 +48,7 @@ class InserisciProdotto: AppCompatActivity() {
         val spinCat: Spinner = binding.spinnerCategory
         ArrayAdapter.createFromResource(
                 this,
-                R.array.categorie,
+            R.array.categorie,
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
@@ -57,7 +60,7 @@ class InserisciProdotto: AppCompatActivity() {
         val spinQuant: Spinner = binding.spinnerQuantity
         ArrayAdapter.createFromResource(
                 this,
-                R.array.quantita,
+            R.array.quantita,
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears

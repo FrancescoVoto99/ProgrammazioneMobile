@@ -1,15 +1,18 @@
-package com.example.applicationprova
+package com.example.applicationprova.model
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.applicationprova.databinding.ActivityListOfGroupsBinding
+import com.example.applicationprova.R
 import com.example.applicationprova.databinding.ActivityStatisticBinding
+import com.example.applicationprova.view.Saldo
+import com.example.applicationprova.view.ListOfProductCategory
+import com.example.applicationprova.view.ListOfProducts
+import com.example.applicationprova.view.ListOfShop
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.Entry
@@ -30,7 +33,8 @@ class Statistic : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityStatisticBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_statistic)
+            this, R.layout.activity_statistic
+        )
         //setContentView(R.layout.activity_statistic)
 
         val database =

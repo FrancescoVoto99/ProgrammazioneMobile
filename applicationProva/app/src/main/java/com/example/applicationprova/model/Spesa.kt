@@ -1,6 +1,4 @@
-package com.example.applicationprova
-
-import com.example.progetto.Prodotto
+package com.example.applicationprova.model
 
 
 data class Spesa(

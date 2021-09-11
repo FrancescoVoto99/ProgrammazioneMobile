@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:context=".ListOfGroups"
+        tools:context=".view.ListOfGroups"
         >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ListOfProducts">
+        tools:context=".view.ListOfProducts">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/topAppBar"

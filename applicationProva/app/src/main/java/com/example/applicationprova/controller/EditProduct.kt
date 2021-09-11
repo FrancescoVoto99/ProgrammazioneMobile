@@ -1,6 +1,5 @@
-package com.example.applicationprova
+package com.example.applicationprova.controller
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 
@@ -10,8 +9,10 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
+import com.example.applicationprova.view.ListOfProducts
+import com.example.applicationprova.R
 import com.example.applicationprova.databinding.ActivityEditProductBinding
-import com.example.progetto.Prodotto
+import com.example.applicationprova.model.Prodotto
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -34,7 +35,8 @@ class EditProduct: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityEditProductBinding = DataBindingUtil.setContentView(
-                this, R.layout.activity_edit_product)
+                this, R.layout.activity_edit_product
+        )
         //setContentView(R.layout.activity_inserisci_prodotto)
 
         nome=binding.Nomeprodotto

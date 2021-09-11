@@ -1,4 +1,4 @@
-package com.example.progetto
+package com.example.applicationprova.model
 
 data class Prodotto(
     val nome: String?=null, val categoria: String?=null, val quantita: String? =null,
