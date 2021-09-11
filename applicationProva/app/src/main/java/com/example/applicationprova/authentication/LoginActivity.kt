@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Classe che si occupa del login dell'utente
+ */
 class LoginActivity : AppCompatActivity() {
 
 
@@ -51,6 +54,10 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
+    /**
+     * Login dell'utente, con vari controlli per i campi email e password
+     */
 
     private fun loginUser(){
 

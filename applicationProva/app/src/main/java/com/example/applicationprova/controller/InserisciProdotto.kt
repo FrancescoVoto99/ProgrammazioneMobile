@@ -19,6 +19,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Activity per inserire un nuovo elemento nella lista della spesa del gruppo
+ */
 class InserisciProdotto: AppCompatActivity() {
     lateinit var nome : EditText
     lateinit var categoria: Spinner
@@ -97,6 +100,9 @@ class InserisciProdotto: AppCompatActivity() {
         }
    }
 
+    /**
+     * Inserisce l'oggetto creato nel database
+     */
     private fun insertProduct(){
         val extras = intent.extras
         if (extras != null) {

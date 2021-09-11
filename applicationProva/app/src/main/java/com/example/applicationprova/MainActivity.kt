@@ -12,6 +12,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Entry point main dell'applicazione
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -31,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Se l'utente è loggato, va alla lista dei gruppi dell'utente,
+     * altrimenti va al login
+     */
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.

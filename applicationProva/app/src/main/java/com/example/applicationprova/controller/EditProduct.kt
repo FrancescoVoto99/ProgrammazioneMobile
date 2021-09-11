@@ -18,6 +18,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Activity per modificare un prodotto
+ */
 class EditProduct: AppCompatActivity() {
     lateinit var nome : EditText
     lateinit var categoria: Spinner
@@ -132,6 +135,9 @@ class EditProduct: AppCompatActivity() {
         }
     }
 
+    /**
+     * Aggiorna il prodotto nel database
+     */
     private fun updateProduct(){
         val extras = intent.extras
         if (extras != null) {
@@ -148,6 +154,10 @@ class EditProduct: AppCompatActivity() {
             }
         }
     }
+
+    /**
+     * Rimuove il prodotto dal database
+     */
     private fun delete(){
         myRef=database.getReference("gruppi")
         val extras = intent.extras

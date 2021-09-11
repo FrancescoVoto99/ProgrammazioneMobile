@@ -13,6 +13,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Schermata  per modificare l'account utente
+ */
 class MyAccount : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
