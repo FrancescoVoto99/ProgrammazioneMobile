@@ -85,7 +85,7 @@ class ListOfProductState extends State<ListOfProduct> {
     Text('Index 3: Statistiche'),
   ];
   void _onItemTapped(int index) {
-    setState((){
+
       switch(index){
         case 0: break;
         case 1:   Navigator.push(context,
@@ -95,6 +95,7 @@ class ListOfProductState extends State<ListOfProduct> {
         case 3: Navigator.push(context,
             MaterialPageRoute(builder: (context) => Statistics(idgroup: idgroup))); break;
       }
+      setState((){
       _selectedIndex = index;
     });
   }

@@ -39,7 +39,11 @@ class ListOfProductsBought : AppCompatActivity() {
         rv.layoutManager = LinearLayoutManager(this)
 
         setSupportActionBar(binding.topAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+       // supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressed()
+            true
+        }
 
         val extras = intent.extras
         if (extras != null) {
